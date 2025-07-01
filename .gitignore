@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.xcworkspace
+xcuserdata/
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# JetBrains IDE (AppCode)
+.idea/
+
+# Firebase (nếu không muốn chia sẻ file cấu hình)
+GoogleService-Info.plist
