@@ -37,23 +37,32 @@ struct WelcomeView: View {
                         NavigationStack {
                             VStack(spacing: 30) {
                                 VStack(spacing: 8) {
-                                    Text("Good-Food")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
-                                        .padding(.top, 50)
-                                        .overlay(
-                                            LinearGradient(
-                                                colors: [.green, .blue],
-                                                startPoint: .leading,
-                                                endPoint: .trailing
+                                    HStack {
+                                        Text("Good-Food")
+                                            .font(.largeTitle)
+                                            .fontWeight(.bold)
+                                            .padding(.top, 50)
+                                            .overlay(
+                                                LinearGradient(
+                                                    colors: [.green, .blue],
+                                                    startPoint: .leading,
+                                                    endPoint: .trailing
+                                                )
                                             )
-                                        )
-                                        .mask(
-                                            Text("Good-Food")
-                                                .font(.largeTitle)
-                                                .fontWeight(.bold)
-                                                .padding(.top, 50)
-                                        )
+                                            .mask(
+                                                Text("Good-Food")
+                                                    .font(.largeTitle)
+                                                    .fontWeight(.bold)
+                                                    .padding(.top, 50)
+                                            )
+                                        
+                                        Image(systemName: "leaf.circle.fill")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 35, height: 35)
+                                            .foregroundColor(.green.opacity(0.9))
+                                            .padding(.top, 40)
+                                    }
                                     
                                     Text("Ăn uống thông minh – sống khoẻ mỗi ngày 🌿")
                                         .font(.subheadline)
@@ -67,13 +76,9 @@ struct WelcomeView: View {
                                         )
                                 }
                                 
-                                Image(systemName: "leaf.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 120, height: 120)
-                                    .foregroundColor(.green.opacity(0.9))
-                                    .padding()
-                                
+                                LottieView(name: "iconWelcome", loopMode: .loop)
+                                    .frame(width: 400, height: 380)
+
                                 Spacer()
                                 
                                 Button(action: {
@@ -88,8 +93,11 @@ struct WelcomeView: View {
                                     .frame(width: 300)
                                     .background(Color.white.opacity(0.9))
                                     .foregroundColor(.green)
-                                    .cornerRadius(16)
                                     .shadow(radius: 4)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(Color(red: 144/255, green: 185/255, blue: 78/255), lineWidth: 2)
+                                    )
                                 }
                                 
                                 Spacer()

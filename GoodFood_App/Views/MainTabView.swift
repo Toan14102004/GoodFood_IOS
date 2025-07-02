@@ -41,9 +41,13 @@ struct MainTabView: View {
                         .frame(width: 80, height: 80)
                 }
 
-            SuggestView()
+//            SuggestView()
+//                .tabItem {
+//                    Label("Gợi ý món", systemImage: "fork.knife")
+//                }
+            TestDishUploadView()
                 .tabItem {
-                    Label("Gợi ý món", systemImage: "fork.knife")
+                    Label("testFirebase", systemImage: "fork.knife")
                 }
 
             ProfileView()

@@ -12,6 +12,7 @@ struct UserInfoFormView: View {
     @State private var sex: Bool = true
     @State private var height: Double = 1.6
     @State private var weight: Double = 50.0
+    @State private var targetWeight: Double = 40.0
 
     var body: some View {
         Form {
@@ -20,6 +21,7 @@ struct UserInfoFormView: View {
                 Toggle("Giới tính (Nam?)", isOn: $sex)
                 TextField("Chiều cao (m)", value: $height, format: .number)
                 TextField("Cân nặng (kg)", value: $weight, format: .number)
+                TextField("Mục tiêu cân nặng (kg)", value: $targetWeight, format: .number)
             }
 
             Button("Lưu và tiếp tục") {
@@ -28,6 +30,8 @@ struct UserInfoFormView: View {
                     currentUser.sex = sex
                     currentUser.height = height
                     currentUser.weight = weight
+                    currentUser.targetWeight = targetWeight
+                    currentUser.weighHistory?.append(weight)
                     authViewModel.user = currentUser
                     authViewModel.showUserInfoForm = false
                 }
@@ -37,4 +41,3 @@ struct UserInfoFormView: View {
         .navigationTitle("Thông tin người dùng")
     }
 }
-

@@ -22,7 +22,8 @@ struct ArticleHealthy: View {
                         NavigationLink(destination: ArticleDetailView(article: article)) {
                             VStack(alignment: .leading, spacing: 8) {
                                 if let urlString = article.urlToImage,
-                                   let url = URL(string: urlString) {
+                                   let url = URL(string: urlString)
+                                {
                                     AsyncImage(url: url) { phase in
                                         switch phase {
                                         case .success(let image):

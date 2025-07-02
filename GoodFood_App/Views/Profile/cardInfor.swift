@@ -26,9 +26,9 @@ struct CardInfor: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(12)
                 .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color(red: 144/255, green: 185/255, blue: 78/255), lineWidth: 2)
-                    )
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color(red: 144/255, green: 185/255, blue: 78/255), lineWidth: 2)
+                )
         }
         .padding()
         .background(Color.white)

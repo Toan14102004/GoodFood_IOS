@@ -14,7 +14,8 @@ struct ArticleDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 if let imageUrl = article.urlToImage,
-                   let url = URL(string: imageUrl) {
+                   let url = URL(string: imageUrl)
+                {
                     AsyncImage(url: url) { phase in
                         switch phase {
                         case .success(let image):
@@ -47,7 +48,8 @@ struct ArticleDetailView: View {
                 }
 
                 if let urlString = article.url,
-                   let url = URL(string: urlString) {
+                   let url = URL(string: urlString)
+                {
                     Link("Xem bài gốc", destination: url)
                         .foregroundColor(.blue)
                         .padding(.top)

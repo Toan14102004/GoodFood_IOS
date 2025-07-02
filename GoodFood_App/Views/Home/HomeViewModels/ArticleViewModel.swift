@@ -28,4 +28,3 @@ class ArticleViewModel: ObservableObject {
         }.resume()
     }
 }
-

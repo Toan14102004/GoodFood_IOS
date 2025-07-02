@@ -45,7 +45,7 @@ struct ProfileView: View {
                     .frame(height: 2)
                     .background(Color.gray.opacity(0.3))
                     .padding(.horizontal)
-                
+
                 NavBarView()
 
                 Spacer()
