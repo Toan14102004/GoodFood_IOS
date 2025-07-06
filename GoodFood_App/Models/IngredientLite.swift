@@ -12,6 +12,6 @@ struct IngredientLite: Codable, Hashable {
     var name: String
     var unit: String?
     var state: String?
-    var quantity: Double
+    var quantity: Double?
 }
 

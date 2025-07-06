@@ -7,6 +7,9 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @EnvironmentObject var authViewModel : AuthViewModel
+    @StateObject var firebaseService = FirebaseService()
+
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -56,10 +59,20 @@ struct MainTabView: View {
                 }
         }
         .tint(Color(red: 144/255, green: 185/255, blue: 78/255)) // #90B94E
+        .onAppear {
+            if let user = authViewModel.user {
+                firebaseService.fetchInforUser(authViewModel: authViewModel) { result in
+                    switch result {
+                    case .success(let fetchedUser):
+                        DispatchQueue.main.async {
+                            authViewModel.user = fetchedUser
+                            print("fetch user thành công ")
+                        }
+                    case .failure(let error):
+                        print("Lỗi fetch user: \(error)")
+                    }
+                }
+            }
+        }
     }
 }
-
-//
-// #Preview {
-//    MainTabView()
-// }

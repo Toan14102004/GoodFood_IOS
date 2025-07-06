@@ -64,12 +64,12 @@ struct HomeView: View {
                     print("ID: \(user.id)")
                     print(" Email: \(user.email)")
                     print(" Tên: \(user.displayName ?? "Không có")")
-                    print("👫 Giới tính: \(user.sex == true ? "Nam" : "Nữ")")
+                    print(" Giới tính: \(user.sex == true ? "Nam" : "Nữ")")
                     print(" Chiều cao: \(user.height ?? 0) m")
-                    print("⚖️ Cân nặng: \(user.weight ?? 0) kg")
-                    print("🎂 Tuổi: \(user.age ?? 0)")
+                    print(" Cân nặng: \(user.weight ?? 0) kg")
+                    print(" Tuổi: \(user.age ?? 0)")
                 } else {
-                    print("⚠️ Không có người dùng nào đang đăng nhập.")
+                    print(" Không có người dùng nào đang đăng nhập.")
                 }
             }
         }

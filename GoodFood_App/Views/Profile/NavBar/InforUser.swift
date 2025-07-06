@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InforUser: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject var firebaseService = FirebaseService()
 
     @State private var name: String = ""
     @State private var age: String = "20"
@@ -72,5 +73,14 @@ struct InforUser: View {
         user.height = Double(height) ?? 1.6
         user.weight = Double(weight) ?? 50.0
         authViewModel.user = user
+       // CoreDataService.shared.updateUserInforToFirebase(user)
+        firebaseService.updateUserInforToFirebase(user) { result in
+            switch result {
+            case .success():
+                print(" Đã lưu thông tin người dùng lên Firebase")
+            case .failure(let error):
+                print(" Lỗi lưu thông tin: \(error.localizedDescription)")
+            }
+        }
     }
 }

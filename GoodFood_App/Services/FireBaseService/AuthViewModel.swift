@@ -6,6 +6,7 @@
 //
 import FirebaseAuth
 import FirebaseCore
+import FirebaseFirestore
 import GoogleSignIn
 import GoogleSignInSwift
 import SwiftUI
@@ -21,7 +22,6 @@ class AuthViewModel: ObservableObject {
             return
         }
 
-        // Lấy view controller hiện tại
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let rootVC = windowScene.windows.first?.rootViewController
         else {
@@ -29,7 +29,6 @@ class AuthViewModel: ObservableObject {
             return
         }
 
-        // Đăng nhập Google với API mới
         GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { result, error in
             if let error = error {
                 print("Lỗi đăng nhập Google: \(error.localizedDescription)")
@@ -45,8 +44,7 @@ class AuthViewModel: ObservableObject {
 
             let accessToken = user.accessToken.tokenString
 
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: accessToken)
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
 
             Auth.auth().signIn(with: credential) { _, error in
                 if let error = error {
@@ -63,9 +61,26 @@ class AuthViewModel: ObservableObject {
                         displayName: firebaseUser?.displayName,
                         photoURL: firebaseUser?.photoURL?.absoluteString
                     )
-                    self.showUserInfoForm = true
-                    print(" Đăng nhập Google thành công")
+
+                    self.checkIfUserHasInfo()
                 }
+            }
+        }
+    }
+
+    private func checkIfUserHasInfo() {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection("User").document(userID).getDocument { document, _ in
+            if let document = document, document.exists {
+                let data = document.data()
+                if let age = data?["age"] as? Int, age > 0 {
+                    self.showUserInfoForm = false // Đã có info rồi
+                } else {
+                    self.showUserInfoForm = true // Chưa có info
+                }
+            } else {
+                self.showUserInfoForm = true // Không có document → lần đầu
             }
         }
     }
@@ -76,7 +91,7 @@ class AuthViewModel: ObservableObject {
             self.isLoggedIn = false
             self.user = nil
         } catch {
-            print("❌ Lỗi đăng xuất: \(error.localizedDescription)")
+            print("Lỗi đăng xuất: \(error.localizedDescription)")
         }
     }
 

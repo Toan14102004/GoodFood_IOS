@@ -13,13 +13,16 @@ class UserEntity: NSManagedObject {
         NSFetchRequest<UserEntity>(entityName: "UserEntity")
     }
 
-    @NSManaged public var id: UUID?
-    @NSManaged public var age: Int32
-    @NSManaged public var displayName: String?
+    @NSManaged public var id: String?
+//    @NSManaged public var id: UUID?
     @NSManaged public var email: String?
-    @NSManaged public var height: Double
+    @NSManaged public var displayName: String?
     @NSManaged public var photoURL: String?
     @NSManaged public var sex: Bool
-    @NSManaged public var targetWeight: Double
+    @NSManaged public var height: Double
     @NSManaged public var weight: Double
+    @NSManaged public var targetWeight: Double
+    @NSManaged public var age: Int32
+//    @NSManaged public var weighHistory: [Double]
+    @NSManaged public var weighHistory: Data?
 }

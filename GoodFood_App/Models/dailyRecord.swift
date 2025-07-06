@@ -14,5 +14,5 @@ struct DailyRecord: Identifiable, Codable {
     var carbs: Double
     var fat: Double
     var protein: Double
-    var dishes: [String: DishLite]
+    var dishes: [String: Dish]
 }

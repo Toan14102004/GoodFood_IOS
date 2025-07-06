@@ -6,14 +6,6 @@
 //
 import Foundation
 
-//struct Dish: Codable, Identifiable {
-//    var id: UUID = .init()
-//    var image: String?
-//    var name: String
-//    var description: String
-//    var ingredients: [Ingredient]?
-//    var recipe: String?
-//}
 struct Dish: Codable, Identifiable {
     var id: UUID
     var name: String?
