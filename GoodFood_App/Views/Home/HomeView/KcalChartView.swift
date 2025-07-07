@@ -15,7 +15,7 @@ struct KcalChartView: View {
             Text("Kcal trong 7 ngày")
                 .font(.system(size: 20, weight: .bold))
                 .padding(.top, 16)
-                .padding(.horizontal) // Căn lề trái + phải như phần nội dung
+                .padding(.horizontal)
 
             Chart {
                 ForEach(data) { entry in

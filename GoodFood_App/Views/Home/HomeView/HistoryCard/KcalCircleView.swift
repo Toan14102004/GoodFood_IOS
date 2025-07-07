@@ -37,7 +37,7 @@ struct KcalCircleView: View {
                     .foregroundColor(.secondary)
 
                 Text("\(Int(NetKcal)) Kcal")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 10, weight: .bold))
             }
         }
         .frame(width: 80, height: 80)

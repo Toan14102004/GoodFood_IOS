@@ -11,12 +11,13 @@ struct HomeView: View {
     @State private var selectedDate = Date()
     @State private var showDatePicker = false
     @State private var showButtons = true
-    @State var KcalIn: Double = 1789
+    @State var KcalIn: Double = 0
     @State var KcalOut: Double = 2000
-    @State var Fat: Double = 32
-    @State var Carbs: Double = 18
-    @State var Protein: Double = 23
+    @State var Fat: Double = 0
+    @State var Carbs: Double = 0
+    @State var Protein: Double = 0
     @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject var firebaseService = FirebaseService()
 
     var body: some View {
         NavigationStack {
@@ -58,19 +59,25 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                if let user = authViewModel.user {
-                    print(" Thông tin người dùng:")
-                    print("ID: \(user.id)")
-                    print(" Email: \(user.email)")
-                    print(" Tên: \(user.displayName ?? "Không có")")
-                    print(" Giới tính: \(user.sex == true ? "Nam" : "Nữ")")
-                    print(" Chiều cao: \(user.height ?? 0) m")
-                    print(" Cân nặng: \(user.weight ?? 0) kg")
-                    print(" Tuổi: \(user.age ?? 0)")
-                } else {
-                    print(" Không có người dùng nào đang đăng nhập.")
+            fetchNutritionData(for: selectedDate)
+        }
+        .onChange(of: selectedDate) { newDate in
+            fetchNutritionData(for: newDate)
+        }
+    }
+
+    func fetchNutritionData(for date: Date) {
+        firebaseService.fetchNutritionSummary(for: date) { result in
+            switch result {
+            case .success(let summary):
+                DispatchQueue.main.async {
+                    self.KcalIn = summary.calories ?? 0
+                    self.Fat = summary.fat ?? 0
+                    self.Protein = summary.protein ?? 0
+                    self.Carbs = summary.carbohydrates ?? 0
                 }
+            case .failure(let error):
+                print("Lỗi khi lấy dữ liệu tổng ngày: \(error)")
             }
         }
     }
