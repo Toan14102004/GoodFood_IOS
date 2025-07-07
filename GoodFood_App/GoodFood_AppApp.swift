@@ -14,7 +14,6 @@ struct GoodFood_AppApp: App {
     init() {
         FirebaseApp.configure()
     }
-
     var body: some Scene {
         WindowGroup {
             WelcomeView()

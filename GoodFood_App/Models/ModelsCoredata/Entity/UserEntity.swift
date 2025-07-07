@@ -23,6 +23,5 @@ class UserEntity: NSManagedObject {
     @NSManaged public var weight: Double
     @NSManaged public var targetWeight: Double
     @NSManaged public var age: Int32
-//    @NSManaged public var weighHistory: [Double]
     @NSManaged public var weighHistory: Data?
 }
