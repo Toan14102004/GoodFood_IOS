@@ -12,7 +12,7 @@ import SwiftUI
 class FirebaseService: ObservableObject {
     @Published var dailyRecord: DailyRecord?
     @Published var dishHistory: [Dish] = []
-    @EnvironmentObject var authViewModel : AuthViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     let db = Firestore.firestore()
 
     var userID: String {
@@ -137,7 +137,7 @@ class FirebaseService: ObservableObject {
             }
         }
     }
-    
+
     func fetchInforUser(authViewModel: AuthViewModel, completion: @escaping (Result<UserModel, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
@@ -164,6 +164,171 @@ class FirebaseService: ObservableObject {
             } catch {
                 completion(.failure(error))
             }
+        }
+    }
+
+    func fetchDataOfDay(date: Date, completion: @escaping (Result<[Dish], Error>) -> Void) {
+        let dayRef = dailyRecordRef(for: date)
+
+        dayRef.collection("dishes").getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                completion(.success([])) // Không có món ăn nào trong ngày
+                return
+            }
+
+            let dishes: [Dish] = documents.compactMap { doc -> Dish? in
+                let data = doc.data()
+                guard let idString = data["id"] as? String,
+                      let id = UUID(uuidString: idString)
+                else {
+                    return nil
+                }
+                let name = data["name"] as? String
+                let description = data["description"] as? String
+                let image = data["image"] as? String
+                let recipe = data["recipe"] as? String
+
+                // Parse ingredients
+                let ingredientsArray = data["ingredients"] as? [[String: Any]]
+                let ingredients: [IngredientLite]? = ingredientsArray?.compactMap { item in
+                    guard let name = item["name"] as? String else { return nil }
+                    return IngredientLite(
+                        name: name,
+                        unit: item["unit"] as? String,
+                        state: item["state"] as? String,
+                        quantity: item["quantity"] as? Double
+                    )
+                }
+
+                // Parse nutritionFacts nếu có
+                var nutritionFacts: NutritionFacts?
+                if let kcal = data["calories"] as? Double,
+                   let protein = data["protein"] as? Double,
+                   let carbs = data["carbs"] as? Double,
+                   let fat = data["fat"] as? Double
+                {
+                    nutritionFacts = NutritionFacts(calories: kcal, fat: fat, protein: protein, carbohydrates: carbs)
+                }
+
+                return Dish(
+                    id: id,
+                    name: name,
+                    description: description,
+                    image: image,
+                    recipe: recipe,
+                    ingredients: ingredients,
+                    nutritionFacts: nutritionFacts
+                )
+            }
+            completion(.success(dishes))
+        }
+    }
+
+    func fetchNutritionSummary(for date: Date, completion: @escaping (Result<NutritionFacts, Error>) -> Void) {
+        let dayRef = dailyRecordRef(for: date)
+
+        dayRef.getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = snapshot?.data() else {
+                // Không có dữ liệu, trả về NutritionFacts toàn 0
+                let emptySummary = NutritionFacts(calories: 0, fat: 0, protein: 0, carbohydrates: 0)
+                completion(.success(emptySummary))
+                return
+            }
+
+            let calories = data["kcalIn"] as? Double ?? 0
+            let protein = data["protein"] as? Double ?? 0
+            let carbs = data["carbs"] as? Double ?? 0
+            let fat = data["fat"] as? Double ?? 0
+
+            let summary = NutritionFacts(
+                calories: calories,
+                fat: fat,
+                protein: protein,
+                carbohydrates: carbs
+            )
+            completion(.success(summary))
+        }
+    }
+
+    func fetchDishHistory(completion: @escaping (Result<[Dish], Error>) -> Void) {
+        db.collection("User").document(userID).collection("dishHistory").getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+
+            let dishes: [Dish] = documents.compactMap { document in
+                var data = document.data()
+
+                // Convert Timestamp to String for decoding
+                if let timestamp = data["dateTime"] as? Timestamp {
+                    let date = timestamp.dateValue()
+                    let formatter = ISO8601DateFormatter()
+                    data["dateTime"] = formatter.string(from: date)
+                }
+
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                    var dish = try JSONDecoder().decode(Dish.self, from: jsonData)
+
+                    // Convert String back to Date
+                    if let dateTimeString = data["dateTime"] as? String {
+                        let formatter = ISO8601DateFormatter()
+                        dish.dateTime = formatter.date(from: dateTimeString)
+                    }
+
+                    // Parse nutritionFacts theo dữ liệu thực tế Firebase
+                    let calories = data["calories"] as? Double ?? 0
+                    let fat = data["fat"] as? Double ?? 0
+                    let saturatedFat = data["saturatedFat"] as? Double ?? 0
+                    let protein = data["protein"] as? Double ?? 0
+                    let carbohydrates = data["carbs"] as? Double ?? 0
+                    let sugar = data["sugar"] as? Double ?? 0
+                    let fiber = data["fiber"] as? Double ?? 0
+                    let cholesterol = data["cholesterol"] as? Double ?? 0
+                    let sodium = data["sodium"] as? Double ?? 0
+                    let calcium = data["calcium"] as? Double ?? 0
+                    let iron = data["iron"] as? Double ?? 0
+                    let potassium = data["potassium"] as? Double ?? 0
+
+                    dish.nutritionFacts = NutritionFacts(
+                        calories: calories,
+                        fat: fat,
+                        saturatedFat: saturatedFat,
+                        protein: protein,
+                        carbohydrates: carbohydrates,
+                        sugar: sugar,
+                        fiber: fiber,
+                        cholesterol: cholesterol,
+                        sodium: sodium,
+                        calcium: calcium,
+                        iron: iron,
+                        potassium: potassium
+                    )
+
+                    return dish
+                } catch {
+                    print("Lỗi parse dish: \(error)")
+                    return nil
+                }
+            }
+
+            completion(.success(dishes))
         }
     }
 }

@@ -17,10 +17,10 @@ class AuthViewModel: ObservableObject {
     @Published var showUserInfoForm = false
 
     func signInWithGoogle() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else {
-            print("Không tìm thấy clientID")
-            return
-        }
+//        guard let clientID = FirebaseApp.app()?.options.clientID else {
+//            print("Không tìm thấy clientID")
+//            return
+//        }
 
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let rootVC = windowScene.windows.first?.rootViewController
@@ -80,7 +80,7 @@ class AuthViewModel: ObservableObject {
                     self.showUserInfoForm = true // Chưa có info
                 }
             } else {
-                self.showUserInfoForm = true // Không có document → lần đầu
+                self.showUserInfoForm = true // Không có document -→ lần đầu
             }
         }
     }

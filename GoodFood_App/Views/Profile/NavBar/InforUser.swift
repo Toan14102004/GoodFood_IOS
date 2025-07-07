@@ -10,12 +10,12 @@ import SwiftUI
 struct InforUser: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject var firebaseService = FirebaseService()
-
     @State private var name: String = ""
     @State private var age: String = "20"
     @State private var sex: Bool = true
     @State private var height: String = "1.60"
     @State private var weight: String = "50"
+    @State var showAlertSuccess: Bool = false
 
     var body: some View {
         ScrollView {
@@ -54,6 +54,13 @@ struct InforUser: View {
                 loadUser()
             }
         }
+        .alert(isPresented: $showAlertSuccess) {
+            Alert(
+                title: Text("Thành công"),
+                message: Text("Cập nhật thông tin thành công!"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 
     private func loadUser() {
@@ -72,12 +79,20 @@ struct InforUser: View {
         user.sex = sex
         user.height = Double(height) ?? 1.6
         user.weight = Double(weight) ?? 50.0
+
+        if user.weighHistory != nil {
+            user.weighHistory?.append(Double(weight) ?? 50.0)
+        } else {
+            user.weighHistory = [Double(weight) ?? 50.0]
+        }
+
         authViewModel.user = user
-       // CoreDataService.shared.updateUserInforToFirebase(user)
+        // CoreDataService.shared.updateUserInforToFirebase(user)
         firebaseService.updateUserInforToFirebase(user) { result in
             switch result {
             case .success():
                 print(" Đã lưu thông tin người dùng lên Firebase")
+                showAlertSuccess = true
             case .failure(let error):
                 print(" Lỗi lưu thông tin: \(error.localizedDescription)")
             }

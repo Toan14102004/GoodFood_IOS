@@ -22,9 +22,8 @@ struct CardHistoryView: View {
             Text("Nhật kí")
                 .font(.system(size: 20, weight: .bold))
                 .padding(.top, 16)
-                .padding(.horizontal) // Căn lề trái + phải như phần nội dung
+                .padding(.horizontal)
 
-            // Nội dung thẻ
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {

@@ -31,7 +31,7 @@ class CoreDataService {
         // Kiểm tra đã có user trong Core Data chưa (dựa vào id)
         let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", user.id as CVarArg)
-        
+
         do {
             let results = try context.fetch(fetchRequest)
             let entity: UserEntity
@@ -63,7 +63,7 @@ class CoreDataService {
             }
 
             saveContext()
-            
+
             print("Đã lưu user:")
             print("ID: \(entity.id ?? "nil")")
             print("Email: \(entity.email ?? "nil")")
@@ -76,7 +76,8 @@ class CoreDataService {
             print("Tuổi: \(entity.age)")
 
             if let weighHistoryData = entity.weighHistory,
-               let history = try? JSONDecoder().decode([WeightRecord].self, from: weighHistoryData) {
+               let history = try? JSONDecoder().decode([WeightRecord].self, from: weighHistoryData)
+            {
                 print("Lịch sử cân nặng:")
                 for record in history {
                     print(" - \(record.date): \(record.weight) kg")
@@ -85,13 +86,12 @@ class CoreDataService {
                 print("Không có lịch sử cân nặng")
             }
 
-            
         } catch {
             print("Lỗi khi lưu user vào Core Data: \(error.localizedDescription)")
         }
     }
-    
-    //func updateInforUser(_ user: UserModel){
+
+    // func updateInforUser(_ user: UserModel){
 
     func fetchUser() -> (UserEntity?, [WeightRecord]?) {
         let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
