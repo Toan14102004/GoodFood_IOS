@@ -13,6 +13,7 @@ struct CameraView: View {
     @State private var image: UIImage?
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var isGenerating = false
+    let geminiService = GeminiService()
 
     var body: some View {
         VStack(spacing: 20) {
@@ -55,18 +56,26 @@ struct CameraView: View {
 
             if image != nil {
                 Button(action: {
+                    guard let selectedImage = image else { return }
                     isGenerating = true
-                    // Gọi API nhận diện nguyên liệu tại đây
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        isGenerating = false
-                        print("Generated ingredients từ ảnh.")
+                    geminiService.detectDishAndIngredients(from: selectedImage) { result in
+                        DispatchQueue.main.async {
+                            isGenerating = false
+                            switch result {
+                            case .success(let text):
+                                print("Kết quả Gemini:")
+                                print(text) // thể hiện ra UI sau này
+                            case .failure(let error):
+                                print("Lỗi Gemini: \(error.localizedDescription)")
+                            }
+                        }
                     }
                 }) {
                     if isGenerating {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
                     } else {
-                        Text(" Generate Ingredients")
+                        Text("Nhận diện món ăn")
                     }
                 }
                 .buttonStyle(.borderedProminent)

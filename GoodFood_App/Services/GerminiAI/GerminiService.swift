@@ -5,121 +5,74 @@
 //  Created by Guest User on 1/7/25.
 //
 import Foundation
+import UIKit
 
 class GeminiService {
-    static let shared = GeminiService()
-    //var user: UserModel
-    
     private let apiKey = "AIzaSyD4lET4epcDKH9t0CqVn36qBki-tXIYi7g"
-    private let modelName = "gemini-1.5-flash"
-//    private init(user : UserModel = .init()){
-//        return self.user = user
-//    }
 
-    private func generateText(from prompt: String, completion: @escaping (String?) -> Void) {
-        let urlString = "https://generativelanguage.googleapis.com/v1/models/\(modelName):generateContent?key=\(apiKey)"
-        guard let url = URL(string: urlString) else {
-            completion("URL không hợp lệ")
+    func detectDishAndIngredients(from image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            completion(.failure(NSError(domain: "ImageError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Không thể nén ảnh"])))
             return
         }
+
+        let base64Image = imageData.base64EncodedString()
 
         let requestData: [String: Any] = [
             "contents": [
                 [
                     "parts": [
-                        ["text": prompt]
+                        ["text": "Hãy phân tích món ăn và nguyên liệu trong ảnh này. Hãy trả lời bằng tiếng Việt."],
+                        [
+                            "inline_data": [
+                                "mime_type": "image/jpeg",
+                                "data": base64Image
+                            ]
+                        ]
                     ]
                 ]
             ]
         ]
 
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: requestData)
-        } catch {
-            completion("Lỗi JSON: \(error.localizedDescription)")
+        guard let url = URL(string: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=\(apiKey)"),
+              let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
+        else {
+            completion(.failure(NSError(domain: "URLSerializationError", code: 0, userInfo: nil)))
             return
         }
 
-        URLSession.shared.dataTask(with: request) { data, _, error in
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
-                completion("Lỗi kết nối: \(error.localizedDescription)")
+                completion(.failure(error))
                 return
             }
 
             guard let data = data else {
-                completion("Không nhận được dữ liệu")
+                completion(.failure(NSError(domain: "NoData", code: 0, userInfo: nil)))
                 return
             }
+            print("Response: \(String(data: data, encoding: .utf8) ?? "N/A")")
 
             do {
-                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                if let candidates = json?["candidates"] as? [[String: Any]],
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let candidates = json["candidates"] as? [[String: Any]],
                    let content = candidates.first?["content"] as? [String: Any],
                    let parts = content["parts"] as? [[String: Any]],
-                   let text = parts.first?["text"] as? String {
-                    completion(text)
+                   let text = parts.first?["text"] as? String
+                {
+                    completion(.success(text))
                 } else {
-                    completion("Không thể phân tích phản hồi")
+                    completion(.failure(NSError(domain: "ParseError", code: 0, userInfo: nil)))
                 }
             } catch {
-                completion("Lỗi khi phân tích JSON: \(error.localizedDescription)")
-            }
-        }.resume()
-    }
-
-    func analyzeMood(from diaryText: String, completion: @escaping (String?, [String]?, String?, [String]?, String?) -> Void) {
-        let prompt = """
-        Bạn là một chuyên gia tâm lý học. Hãy phân tích đoạn tâm sự của người dùng dưới góc nhìn cảm xúc.
-
-        Đầu ra phải trả về đúng JSON định dạng như sau (rất quan trọng):
-        {
-          "mood": "tâm trạng chính",
-          "emotions": ["danh sách cảm xúc"],
-          "advice": "lời khuyên phù hợp với tâm trạng",
-          "suggestedActivities": ["hoạt động 1", "hoạt động 2", ...]
-        }
-
-        Phân tích đoạn sau:
-        \"\(diaryText)\"
-        """
-
-        generateText(from: prompt) { responseText in
-            guard let responseText = responseText else {
-                completion(nil, nil, nil, nil, "Không có phản hồi từ AI")
-                return
-            }
-
-            guard let jsonStart = responseText.firstIndex(of: "{"),
-                  let jsonEnd = responseText.lastIndex(of: "}") else {
-                completion(nil, nil, nil, nil, "Không tìm thấy JSON trong phản hồi")
-                return
-            }
-
-            let jsonString = String(responseText[jsonStart...jsonEnd])
-
-            guard let data = jsonString.data(using: .utf8) else {
-                completion(nil, nil, nil, nil, "Không thể chuyển JSON thành Data")
-                return
-            }
-
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                    let mood = json["mood"] as? String
-                    let emotions = json["emotions"] as? [String]
-                    let advice = json["advice"] as? String
-                    let activities = json["suggestedActivities"] as? [String]
-                    completion(mood, emotions, advice, activities, nil)
-                } else {
-                    completion(nil, nil, nil, nil, "Phản hồi không phải JSON")
-                }
-            } catch {
-                completion(nil, nil, nil, nil, "❌ Lỗi khi đọc JSON: \(error.localizedDescription)\nJSON: \(jsonString)")
+                completion(.failure(error))
             }
         }
+        task.resume()
     }
 }
-
