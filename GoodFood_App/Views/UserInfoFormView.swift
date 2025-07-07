@@ -21,9 +21,10 @@ struct UserInfoFormView: View {
             VStack(spacing: 20) {
                 Text(" Thông Tin Cá Nhân")
                     .font(.largeTitle.bold())
-                    .foregroundStyle(
-                        LinearGradient(colors: [.green, .blue], startPoint: .leading, endPoint: .trailing)
-                    )
+                    .foregroundColor(Color(red: 144/255, green: 185/255, blue: 78/255))
+//                    .foregroundStyle(
+//                        LinearGradient(colors: [.green, .blue], startPoint: .leading, endPoint: .trailing)
+//                    )
                 
                 LottieView(name: "iconFormInfor", loopMode: .loop)
                     .frame(width: 200, height: 180)
@@ -59,12 +60,16 @@ struct UserInfoFormView: View {
                         currentUser.height = height
                         currentUser.weight = weight
                         currentUser.targetWeight = targetWeight
-                        if currentUser.weighHistory == nil {
-                            currentUser.weighHistory = [weight]
+                        if var history = currentUser.weighHistory, let lastWeight = history.last {
+                            if lastWeight != weight {
+                                history.append(weight)
+                                currentUser.weighHistory = history
+                            }
                         } else {
-                            currentUser.weighHistory?.append(weight)
+                            // Chưa có lịch sử, thêm luôn
+                            currentUser.weighHistory = [weight]
                         }
-                        
+
                         authViewModel.user = currentUser
                         authViewModel.showUserInfoForm = false
                         

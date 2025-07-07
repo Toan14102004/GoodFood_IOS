@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @EnvironmentObject var authViewModel : AuthViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject var firebaseService = FirebaseService()
 
     init() {
@@ -15,10 +15,10 @@ struct MainTabView: View {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white // nền sáng
 
-        // Màu cho icon & text khi được chọn (selected)
+        // Màu cho icon và text khi selected
         UITabBar.appearance().tintColor = UIColor(red: 144/255, green: 185/255, blue: 78/255, alpha: 1) // #90B94E
 
-        // Màu cho icon & text khi không được chọn (unselected)
+        // Màu cho icon và text khi unselected
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
 
         UITabBar.appearance().standardAppearance = appearance
