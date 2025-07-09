@@ -7,6 +7,7 @@
 
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 import SwiftUI
 
 class FirebaseService: ObservableObject {
@@ -239,7 +240,7 @@ class FirebaseService: ObservableObject {
             }
 
             guard let data = snapshot?.data() else {
-                // Không có dữ liệu, trả về NutritionFacts toàn 0
+                // Không có dữ liệu, trả về NutritionFacts = 0
                 let emptySummary = NutritionFacts(calories: 0, fat: 0, protein: 0, carbohydrates: 0)
                 completion(.success(emptySummary))
                 return
@@ -329,6 +330,36 @@ class FirebaseService: ObservableObject {
             }
 
             completion(.success(dishes))
+        }
+    }
+
+    func uploadDishImage(_ image: UIImage, imageName: String, completion: @escaping (Result<URL, Error>) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            completion(.failure(NSError(domain: "ImageError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Không thể nén ảnh"])))
+            return
+        }
+
+        let storageRef = Storage.storage().reference().child("dish_images/\(imageName)")
+
+        storageRef.putData(imageData, metadata: nil) { _, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            storageRef.downloadURL { url, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                guard let url = url else {
+                    completion(.failure(NSError(domain: "DownloadURLError", code: 0, userInfo: nil)))
+                    return
+                }
+                print("Đã lấy được downloadURL:", url.absoluteString)
+                completion(.success(url))
+            }
         }
     }
 }
