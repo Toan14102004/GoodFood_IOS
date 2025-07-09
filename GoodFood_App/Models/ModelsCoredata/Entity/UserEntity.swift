@@ -25,3 +25,4 @@ class UserEntity: NSManagedObject {
     @NSManaged public var age: Int32
     @NSManaged public var weighHistory: Data?
 }
+

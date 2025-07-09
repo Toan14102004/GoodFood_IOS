@@ -59,7 +59,7 @@ struct CardHistoryView: View {
                             .font(.system(size: 18, weight: .bold))
                             .padding(.bottom, 8)
 
-                        Text("\(Carbs, specifier: "%.1f")g còn lại")
+                        Text("\(Carbs, specifier: "%.1f")g")
                             .font(.system(size: 13))
                     }
                     VStack {
@@ -67,7 +67,7 @@ struct CardHistoryView: View {
                             .font(.system(size: 18, weight: .bold))
                             .padding(.bottom, 8)
 
-                        Text("\(Protein, specifier: "%.1f")g còn lại")
+                        Text("\(Protein, specifier: "%.1f")g")
                             .font(.system(size: 13))
                     }
                     VStack {
@@ -75,7 +75,7 @@ struct CardHistoryView: View {
                             .font(.system(size: 18, weight: .bold))
                             .padding(.bottom, 8)
 
-                        Text("\(Fat, specifier: "%.1f")g còn lại")
+                        Text("\(Fat, specifier: "%.1f")g")
                             .font(.system(size: 13))
                     }
                 }

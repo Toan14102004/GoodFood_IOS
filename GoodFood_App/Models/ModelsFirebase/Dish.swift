@@ -4,8 +4,8 @@
 //
 //  Created by Guest User on 1/7/25.
 //
-import Foundation
 import FirebaseFirestore
+import Foundation
 
 struct Dish: Codable, Identifiable {
     var id: UUID
@@ -16,11 +16,11 @@ struct Dish: Codable, Identifiable {
     var ingredients: [IngredientLite]?
     var nutritionFacts: NutritionFacts?
     var dateTime: Date?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, description, image, recipe, ingredients, nutritionFacts, dateTime
     }
-    
+
     init(
         id: UUID,
         name: String? = nil,
@@ -41,7 +41,6 @@ struct Dish: Codable, Identifiable {
         self.dateTime = dateTime
     }
 
-
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
@@ -51,7 +50,7 @@ struct Dish: Codable, Identifiable {
         recipe = try? container.decode(String.self, forKey: .recipe)
         ingredients = try? container.decode([IngredientLite].self, forKey: .ingredients)
         nutritionFacts = try? container.decode(NutritionFacts.self, forKey: .nutritionFacts)
-        
+
         // Xử lý dateTime:
         if let timestamp = try? container.decode(Timestamp.self, forKey: .dateTime) {
             dateTime = timestamp.dateValue()
@@ -64,6 +63,4 @@ struct Dish: Codable, Identifiable {
             dateTime = nil
         }
     }
-
-
 }

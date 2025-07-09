@@ -9,15 +9,31 @@ import SwiftUI
 
 struct CardDish: View {
     @State var dish: Dish
+    let geminiService = GeminiService.shared
     
     var body: some View {
         VStack(spacing: 8) {
-            if let imageURL = dish.image, let url = URL(string: imageURL) {
-                WebImage(url: url)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                    .cornerRadius(16)
+            if let imageName = dish.image {
+                if let localImage = GeminiService.shared.loadImageFromDocuments(named: imageName) {
+                    // Ảnh local lưu trong Documents
+                    Image(uiImage: localImage)
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(16)
+                } else if let url = URL(string: imageName), imageName.hasPrefix("http") {
+                    // Ảnh từ link online
+                    WebImage(url: url)
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(16)
+                } else {
+                    Image(systemName: "photo.on.rectangle.angled")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 100)
+                        .foregroundColor(.gray)
+                        .cornerRadius(16)
+                }
             } else {
                 Image(systemName: "photo.on.rectangle.angled")
                     .resizable()
@@ -26,7 +42,7 @@ struct CardDish: View {
                     .foregroundColor(.gray)
                     .cornerRadius(16)
             }
-            
+
             VStack(spacing: 4) {
                 Text(dish.name ?? "Tên món")
                     .font(.headline)
