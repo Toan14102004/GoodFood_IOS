@@ -14,6 +14,9 @@
 		3187B7E92E1245340079BBC2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3187B7E82E1245340079BBC2 /* FirebaseStorage */; };
 		3187B7EC2E12454A0079BBC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 3187B7EB2E12454A0079BBC2 /* GoogleSignIn */; };
 		3187B7EE2E12454A0079BBC2 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3187B7ED2E12454A0079BBC2 /* GoogleSignInSwift */; };
+		31886ED52E2472000057776A /* SuggestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31886ED42E2471FF0057776A /* SuggestViewModel.swift */; };
+		31886F202E25EF490057776A /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31886F1F2E25EF410057776A /* NotificationsView.swift */; };
+		31886F242E2630810057776A /* NotifiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31886F232E2630710057776A /* NotifiViewModel.swift */; };
 		31C0A97E2E1518160004F62D /* DishHistoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C0A97D2E1518140004F62D /* DishHistoryEntity.swift */; };
 		31C0A9802E1518F70004F62D /* DishEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C0A97F2E1518F60004F62D /* DishEntity.swift */; };
 		31C0A9822E1519BA0004F62D /* DailyRecordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C0A9812E1519AA0004F62D /* DailyRecordEntity.swift */; };
@@ -61,15 +64,29 @@
 		31E41A962E13F3AB00A4E9CA /* primaryGreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41A6B2E13F3AB00A4E9CA /* primaryGreen.swift */; };
 		31E41A972E13F3AB00A4E9CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E41A342E13F3AB00A4E9CA /* Preview Assets.xcassets */; };
 		31E41A982E13F3AB00A4E9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E41A642E13F3AB00A4E9CA /* Assets.xcassets */; };
-		31E41A992E13F3AB00A4E9CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31E41A672E13F3AB00A4E9CA /* GoogleService-Info.plist */; };
 		31E41AA02E14D0B100A4E9CA /* IngredientLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41A9F2E14D0B000A4E9CA /* IngredientLite.swift */; };
 		31E41AA52E14D0FF00A4E9CA /* NutritionFacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41AA42E14D0FD00A4E9CA /* NutritionFacts.swift */; };
 		31E41AA72E14D65900A4E9CA /* TestDishUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41AA62E14D65800A4E9CA /* TestDishUploadView.swift */; };
 		31F671452E178346002FD6F0 /* extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671442E17833F002FD6F0 /* extention.swift */; };
+		31F671472E1B5DF9002FD6F0 /* CardDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671462E1B5DED002FD6F0 /* CardDish.swift */; };
+		31F6714A2E1B5EFC002FD6F0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 31F671492E1B5EFC002FD6F0 /* SDWebImageSwiftUI */; };
+		31F6714C2E1B659B002FD6F0 /* DishDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6714B2E1B6593002FD6F0 /* DishDetailView.swift */; };
+		31F6714E2E1B7617002FD6F0 /* CookDishView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6714D2E1B7614002FD6F0 /* CookDishView .swift */; };
+		31F671522E1BBF03002FD6F0 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 31F671512E1BBF03002FD6F0 /* GoogleGenerativeAI */; };
+		31F671952E1CBED5002FD6F0 /* IngredientNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671942E1CBED3002FD6F0 /* IngredientNutrition.swift */; };
+		31F671D82E1E2B33002FD6F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31F671D72E1E2B33002FD6F0 /* GoogleService-Info.plist */; };
+		31F671DC2E1E4C7A002FD6F0 /* DishImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671DB2E1E4C78002FD6F0 /* DishImageView.swift */; };
+		31F671DE2E1E4C8F002FD6F0 /* NutritionFactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671DD2E1E4C8D002FD6F0 /* NutritionFactsView.swift */; };
+		31F671E02E1E4CBC002FD6F0 /* IngredientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671DF2E1E4CBB002FD6F0 /* IngredientsListView.swift */; };
+		31F671E32E1E4F21002FD6F0 /* ingredientEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671E22E1E4EDD002FD6F0 /* ingredientEditor.swift */; };
+		31F671E72E1E507D002FD6F0 /* DishCookingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671E62E1E507B002FD6F0 /* DishCookingHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3187B7C92E1244E90079BBC2 /* GoodFood_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodFood_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31886ED42E2471FF0057776A /* SuggestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestViewModel.swift; sourceTree = "<group>"; };
+		31886F1F2E25EF410057776A /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		31886F232E2630710057776A /* NotifiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifiViewModel.swift; sourceTree = "<group>"; };
 		31C0A97D2E1518140004F62D /* DishHistoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishHistoryEntity.swift; sourceTree = "<group>"; };
 		31C0A97F2E1518F60004F62D /* DishEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishEntity.swift; sourceTree = "<group>"; };
 		31C0A9812E1519AA0004F62D /* DailyRecordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecordEntity.swift; sourceTree = "<group>"; };
@@ -111,7 +128,6 @@
 		31E41A642E13F3AB00A4E9CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31E41A652E13F3AB00A4E9CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		31E41A662E13F3AB00A4E9CA /* GoodFood_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodFood_AppApp.swift; sourceTree = "<group>"; };
-		31E41A672E13F3AB00A4E9CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		31E41A682E13F3AB00A4E9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E41A692E13F3AB00A4E9CA /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		31E41A6A2E13F3AB00A4E9CA /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -121,6 +137,16 @@
 		31E41AA42E14D0FD00A4E9CA /* NutritionFacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionFacts.swift; sourceTree = "<group>"; };
 		31E41AA62E14D65800A4E9CA /* TestDishUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDishUploadView.swift; sourceTree = "<group>"; };
 		31F671442E17833F002FD6F0 /* extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extention.swift; sourceTree = "<group>"; };
+		31F671462E1B5DED002FD6F0 /* CardDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDish.swift; sourceTree = "<group>"; };
+		31F6714B2E1B6593002FD6F0 /* DishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailView.swift; sourceTree = "<group>"; };
+		31F6714D2E1B7614002FD6F0 /* CookDishView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CookDishView .swift"; sourceTree = "<group>"; };
+		31F671942E1CBED3002FD6F0 /* IngredientNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientNutrition.swift; sourceTree = "<group>"; };
+		31F671D72E1E2B33002FD6F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		31F671DB2E1E4C78002FD6F0 /* DishImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishImageView.swift; sourceTree = "<group>"; };
+		31F671DD2E1E4C8D002FD6F0 /* NutritionFactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionFactsView.swift; sourceTree = "<group>"; };
+		31F671DF2E1E4CBB002FD6F0 /* IngredientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListView.swift; sourceTree = "<group>"; };
+		31F671E22E1E4EDD002FD6F0 /* ingredientEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientEditor.swift; sourceTree = "<group>"; };
+		31F671E62E1E507B002FD6F0 /* DishCookingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCookingHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F6714A2E1B5EFC002FD6F0 /* SDWebImageSwiftUI in Frameworks */,
 				3187B7E52E1245340079BBC2 /* FirebaseDatabase in Frameworks */,
+				31F671522E1BBF03002FD6F0 /* GoogleGenerativeAI in Frameworks */,
 				3187B7E72E1245340079BBC2 /* FirebaseFirestore in Frameworks */,
 				3187B7EE2E12454A0079BBC2 /* GoogleSignInSwift in Frameworks */,
 				3187B7E32E1245340079BBC2 /* FirebaseCore in Frameworks */,
@@ -159,6 +187,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		31886ED02E2422FC0057776A /* Infor */ = {
+			isa = PBXGroup;
+			children = (
+				31E41A542E13F3AB00A4E9CA /* InforUser.swift */,
+			);
+			path = Infor;
+			sourceTree = "<group>";
+		};
+		31886ED12E2423140057776A /* ChartWeight */ = {
+			isa = PBXGroup;
+			children = (
+				31E41A532E13F3AB00A4E9CA /* ChartWeightView.swift */,
+			);
+			path = ChartWeight;
+			sourceTree = "<group>";
+		};
+		31886F1E2E25EF350057776A /* Notifi */ = {
+			isa = PBXGroup;
+			children = (
+				31886F232E2630710057776A /* NotifiViewModel.swift */,
+				31886F1F2E25EF410057776A /* NotificationsView.swift */,
+			);
+			path = Notifi;
+			sourceTree = "<group>";
+		};
 		31E41A2C2E13F3AB00A4E9CA /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,13 +223,8 @@
 		31E41A332E13F3AB00A4E9CA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				31E41AE22E14F0AA00A4E9CA /* Entity */,
-				31E41AA42E14D0FD00A4E9CA /* NutritionFacts.swift */,
-				31E41A9F2E14D0B000A4E9CA /* IngredientLite.swift */,
-				31E41A2D2E13F3AB00A4E9CA /* dailyRecord.swift */,
-				31E41A2E2E13F3AB00A4E9CA /* Dish.swift */,
-				31E41A2F2E13F3AB00A4E9CA /* dishHistory.swift */,
-				31E41A322E13F3AB00A4E9CA /* UserModel.swift */,
+				31F671922E1BC999002FD6F0 /* ModelsCoredata */,
+				31F671912E1BC96C002FD6F0 /* ModelsFirebase */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,16 +263,10 @@
 			path = GerminiAI;
 			sourceTree = "<group>";
 		};
-		31E41A3D2E13F3AB00A4E9CA /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		31E41A3F2E13F3AB00A4E9CA /* History */ = {
 			isa = PBXGroup;
 			children = (
+				31F671462E1B5DED002FD6F0 /* CardDish.swift */,
 				31E41A3E2E13F3AB00A4E9CA /* HistoryView.swift */,
 			);
 			path = History;
@@ -300,8 +342,9 @@
 		31E41A562E13F3AB00A4E9CA /* NavBar */ = {
 			isa = PBXGroup;
 			children = (
-				31E41A532E13F3AB00A4E9CA /* ChartWeightView.swift */,
-				31E41A542E13F3AB00A4E9CA /* InforUser.swift */,
+				31886F1E2E25EF350057776A /* Notifi */,
+				31886ED12E2423140057776A /* ChartWeight */,
+				31886ED02E2422FC0057776A /* Infor */,
 				31E41A552E13F3AB00A4E9CA /* NavBarView.swift */,
 			);
 			path = NavBar;
@@ -321,6 +364,7 @@
 		31E41A5C2E13F3AB00A4E9CA /* Suggest */ = {
 			isa = PBXGroup;
 			children = (
+				31886ED42E2471FF0057776A /* SuggestViewModel.swift */,
 				31E41A5B2E13F3AB00A4E9CA /* SuggestView.swift */,
 			);
 			path = Suggest;
@@ -338,6 +382,7 @@
 		31E41A632E13F3AB00A4E9CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				31F671D92E1E4B55002FD6F0 /* DishViews */,
 				31E41A3F2E13F3AB00A4E9CA /* History */,
 				31E41A522E13F3AB00A4E9CA /* Home */,
 				31E41A5A2E13F3AB00A4E9CA /* Profile */,
@@ -345,7 +390,7 @@
 				31E41A5F2E13F3AB00A4E9CA /* TakeAPhoto */,
 				31E41A602E13F3AB00A4E9CA /* MainTabView.swift */,
 				31E41A612E13F3AB00A4E9CA /* UserInfoFormView.swift */,
-				31E41A622E13F3AB00A4E9CA /* WelcomeView.swift */,
+				31F671932E1BD46B002FD6F0 /* Welcome */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,21 +398,20 @@
 		31E41A6C2E13F3AB00A4E9CA /* GoodFood_App */ = {
 			isa = PBXGroup;
 			children = (
-				31F671442E17833F002FD6F0 /* extention.swift */,
+				31F6714F2E1BBD88002FD6F0 /* component */,
 				31E41A9C2E1436D000A4E9CA /* Services */,
 				31E41A2C2E13F3AB00A4E9CA /* CoreData */,
 				31E41A332E13F3AB00A4E9CA /* Models */,
 				31E41A352E13F3AB00A4E9CA /* Preview Content */,
-				31E41A3D2E13F3AB00A4E9CA /* ViewModels */,
 				31E41A632E13F3AB00A4E9CA /* Views */,
 				31E41A642E13F3AB00A4E9CA /* Assets.xcassets */,
 				31E41A652E13F3AB00A4E9CA /* ContentView.swift */,
 				31E41A662E13F3AB00A4E9CA /* GoodFood_AppApp.swift */,
-				31E41A672E13F3AB00A4E9CA /* GoogleService-Info.plist */,
 				31E41A682E13F3AB00A4E9CA /* Info.plist */,
 				31E41A692E13F3AB00A4E9CA /* LottieView.swift */,
 				31E41A6A2E13F3AB00A4E9CA /* Persistence.swift */,
 				31E41A6B2E13F3AB00A4E9CA /* primaryGreen.swift */,
+				31F671D72E1E2B33002FD6F0 /* GoogleService-Info.plist */,
 			);
 			path = GoodFood_App;
 			sourceTree = "<group>";
@@ -391,6 +435,74 @@
 				31E41A312E13F3AB00A4E9CA /* UserEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		31F6714F2E1BBD88002FD6F0 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				31F671442E17833F002FD6F0 /* extention.swift */,
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
+		31F671912E1BC96C002FD6F0 /* ModelsFirebase */ = {
+			isa = PBXGroup;
+			children = (
+				31F671942E1CBED3002FD6F0 /* IngredientNutrition.swift */,
+				31E41A2E2E13F3AB00A4E9CA /* Dish.swift */,
+				31E41A9F2E14D0B000A4E9CA /* IngredientLite.swift */,
+				31E41AA42E14D0FD00A4E9CA /* NutritionFacts.swift */,
+				31E41A2D2E13F3AB00A4E9CA /* dailyRecord.swift */,
+				31E41A2F2E13F3AB00A4E9CA /* dishHistory.swift */,
+				31E41A322E13F3AB00A4E9CA /* UserModel.swift */,
+			);
+			path = ModelsFirebase;
+			sourceTree = "<group>";
+		};
+		31F671922E1BC999002FD6F0 /* ModelsCoredata */ = {
+			isa = PBXGroup;
+			children = (
+				31E41AE22E14F0AA00A4E9CA /* Entity */,
+			);
+			path = ModelsCoredata;
+			sourceTree = "<group>";
+		};
+		31F671932E1BD46B002FD6F0 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				31E41A622E13F3AB00A4E9CA /* WelcomeView.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		31F671D92E1E4B55002FD6F0 /* DishViews */ = {
+			isa = PBXGroup;
+			children = (
+				31F671E12E1E4EC4002FD6F0 /* CookDish */,
+				31F671DA2E1E4C43002FD6F0 /* DetailDish */,
+			);
+			path = DishViews;
+			sourceTree = "<group>";
+		};
+		31F671DA2E1E4C43002FD6F0 /* DetailDish */ = {
+			isa = PBXGroup;
+			children = (
+				31F671DF2E1E4CBB002FD6F0 /* IngredientsListView.swift */,
+				31F671DD2E1E4C8D002FD6F0 /* NutritionFactsView.swift */,
+				31F671DB2E1E4C78002FD6F0 /* DishImageView.swift */,
+				31F6714B2E1B6593002FD6F0 /* DishDetailView.swift */,
+			);
+			path = DetailDish;
+			sourceTree = "<group>";
+		};
+		31F671E12E1E4EC4002FD6F0 /* CookDish */ = {
+			isa = PBXGroup;
+			children = (
+				31F671E62E1E507B002FD6F0 /* DishCookingHelper.swift */,
+				31F671E22E1E4EDD002FD6F0 /* ingredientEditor.swift */,
+				31F6714D2E1B7614002FD6F0 /* CookDishView .swift */,
+			);
+			path = CookDish;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,6 +531,8 @@
 				3187B7ED2E12454A0079BBC2 /* GoogleSignInSwift */,
 				31E419D92E1285BE00A4E9CA /* Lottie */,
 				31E419EA2E12F19D00A4E9CA /* DGCharts */,
+				31F671492E1B5EFC002FD6F0 /* SDWebImageSwiftUI */,
+				31F671512E1BBF03002FD6F0 /* GoogleGenerativeAI */,
 			);
 			productName = GoodFood_App;
 			productReference = 3187B7C92E1244E90079BBC2 /* GoodFood_App.app */;
@@ -453,6 +567,8 @@
 				3187B7EA2E12454A0079BBC2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				31E419D82E1285BE00A4E9CA /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				31E419E92E12F19D00A4E9CA /* XCRemoteSwiftPackageReference "Charts" */,
+				31F671482E1B5EFC002FD6F0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				31F671502E1BBF03002FD6F0 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3187B7CA2E1244E90079BBC2 /* Products */;
@@ -471,7 +587,7 @@
 			files = (
 				31E41A972E13F3AB00A4E9CA /* Preview Assets.xcassets in Resources */,
 				31E41A982E13F3AB00A4E9CA /* Assets.xcassets in Resources */,
-				31E41A992E13F3AB00A4E9CA /* GoogleService-Info.plist in Resources */,
+				31F671D82E1E2B33002FD6F0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,23 +600,30 @@
 			files = (
 				31E41A6E2E13F3AB00A4E9CA /* GoodFood_App.xcdatamodeld in Sources */,
 				31E41A6F2E13F3AB00A4E9CA /* dailyRecord.swift in Sources */,
+				31886F202E25EF490057776A /* NotificationsView.swift in Sources */,
 				31E41A702E13F3AB00A4E9CA /* Dish.swift in Sources */,
 				31E41A712E13F3AB00A4E9CA /* dishHistory.swift in Sources */,
+				31F671E72E1E507D002FD6F0 /* DishCookingHelper.swift in Sources */,
 				31E41A732E13F3AB00A4E9CA /* UserEntity.swift in Sources */,
 				31E41A742E13F3AB00A4E9CA /* UserModel.swift in Sources */,
 				31E41A752E13F3AB00A4E9CA /* CoreDataService.swift in Sources */,
 				31E41A762E13F3AB00A4E9CA /* AuthViewModel.swift in Sources */,
 				31E41A772E13F3AB00A4E9CA /* FirebaseService.swift in Sources */,
+				31F671E02E1E4CBC002FD6F0 /* IngredientsListView.swift in Sources */,
 				31E41A782E13F3AB00A4E9CA /* GerminiService.swift in Sources */,
 				31E41A792E13F3AB00A4E9CA /* HistoryView.swift in Sources */,
 				31E41AA72E14D65900A4E9CA /* TestDishUploadView.swift in Sources */,
 				31E41A7A2E13F3AB00A4E9CA /* Article.swift in Sources */,
 				31E41A7B2E13F3AB00A4E9CA /* KcalEntry.swift in Sources */,
 				31E41AA52E14D0FF00A4E9CA /* NutritionFacts.swift in Sources */,
+				31F6714C2E1B659B002FD6F0 /* DishDetailView.swift in Sources */,
 				31E41A7C2E13F3AB00A4E9CA /* HeaderDateView.swift in Sources */,
+				31F671952E1CBED5002FD6F0 /* IngredientNutrition.swift in Sources */,
 				31E41A7D2E13F3AB00A4E9CA /* ToolbarButtons.swift in Sources */,
 				31E41A7E2E13F3AB00A4E9CA /* CardHistoryView.swift in Sources */,
+				31F671DE2E1E4C8F002FD6F0 /* NutritionFactsView.swift in Sources */,
 				31E41A7F2E13F3AB00A4E9CA /* KcalCircleView.swift in Sources */,
+				31F671E32E1E4F21002FD6F0 /* ingredientEditor.swift in Sources */,
 				31E41A802E13F3AB00A4E9CA /* ArticleDetailView.swift in Sources */,
 				31E41A812E13F3AB00A4E9CA /* ArticleHealthy.swift in Sources */,
 				31E41A822E13F3AB00A4E9CA /* CardUpdateView.swift in Sources */,
@@ -508,20 +631,25 @@
 				31E41A842E13F3AB00A4E9CA /* KcalChartView.swift in Sources */,
 				31E41A852E13F3AB00A4E9CA /* ArticleViewModel.swift in Sources */,
 				31E41A862E13F3AB00A4E9CA /* ChartWeightView.swift in Sources */,
+				31F6714E2E1B7617002FD6F0 /* CookDishView .swift in Sources */,
 				31E41A872E13F3AB00A4E9CA /* InforUser.swift in Sources */,
+				31F671472E1B5DF9002FD6F0 /* CardDish.swift in Sources */,
 				31E41A882E13F3AB00A4E9CA /* NavBarView.swift in Sources */,
 				31E41A892E13F3AB00A4E9CA /* cardInfor.swift in Sources */,
 				31E41A8A2E13F3AB00A4E9CA /* LogoutButton.swift in Sources */,
 				31E41A8B2E13F3AB00A4E9CA /* ProfileView.swift in Sources */,
 				31E41A8C2E13F3AB00A4E9CA /* SuggestView.swift in Sources */,
+				31886ED52E2472000057776A /* SuggestViewModel.swift in Sources */,
 				31E41A8D2E13F3AB00A4E9CA /* CameraView.swift in Sources */,
 				31E41A8E2E13F3AB00A4E9CA /* ImagePicker.swift in Sources */,
 				31F671452E178346002FD6F0 /* extention.swift in Sources */,
+				31886F242E2630810057776A /* NotifiViewModel.swift in Sources */,
 				31C0A97E2E1518160004F62D /* DishHistoryEntity.swift in Sources */,
 				31C0A9822E1519BA0004F62D /* DailyRecordEntity.swift in Sources */,
 				31E41A8F2E13F3AB00A4E9CA /* MainTabView.swift in Sources */,
 				31E41A902E13F3AB00A4E9CA /* UserInfoFormView.swift in Sources */,
 				31E41A912E13F3AB00A4E9CA /* WelcomeView.swift in Sources */,
+				31F671DC2E1E4C7A002FD6F0 /* DishImageView.swift in Sources */,
 				31E41A922E13F3AB00A4E9CA /* ContentView.swift in Sources */,
 				31C0A9802E1518F70004F62D /* DishEntity.swift in Sources */,
 				31E41AA02E14D0B100A4E9CA /* IngredientLite.swift in Sources */,
@@ -770,6 +898,22 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		31F671482E1B5EFC002FD6F0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
+		31F671502E1BBF03002FD6F0 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -817,6 +961,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 31E419E92E12F19D00A4E9CA /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = DGCharts;
+		};
+		31F671492E1B5EFC002FD6F0 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31F671482E1B5EFC002FD6F0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		31F671512E1BBF03002FD6F0 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31F671502E1BBF03002FD6F0 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 

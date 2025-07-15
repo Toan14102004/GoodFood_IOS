@@ -24,7 +24,7 @@ class AuthViewModel: ObservableObject {
             return
         }
 
-        GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { result, error in // mở gd -> tc ->lấy idToken và accessToken.
             if let error = error {
                 print("Lỗi đăng nhập Google: \(error.localizedDescription)")
                 return

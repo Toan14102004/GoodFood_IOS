@@ -46,7 +46,7 @@ class FirebaseService: ObservableObject {
             }
         ]
 
-        // Thêm nutritionFacts nếu có
+        // Thêm nutritionFacts
         if let facts = nutritionFacts {
             for (key, value) in facts {
                 dishData[key] = value
@@ -168,6 +168,45 @@ class FirebaseService: ObservableObject {
         }
     }
 
+//    func fetchUserInfo(authViewModel: AuthViewModel) async throws -> UserModel {
+//        let userRef = db.collection("User").document(userID)
+//        let document = try await userRef.getDocument()
+//
+//        guard document.exists, let data = document.data() else {
+//            throw NSError(domain: "Không tìm thấy dữ liệu user", code: 404)
+//        }
+//
+//        let jsonData = try JSONSerialization.data(withJSONObject: data)
+//        let decodedUser = try JSONDecoder().decode(UserModel.self, from: jsonData)
+//
+//        // Cập nhật UI → bắt buộc DispatchQueue.main.async
+//        DispatchQueue.main.async {
+//            authViewModel.user = decodedUser
+//        }
+//
+//        return decodedUser
+//    }
+
+    func calculateKcalOut(from user: UserModel, activityLevel: Double = 1.375) -> Double {
+        guard let age = user.age,
+              let height = user.height,
+              let weight = user.weight,
+              let isMale = user.sex
+        else {
+            return 2000
+        }
+
+        let bmr: Double
+        if isMale {
+            bmr = 10 * weight + 625 * height - 5 * Double(age) + 5
+        } else {
+            bmr = 10 * weight + 625 * height - 5 * Double(age) - 161
+        }
+
+        let tdee = bmr * activityLevel
+        return tdee
+    }
+    
     func fetchDataOfDay(date: Date, completion: @escaping (Result<[Dish], Error>) -> Void) {
         let dayRef = dailyRecordRef(for: date)
 
@@ -206,7 +245,7 @@ class FirebaseService: ObservableObject {
                     )
                 }
 
-                // Parse nutritionFacts nếu có
+                // Parse nutritionFacts
                 var nutritionFacts: NutritionFacts?
                 if let kcal = data["calories"] as? Double,
                    let protein = data["protein"] as? Double,
@@ -258,6 +297,110 @@ class FirebaseService: ObservableObject {
                 carbohydrates: carbs
             )
             completion(.success(summary))
+        }
+    }
+
+    func fetchTargetWeight() async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in //cách Swift "bọc" callback-based API (như Firebase) thành async
+            db.collection("User").document(userID).getDocument { snapshot, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let data = snapshot?.data() else {
+                    continuation.resume(returning: "0")
+                    return
+                }
+
+                let targetWeight = data["targetWeight"] as? Double ?? 0
+                let stringValue = String(format: "%.1f", targetWeight)
+                continuation.resume(returning: stringValue)
+            }
+        }
+    }
+
+    func fetchCurrentWeight() async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in
+            db.collection("User").document(userID).getDocument { snapshot, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let data = snapshot?.data() else {
+                    continuation.resume(returning: "0")
+                    return
+                }
+
+                let currentWeight = data["weight"] as? Double ?? 0
+                let stringValue = String(format: "%.1f", currentWeight)
+                continuation.resume(returning: stringValue)
+            }
+        }
+    }
+
+
+    func fetchDailyKcalSummary(completion: @escaping (Result<[KcalEntry], Error>) -> Void) {
+        db.collection("User").document(userID).collection("dailyRecord").getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+
+            // Ngày hôm nay và 6 ngày trước
+            let calendar = Calendar.current
+            let today = calendar.startOfDay(for: Date())
+            guard let startDate = calendar.date(byAdding: .day, value: -6, to: today) else {
+                completion(.success([]))
+                return
+            }
+
+            var entries: [KcalEntry] = []
+
+            for document in documents {
+                let docID = document.documentID
+                guard let date = formatter.date(from: docID) else { continue }
+
+                // Chỉ lấy các ngày trong khoảng [startDate, today]
+                if date >= startDate && date <= today {
+                    let data = document.data()
+                    let kcal = Int(data["kcalIn"] as? Double ?? 0)
+                    entries.append(KcalEntry(date: date, kcal: kcal))
+                }
+            }
+
+            // Sắp xếp theo ngày tăng dần
+            let sortedEntries = entries.sorted { $0.date < $1.date }
+
+            completion(.success(sortedEntries))
+        }
+    }
+
+    func fetchWeightHistory(completion: @escaping (Result<[Double], Error>) -> Void) {
+        db.collection("User").document(userID).getDocument { document, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let document = document, document.exists,
+                  let data = document.data(),
+                  let weights = data["weighHistory"] as? [Double]
+            else {
+                completion(.success([])) // Trả về mảng rỗng nếu không có dữ liệu
+                return
+            }
+
+            completion(.success(weights))
         }
     }
 

@@ -9,6 +9,7 @@ import SwiftUI
 struct MainTabView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject var firebaseService = FirebaseService()
+    @State var KcalOut: Double = 2000
 
     init() {
         let appearance = UITabBarAppearance()
@@ -44,14 +45,14 @@ struct MainTabView: View {
                         .frame(width: 80, height: 80)
                 }
 
-//            SuggestView()
-//                .tabItem {
-//                    Label("Gợi ý món", systemImage: "fork.knife")
-//                }
-            TestDishUploadView()
+            SuggestView()
                 .tabItem {
-                    Label("testFirebase", systemImage: "fork.knife")
+                    Label("Gợi ý món", systemImage: "fork.knife")
                 }
+//            TestDishUploadView()
+//                .tabItem {
+//                    Label("testFirebase", systemImage: "fork.knife")
+//                }
 
             ProfileView()
                 .tabItem {
@@ -66,6 +67,7 @@ struct MainTabView: View {
                     case .success(let fetchedUser):
                         DispatchQueue.main.async {
                             authViewModel.user = fetchedUser
+
                             print("fetch user thành công ")
                         }
                     case .failure(let error):

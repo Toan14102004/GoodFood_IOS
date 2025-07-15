@@ -45,4 +45,25 @@ extension View {
                 )
         }
     }
+    
+    // Save và Load Image tư Documents
+    func saveImageToDocuments(_ image: UIImage, withName name: String) -> String? {
+        guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
+        let filename = "\(UUID().uuidString).jpg"
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filename)
+
+        do {
+            try data.write(to: url)
+            return filename // chỉ lưu tên file
+        } catch {
+            print("Lưu ảnh thất bại: \(error)")
+            return nil
+        }
+    }
+
+    func loadImageFromDocuments(named name: String) -> UIImage? {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(name)
+        return UIImage(contentsOfFile: url.path)
+    }
+
 }

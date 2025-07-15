@@ -22,6 +22,7 @@ struct WelcomeView: View {
                 if authViewModel.showUserInfoForm {
                     UserInfoFormView()
                         .environmentObject(authViewModel)
+                    
                 } else {
                     MainTabView()
                         .environmentObject(authViewModel)

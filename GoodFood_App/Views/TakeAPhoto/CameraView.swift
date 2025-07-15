@@ -15,6 +15,7 @@ struct CameraView: View {
     @State private var isGenerating = false
     @State private var detectedDish: Dish? // Món ăn sau khi nhận diện
     @StateObject var firebaseService = FirebaseService()
+    
 
     var body: some View {
         VStack(spacing: 20) {
@@ -136,3 +137,168 @@ struct CameraView: View {
         }
     }
 }
+
+
+//import PhotosUI
+//import SwiftUI
+//
+//struct CameraView: View {
+//    @State private var showImagePicker = false
+//    @State private var image: UIImage?
+//    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+//    @State private var isGenerating = false
+//    @State private var detectedDish: Dish? // Món ăn sau khi nhận diện
+//    @StateObject var firebaseService = FirebaseService()
+//
+//    @State private var showError = false
+//    @State private var errorMessage = ""
+//
+//    var body: some View {
+//        ZStack {
+//            VStack(spacing: 20) {
+//                Text("Chụp ảnh món ăn hoặc tải lên")
+//                    .font(.title3)
+//                    .bold()
+//                    .padding(.top)
+//
+//                if let image = image {
+//                    Image(uiImage: image)
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(maxHeight: 600)
+//                        .cornerRadius(12)
+//                } else {
+//                    Rectangle()
+//                        .fill(Color.gray.opacity(0.2))
+//                        .frame(height: 600)
+//                        .overlay(Text("Chưa có ảnh").foregroundColor(.gray))
+//                        .cornerRadius(12)
+//                }
+//
+//                HStack {
+//                    Button(action: {
+//                        sourceType = .camera
+//                        showImagePicker = true
+//                    }) {
+//                        Label("Chụp ảnh", systemImage: "camera")
+//                    }
+//                    .buttonStyle(.borderedProminent)
+//
+//                    Button(action: {
+//                        sourceType = .photoLibrary
+//                        showImagePicker = true
+//                    }) {
+//                        Label("Tải ảnh", systemImage: "photo.on.rectangle")
+//                    }
+//                    .buttonStyle(.bordered)
+//                }
+//
+//                if image != nil {
+//                    Button(action: {
+//                        detectDish()
+//                    }) {
+//                        if isGenerating {
+//                            ProgressView()
+//                                .progressViewStyle(CircularProgressViewStyle())
+//                        } else {
+//                            Text("Nhận diện món ăn")
+//                        }
+//                    }
+//                    .buttonStyle(.borderedProminent)
+//                    .padding(.top)
+//                }
+//
+//                Spacer()
+//            }
+//            .padding()
+//            .sheet(isPresented: $showImagePicker) {
+//                ImagePicker(image: $image, sourceType: sourceType)
+//            }
+//            .sheet(item: $detectedDish) { dish in
+//                DishDetailView(dish: dish)
+//            }
+//
+//            //  Overlay đỏ khi có lỗi
+//            if showError {
+//                Color.red.opacity(0.85)
+//                    .ignoresSafeArea()
+//                    .transition(.opacity)
+//                    .animation(.easeInOut, value: showError)
+//            }
+//        }
+//        .alert(isPresented: $showError) {
+//            Alert(
+//                title: Text("Không nhận diện được món ăn"),
+//                message: Text(errorMessage),
+//                dismissButton: .default(Text("OK"), action: {
+//                    showError = false
+//                })
+//            )
+//        }
+//    }
+//
+//    func detectDish() {
+//        guard let image = image else { return }
+//        isGenerating = true
+//
+//        GeminiService.shared.detectDishAndIngredients(from: image) { result in
+//            DispatchQueue.main.async {
+//                isGenerating = false
+//
+//                switch result {
+//                case .success(let responseText):
+//                    print("Gemini Response: \(responseText)")
+//
+//                    guard var dish = GeminiService.shared.parseDish(from: responseText) else {
+//                        showError(message: "Không nhận diện được món ăn từ ảnh. Vui lòng thử lại với ảnh rõ hơn.")
+//                        return
+//                    }
+//
+//                    guard let savedImageName = saveImageToDocuments(image, withName: dish.name ?? UUID().uuidString) else {
+//                        showError(message: "Không lưu được ảnh vào thiết bị.")
+//                        return
+//                    }
+//
+//                    dish.image = savedImageName
+//
+//                    guard let localImage = loadImageFromDocuments(named: savedImageName) else {
+//                        showError(message: "Không thể tải ảnh từ bộ nhớ.")
+//                        return
+//                    }
+//
+//                    firebaseService.uploadDishImage(localImage, imageName: savedImageName) { result in
+//                        DispatchQueue.main.async {
+//                            switch result {
+//                            case .success(let downloadURL):
+//                                dish.image = downloadURL.absoluteString
+//                                firebaseService.addDishToToday(dish,
+//                                                               calories: dish.nutritionFacts?.calories ?? 0,
+//                                                               protein: dish.nutritionFacts?.protein ?? 0,
+//                                                               carbs: dish.nutritionFacts?.carbohydrates ?? 0,
+//                                                               fat: dish.nutritionFacts?.fat ?? 0,
+//                                                               nutritionFacts: nil) { result in
+//                                    switch result {
+//                                    case .success:
+//                                        self.detectedDish = dish //  Gán sau khi mọi thứ OK
+//                                    case .failure(let error):
+//                                        showError(message: "Lỗi lưu món ăn lên Firestore: \(error.localizedDescription)")
+//                                    }
+//                                }
+//                            case .failure(let error):
+//                                showError(message: "Không thể tải ảnh lên: \(error.localizedDescription)")
+//                            }
+//                        }
+//                    }
+//
+//                case .failure(let error):
+//                    showError(message: "Lỗi khi nhận diện ảnh: \(error.localizedDescription)")
+//                }
+//            }
+//        }
+//    }
+//
+//    func showError(message: String) {
+//        self.errorMessage = message
+//        self.showError = true
+//    }
+//}

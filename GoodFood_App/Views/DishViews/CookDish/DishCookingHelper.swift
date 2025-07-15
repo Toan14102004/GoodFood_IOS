@@ -4,18 +4,22 @@
 //
 //  Created by Guest User on 9/7/25.
 //
-
 import SwiftUI
 
 enum DishCookingHelper {
     static func cookDish(dish: Dish, firebaseService: FirebaseService, presentationMode: Binding<PresentationMode>) {
-        let calories = dish.nutritionFacts?.calories ?? 0
-        let protein = dish.nutritionFacts?.protein ?? 0
-        let carbs = dish.nutritionFacts?.carbohydrates ?? 0
-        let fat = dish.nutritionFacts?.fat ?? 0
+       
+        var newDish = dish
+        newDish.id = UUID()
+        newDish.dateTime = Date()
+
+        let calories = newDish.nutritionFacts?.calories ?? 0
+        let protein = newDish.nutritionFacts?.protein ?? 0
+        let carbs = newDish.nutritionFacts?.carbohydrates ?? 0
+        let fat = newDish.nutritionFacts?.fat ?? 0
 
         let nutritionFactsDict: [String: Any]? = {
-            guard let facts = dish.nutritionFacts else { return nil }
+            guard let facts = newDish.nutritionFacts else { return nil }
             return [
                 "calories": facts.calories ?? 0,
                 "fat": facts.fat ?? 0,
@@ -33,7 +37,7 @@ enum DishCookingHelper {
         }()
 
         firebaseService.addDishToToday(
-            dish,
+            newDish,
             calories: calories,
             protein: protein,
             carbs: carbs,
@@ -42,10 +46,10 @@ enum DishCookingHelper {
         ) { result in
             switch result {
             case .success:
-                print("Đã lưu thành công!")
+                print("Đã lưu món ăn mới thành công!")
                 presentationMode.wrappedValue.dismiss()
             case .failure(let error):
-                print("Lỗi khi lưu món: \(error)")
+                print("Lỗi khi lưu món ăn mới: \(error)")
             }
         }
     }
