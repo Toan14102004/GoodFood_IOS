@@ -62,7 +62,10 @@ struct InforUser: View {
             )
         }
     }
+}
 
+
+extension InforUser {
     private func loadUser() {
         guard let user = authViewModel.user else { return }
         name = user.displayName ?? ""

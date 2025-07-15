@@ -35,6 +35,9 @@ struct HeaderDateView: View {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "vi_VN")
         formatter.dateStyle = .long
+        if selectedDate > Calendar.current.startOfDay(for: Date()){
+            return formatter.string(from:  Date())
+        }
         return formatter.string(from: selectedDate)
     }
 }

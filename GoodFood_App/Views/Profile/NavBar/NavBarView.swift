@@ -14,6 +14,7 @@ struct NavBarView: View {
             Picker("Tab", selection: $selectedTab) {
                 Text("Thông tin").tag(0)
                 Text("Cân nặng").tag(1)
+                Text("Thông báo").tag(2)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
@@ -23,8 +24,12 @@ struct NavBarView: View {
             // Hiển thị view tương ứng
             if selectedTab == 0 {
                 InforUser()
-            } else {
+            }
+            if selectedTab == 1 {
                 ChartWeightView()
+            }  else if selectedTab == 2 {
+                NotificationsView()
+                    .background(Color.red.opacity(0.5))
             }
         }
     }

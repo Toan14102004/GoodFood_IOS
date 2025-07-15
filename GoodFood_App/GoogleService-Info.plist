@@ -17,7 +17,7 @@
 	<key>PROJECT_ID</key>
 	<string>fir-2402</string>
 	<key>STORAGE_BUCKET</key>
-	<string>fir-2402.firebasestorage.app</string>
+	<string>fir-2402.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>

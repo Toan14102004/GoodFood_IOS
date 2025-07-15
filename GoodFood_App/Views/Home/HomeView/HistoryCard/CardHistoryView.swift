@@ -27,6 +27,10 @@ struct CardHistoryView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
+                        
+//                        InputsKcalView
+//                        OutputsKcalView
+                       
                         Text("Nạp vào")
                             .font(.subheadline)
                         Text("\(Int(KcalIn)) Kcal")
@@ -85,6 +89,28 @@ struct CardHistoryView: View {
             .cornerRadius(20)
             .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
             .padding(.horizontal)
+        }
+    }
+}
+
+extension CardHistoryView {
+    var InputsKcalView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Nạp vào")
+                .font(.subheadline)
+            Text("\(Int(KcalIn)) Kcal")
+                .font(.system(size: 18, weight: .bold))
+                .padding(.bottom, 8)
+        }
+    }
+
+    var OutputsKcalView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Tiêu hao")
+                .font(.subheadline)
+            Text("\(Int(KcalOut)) Kcal")
+                .font(.system(size: 18, weight: .bold))
+                .padding(.bottom, 8)
         }
     }
 }

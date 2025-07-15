@@ -12,7 +12,8 @@ struct DishImageView: View {
     
     var body: some View {
         if let imageName = imageName {
-            if let localImage = GeminiService.shared.loadImageFromDocuments(named: imageName) {
+//            if let localImage = GeminiService.shared.loadImageFromDocuments(named: imageName) {
+            if let localImage = loadImageFromDocuments(named: imageName) {
                 Image(uiImage: localImage)
                     .resizable()
                     .scaledToFit()
