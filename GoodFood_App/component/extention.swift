@@ -8,6 +8,14 @@
 import SwiftUI
 
 extension View {
+    
+    func dateFormatted(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter.string(from: date)
+    }
+
+    
     func userInfoTextField(label: String, value: Binding<Double>, keyboardType: UIKeyboardType = .decimalPad) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
