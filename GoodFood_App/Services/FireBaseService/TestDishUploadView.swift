@@ -42,33 +42,6 @@ struct TestDishUploadView: View {
                         potassium: 300
                     )
                 )
-//                let dish = Dish(
-//                    id: UUID(),
-//                    name: "Cơm gà Teriyaki",
-//                    description: "Món Nhật giàu protein và vừa đủ carb",
-//                    image: nil,
-//                    recipe: "Gà áp chảo với sốt Teriyaki, ăn kèm cơm trắng",
-//                    ingredients: [
-//                        IngredientLite(name: "Ức gà", unit: "g", state: "áp chảo", quantity: 150),
-//                        IngredientLite(name: "Cơm trắng", unit: "g", state: "nấu chín", quantity: 200),
-//                        IngredientLite(name: "Sốt Teriyaki", unit: "ml", state: "chế biến sẵn", quantity: 30),
-//                        IngredientLite(name: "Hành lá", unit: "g", state: "thái nhỏ", quantity: 10)
-//                    ],
-//                    nutritionFacts: NutritionFacts(
-//                        calories: 550,
-//                        fat: 15,
-//                        saturatedFat: 4,
-//                        protein: 45,
-//                        carbohydrates: 50,
-//                        sugar: 8,
-//                        fiber: 2,
-//                        cholesterol: 120,
-//                        sodium: 800,
-//                        calcium: 40,
-//                        iron: 3,
-//                        potassium: 500
-//                    )
-//                )
 
                 firebaseService.addDishToToday(
                     dish,

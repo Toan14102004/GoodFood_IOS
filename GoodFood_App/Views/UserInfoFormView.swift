@@ -15,6 +15,7 @@ struct UserInfoFormView: View {
     @State private var height: Double = 1.6
     @State private var weight: Double = 50.0
     @State private var targetWeight: Double = 40.0
+    @State private var weightRecords: WeightRecord = WeightRecord ()
 
     var body: some View {
         ScrollView {
@@ -22,9 +23,6 @@ struct UserInfoFormView: View {
                 Text(" Thông Tin Cá Nhân")
                     .font(.largeTitle.bold())
                     .foregroundColor(Color(red: 144/255, green: 185/255, blue: 78/255))
-//                    .foregroundStyle(
-//                        LinearGradient(colors: [.green, .blue], startPoint: .leading, endPoint: .trailing)
-//                    )
                 
                 LottieView(name: "iconFormInfor", loopMode: .loop)
                     .frame(width: 200, height: 180)
@@ -60,15 +58,9 @@ struct UserInfoFormView: View {
                         currentUser.height = height
                         currentUser.weight = weight
                         currentUser.targetWeight = targetWeight
-                        if var history = currentUser.weighHistory, let lastWeight = history.last {
-                            if lastWeight != weight {
-                                history.append(weight)
-                                currentUser.weighHistory = history
-                            }
-                        } else {
-                            // Chưa có lịch sử, thêm luôn
-                            currentUser.weighHistory = [weight]
-                        }
+                        weightRecords.date = Date()
+                        weightRecords.weight = weight
+                        currentUser.weighHistory = [weightRecords]
 
                         authViewModel.user = currentUser
                         authViewModel.showUserInfoForm = false

@@ -9,7 +9,7 @@ import SwiftUI
 struct MainTabView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject var firebaseService = FirebaseService()
-    @State var KcalOut: Double = 2000
+    @State private var KcalOut: Double = 2000
 
     init() {
         let appearance = UITabBarAppearance()
@@ -49,10 +49,6 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Gợi ý món", systemImage: "fork.knife")
                 }
-//            TestDishUploadView()
-//                .tabItem {
-//                    Label("testFirebase", systemImage: "fork.knife")
-//                }
 
             ProfileView()
                 .tabItem {

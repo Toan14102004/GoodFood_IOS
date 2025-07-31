@@ -12,6 +12,7 @@ struct DishDetailView: View {
     @StateObject var firebaseService = FirebaseService()
     @State private var isPresentingCookView = false
     let geminiService = GeminiService.shared
+    @State private var selectedImageName = imageNames.randomElement() ?? "dishSuggest1"
     
     var body: some View {
         ScrollView {
@@ -59,7 +60,8 @@ struct DishDetailView: View {
         }
         .navigationTitle("Chi tiết món ăn")
         .sheet(isPresented: $isPresentingCookView) {
-            CookDishView(dish: dish)
+            CookDishView(dish: $dish)
         }
     }
 }
+
