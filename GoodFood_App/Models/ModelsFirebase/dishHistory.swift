@@ -3,7 +3,7 @@
 //  GoodFood_App
 //
 //  Created by Guest User on 1/7/25.
-//
+
 import Foundation
 
 struct DishHistory: Identifiable, Codable {

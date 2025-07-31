@@ -12,10 +12,13 @@ struct IngredientEditorView: View {
 
     var body: some View {
         if dish.ingredients?.indices.contains(index) == true {
+            
             let bindingQuantity = Binding<Double>(
                 get: { dish.ingredients?[index].quantity ?? 0 },
                 set: { dish.ingredients?[index].quantity = $0 }
             )
+        
+          //  let bindingQuantity : Double = dish.ingredients?[index].quantity ?? 0
 
             HStack {
                 Text(dish.ingredients?[index].name ?? "Nguyên liệu")

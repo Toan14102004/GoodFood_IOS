@@ -14,11 +14,37 @@ class FirebaseService: ObservableObject {
     @Published var dailyRecord: DailyRecord?
     @Published var dishHistory: [Dish] = []
     @EnvironmentObject var authViewModel: AuthViewModel
+    
+    private var listener: ListenerRegistration?
     let db = Firestore.firestore()
 
     var userID: String {
         Auth.auth().currentUser?.uid ?? "default_user"
     }
+    
+    func cleanFirebaseData(_ data: [String: Any]) -> [String: Any] {
+        var cleanData: [String: Any] = [:]
+        
+        for (key, value) in data {
+            if let timestamp = value as? Timestamp {
+                cleanData[key] = timestamp.dateValue().timeIntervalSince1970
+            } else if let array = value as? [[String: Any]] {
+                let cleanedArray = array.map { item in
+                    var cleanedItem = item
+                    if let ts = item["date"] as? Timestamp {
+                        cleanedItem["date"] = ts.dateValue().timeIntervalSince1970
+                    }
+                    return cleanedItem
+                }
+                cleanData[key] = cleanedArray
+            } else {
+                cleanData[key] = value
+            }
+        }
+        
+        return cleanData
+    }
+
 
     func dailyRecordRef(for date: Date) -> DocumentReference {
         let formatter = DateFormatter()
@@ -90,9 +116,11 @@ class FirebaseService: ObservableObject {
         }
     }
 
+    
     func saveUserInfoToFirebase(user: UserModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
+        let historyDicts = user.weighHistory?.map { $0.toDict() } ?? []
         var data: [String: Any] = [
             "id": user.id,
             "email": user.email,
@@ -103,7 +131,7 @@ class FirebaseService: ObservableObject {
             "height": user.height ?? 0.0,
             "weight": user.weight ?? 0.0,
             "targetWeight": user.targetWeight ?? 0.0,
-            "weighHistory": user.weighHistory ?? []
+            "weighHistory": historyDicts
         ]
 
         userRef.setData(data, merge: true) { error in
@@ -115,9 +143,14 @@ class FirebaseService: ObservableObject {
         }
     }
 
+    
     func updateUserInforToFirebase(_ user: UserModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
+        var updatedHistory = user.weighHistory ?? []
+        
+        let historyDicts = updatedHistory.map { $0.toDict() } ?? []
+        historyDicts.forEach { print(" cân nặng in trc kgi lưu lên firebase : ",$0) }
         let data: [String: Any] = [
             "email": user.email,
             "displayName": user.displayName ?? "",
@@ -127,9 +160,9 @@ class FirebaseService: ObservableObject {
             "height": user.height ?? 0.0,
             "weight": user.weight ?? 0.0,
             "targetWeight": user.targetWeight ?? 0.0,
-            "weighHistory": user.weighHistory ?? []
+            "weighHistory": historyDicts
         ]
-
+        print("Vào hàm update lên firebase ne")
         userRef.updateData(data) { err in
             if let err = err {
                 completion(.failure(err))
@@ -137,8 +170,10 @@ class FirebaseService: ObservableObject {
                 completion(.success(()))
             }
         }
+        print("Lưu lên firebase rồi ne")
     }
 
+    
     func fetchInforUser(authViewModel: AuthViewModel, completion: @escaping (Result<UserModel, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
@@ -154,7 +189,8 @@ class FirebaseService: ObservableObject {
             }
 
             do {
-                let jsonData = try JSONSerialization.data(withJSONObject: data)
+                let cleanedData = self.cleanFirebaseData(data)
+                let jsonData = try JSONSerialization.data(withJSONObject: cleanedData)
                 let decodedUser = try JSONDecoder().decode(UserModel.self, from: jsonData)
 
                 DispatchQueue.main.async {
@@ -168,24 +204,6 @@ class FirebaseService: ObservableObject {
         }
     }
 
-//    func fetchUserInfo(authViewModel: AuthViewModel) async throws -> UserModel {
-//        let userRef = db.collection("User").document(userID)
-//        let document = try await userRef.getDocument()
-//
-//        guard document.exists, let data = document.data() else {
-//            throw NSError(domain: "Không tìm thấy dữ liệu user", code: 404)
-//        }
-//
-//        let jsonData = try JSONSerialization.data(withJSONObject: data)
-//        let decodedUser = try JSONDecoder().decode(UserModel.self, from: jsonData)
-//
-//        // Cập nhật UI → bắt buộc DispatchQueue.main.async
-//        DispatchQueue.main.async {
-//            authViewModel.user = decodedUser
-//        }
-//
-//        return decodedUser
-//    }
 
     func calculateKcalOut(from user: UserModel, activityLevel: Double = 1.375) -> Double {
         guard let age = user.age,
@@ -206,6 +224,7 @@ class FirebaseService: ObservableObject {
         let tdee = bmr * activityLevel
         return tdee
     }
+    
     
     func fetchDataOfDay(date: Date, completion: @escaping (Result<[Dish], Error>) -> Void) {
         let dayRef = dailyRecordRef(for: date)
@@ -269,6 +288,7 @@ class FirebaseService: ObservableObject {
         }
     }
 
+    
     func fetchNutritionSummary(for date: Date, completion: @escaping (Result<NutritionFacts, Error>) -> Void) {
         let dayRef = dailyRecordRef(for: date)
 
@@ -300,6 +320,7 @@ class FirebaseService: ObservableObject {
         }
     }
 
+    
     func fetchTargetWeight() async throws -> String {
         try await withCheckedThrowingContinuation { continuation in //cách Swift "bọc" callback-based API (như Firebase) thành async
             db.collection("User").document(userID).getDocument { snapshot, error in
@@ -320,6 +341,7 @@ class FirebaseService: ObservableObject {
         }
     }
 
+    
     func fetchCurrentWeight() async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             db.collection("User").document(userID).getDocument { snapshot, error in
@@ -385,6 +407,7 @@ class FirebaseService: ObservableObject {
         }
     }
 
+    
     func fetchWeightHistory(completion: @escaping (Result<[Double], Error>) -> Void) {
         db.collection("User").document(userID).getDocument { document, error in
             if let error = error {
@@ -403,6 +426,7 @@ class FirebaseService: ObservableObject {
             completion(.success(weights))
         }
     }
+    
 
     func fetchDishHistory(completion: @escaping (Result<[Dish], Error>) -> Void) {
         db.collection("User").document(userID).collection("dishHistory").getDocuments { snapshot, error in
@@ -476,6 +500,7 @@ class FirebaseService: ObservableObject {
         }
     }
 
+    
     func uploadDishImage(_ image: UIImage, imageName: String, completion: @escaping (Result<URL, Error>) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             completion(.failure(NSError(domain: "ImageError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Không thể nén ảnh"])))
@@ -505,4 +530,5 @@ class FirebaseService: ObservableObject {
             }
         }
     }
+    
 }
