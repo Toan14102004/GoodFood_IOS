@@ -12,9 +12,14 @@ struct CardHistoryView: View {
     @Binding var fat: Double
     @Binding var carbs: Double
     @Binding var protein: Double
+    @State private var animatedPercentage: CGFloat = 0
 
     var netKcal: Double {
         return kcalOut - kcalIn
+    }
+
+    var percentage: Double {
+        kcalIn > 0 ? netKcal / kcalOut : 0
     }
 
     var body: some View {
@@ -36,7 +41,8 @@ struct CardHistoryView: View {
 
                     Spacer()
 
-                    KcalCircleView(netKcal: self.netKcal, kcalIn: self.kcalIn)
+                    KcalCircleView(percentage: self.percentage, netKcal: self.netKcal, kcalOut: self.kcalOut)
+                    
                 }
 
                 Divider()
@@ -45,10 +51,9 @@ struct CardHistoryView: View {
                     .padding(.vertical, 4)
 
                 HStack(spacing: 60) {
-                    
-                    nutriBox(title: "Carbs",value: self.carbs)
+                    nutriBox(title: "Carbs", value: self.carbs)
                     nutriBox(title: "Protein", value: self.protein)
-                    nutriBox(title: "Fat" , value: self.fat)
+                    nutriBox(title: "Fat", value: self.fat)
                 }
             }
             .padding()
@@ -70,7 +75,7 @@ extension CardHistoryView {
                 .padding(.bottom, 8)
         }
     }
-    
+
     private func nutriBox(title: String, value: Double) -> some View {
         VStack {
             Text(title)

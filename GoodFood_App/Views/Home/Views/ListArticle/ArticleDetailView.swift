@@ -55,7 +55,8 @@ struct ArticleDetailView: View {
                         .padding(.top)
                 }
             }
-            .padding()
+            .padding(.horizontal)
+            .frame(width: .infinity)
         }
         .navigationTitle("Chi tiết")
         .navigationBarTitleDisplayMode(.inline)

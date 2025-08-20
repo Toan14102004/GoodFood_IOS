@@ -30,9 +30,12 @@ struct ArticleHealthy: View {
                                             image
                                                 .resizable()
                                                 .scaledToFill()
-                                                .frame(height: 180)
+                                                .padding(.horizontal,10)
+                                                .frame(maxWidth: .infinity, minHeight: 180, maxHeight: 180)
                                                 .clipped()
                                                 .cornerRadius(10)
+                                                
+                                                
                                         default:
                                             Color.gray.opacity(0.2)
                                                 .frame(height: 180)
@@ -53,7 +56,8 @@ struct ArticleHealthy: View {
                             .background(Color.white)
                             .cornerRadius(12)
                             .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
-                            .padding(.horizontal)
+                            .padding(.horizontal, 16)
+                            
                         }
                         .buttonStyle(PlainButtonStyle()) // Xoá hiệu ứng màu xanh của NavigationLink
                     }
@@ -63,6 +67,16 @@ struct ArticleHealthy: View {
         }
         .onAppear {
             viewModel.fetchArticles()
+        }
+    }
+}
+
+
+struct CardArticle: View {
+    var article: Article
+    var body: some View {
+        VStack {
+            
         }
     }
 }

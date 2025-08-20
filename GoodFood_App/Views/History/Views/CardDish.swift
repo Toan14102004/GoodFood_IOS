@@ -61,15 +61,24 @@ private extension CardDish {
                 if let localImage = loadImageFromDocuments(named: imageName) {
                     Image(uiImage: localImage)
                         .resizable()
+                        .scaledToFill()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity)
                         .cornerRadius(12)
                 } else if let url = URL(string: imageName), imageName.hasPrefix("http") {
+//                    WebImage(url: url)
+//                        .resizable()
+//                        .scaledToFill()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(height: 80)
+//                        .cornerRadius(12)
                     WebImage(url: url)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 80)
+                        .scaledToFill()
+                        .frame(height: 100)
+                        .clipped()
                         .cornerRadius(12)
+
                 } else {
                     Image(selectedImageName)
                         .resizable()
@@ -166,7 +175,7 @@ private extension CardDishOfSuggest {
                     .frame(width: 50, height: 20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color(red: 144/255, green: 185/255, blue: 78/255), lineWidth: 2)
+                            .stroke(kcal < 300 ? Color(red: 144/255, green: 185/255, blue: 78/255) : Color.red, lineWidth: 2)
                     )
             }
         }

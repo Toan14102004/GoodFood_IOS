@@ -18,6 +18,7 @@ struct HomeView: View {
     @State private var protein: Double = 0
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject var firebaseService = FirebaseService()
+    @StateObject var processData = ProcessData()
     @State private var kcalEntries: [KcalEntry] = []
     @State private var showConfirmation = false
     @State private var alertMessage = ""
@@ -28,29 +29,34 @@ struct HomeView: View {
                 Color(.systemGroupedBackground)
                     .ignoresSafeArea()
 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        HeaderDateView(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
+                VStack {
+                    HeaderDateView(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 80)
+                        .background(Color.white) // header không bị trong suốt khi cuộn
+                        .zIndex(1) // giúp nổi lên trên
 
-                        CardUpdateView(showButtons: $showButtons)
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 16) {
+                            CardUpdateView(showButtons: $showButtons)
 
-                        CardHistoryView(kcalIn: $kcalIn, kcalOut: $kcalOut, fat: $fat, carbs: $carbs, protein: $protein)
+                            CardHistoryView(kcalIn: $kcalIn, kcalOut: $kcalOut, fat: $fat, carbs: $carbs, protein: $protein)
 
-                        KcalChartView(data: self.kcalEntries)
+                            KcalChartView(data: self.kcalEntries)
 
-                        ArticleHealthy()
+                            ArticleHealthy()
 
-                        Spacer()
+                            Spacer()
+                        }
+                        .padding(.horizontal, 2)
                     }
-                    .padding(.horizontal, 2)
                 }
 
                 if showDatePicker {
                     Color.black.opacity(0.3)
                         .ignoresSafeArea()
-                    
-                    show_DatePicker
 
+                    show_DatePicker
                 }
             }
             .alert(self.alertMessage, isPresented: $showConfirmation) {
@@ -58,35 +64,33 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            fetchNutritionData(for: self.selectedDate)
+            fetchNutritionDataFromFirebase(for: self.selectedDate)
             fetchKcalData()
-            
+
             firebaseService.fetchInforUser(authViewModel: authViewModel) { result in
-                    switch result {
-                    case .success(let fetchedUser):
-                        DispatchQueue.main.async {
-                            authViewModel.user = fetchedUser
-                            let calculatedKcalOut = firebaseService.calculateKcalOut(from: fetchedUser)
-                            self.kcalOut = calculatedKcalOut
-                            print("✅ KcalOut đã tính từ Firebase: \(calculatedKcalOut)")
-                        }
-                    case .failure(let error):
-                        print("❌ Lỗi khi fetch user từ Firebase: \(error)")
+                switch result {
+                case .success(let fetchedUser):
+                    DispatchQueue.main.async {
+                        authViewModel.user = fetchedUser
+                        let calculatedKcalOut = firebaseService.calculateKcalOut(from: fetchedUser)
+                        processData.saveNutritionSummariesToCoreData()
+                        processData.printAllDailyRecords()
+                        self.kcalOut = calculatedKcalOut
+                        print("* KcalOut đã tính từ Firebase: \(calculatedKcalOut)")
                     }
+                case .failure(let error):
+                    print("Lỗi khi fetch user từ Firebase: \(error)")
                 }
+            }
         }
-        .onChange(of: self.selectedDate) { newDate in
-            fetchNutritionData(for: newDate)
+        .onChange(of: selectedDate) { newDate in
+            fetchNutritionDataFromFirebase(for: newDate)
         }
     }
 }
 
-
-
-
 private extension HomeView {
-    
-    var show_DatePicker : some View {
+    var show_DatePicker: some View {
         VStack {
             Spacer()
 
@@ -128,18 +132,18 @@ private extension HomeView {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
-    
-    func fetchNutritionData(for date: Date) {
+
+    func fetchNutritionDataFromFirebase(for date: Date) {
         firebaseService.fetchNutritionSummary(for: date) { result in
             switch result {
             case .success(let summary):
                 DispatchQueue.main.async {
-                    self.kcalIn = summary.calories ?? 0
-                    self.fat = summary.fat ?? 0
-                    self.protein = summary.protein ?? 0
-                    self.carbs = summary.carbohydrates ?? 0
-                    
+                    print("đã lấy dữ liệu kcalIn từ firebase")
+
+                    kcalIn = summary.calories ?? 0
+                    fat = summary.fat ?? 0
+                    protein = summary.protein ?? 0
+                    carbs = summary.carbohydrates ?? 0
                 }
             case .failure(let error):
                 print("Lỗi khi lấy dữ liệu tổng ngày: \(error)")

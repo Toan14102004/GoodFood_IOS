@@ -65,6 +65,10 @@ struct DetailCardInfor: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
+            LottieView(name: "Notifications", loopMode: .loop)
+                .frame(height: 150)
+                .padding()
+
             Text(notification.title ?? "Thông báo")
                 .font(.headline)
                 .font(.system(size: 24))
@@ -79,7 +83,6 @@ struct DetailCardInfor: View {
         .padding()
     }
 }
-
 
 struct NotificationsView: View {
     @EnvironmentObject var healthTracker: HealthTracker
@@ -119,4 +122,3 @@ struct NotificationsView: View {
         }
     }
 }
-

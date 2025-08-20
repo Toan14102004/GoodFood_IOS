@@ -37,6 +37,7 @@ class GeminiService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
 
+        // URLSession gửi request bất đồng bộ
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
                 completion(.failure(error))
@@ -397,16 +398,16 @@ class GeminiService {
 
 // MARK: - Models
 
-//struct GeminiDishResponse: Codable {
+// struct GeminiDishResponse: Codable {
 //    let name: String
 //    let ingredients: [IngredientLite]
 //    let nutritionFacts: NutritionFacts?
-//}
+// }
 //
-//struct DishSuggestion: Codable {
+// struct DishSuggestion: Codable {
 //    let name: String
 //    let ingredients: [IngredientLite]
 //    let description: String?
 //    let recipe: String
 //    let nutritionFacts: NutritionFacts
-//}
+// }

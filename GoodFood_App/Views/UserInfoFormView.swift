@@ -38,7 +38,7 @@ struct UserInfoFormView: View {
                                 .foregroundColor(.purple)
                             Text(sex ? "Giới tính: Nam" : "Giới tính: Nữ")
                                 .font(.headline)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.black)
                         }
                     }
                     .padding()

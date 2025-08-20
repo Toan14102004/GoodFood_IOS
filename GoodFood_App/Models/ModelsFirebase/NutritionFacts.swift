@@ -8,6 +8,7 @@
 import Foundation
 
 struct NutritionFacts: Codable {
+    let date: Date?
     var calories: Double?
     var fat: Double?
     var saturatedFat: Double?
@@ -22,10 +23,11 @@ struct NutritionFacts: Codable {
     var potassium: Double?
 
     enum CodingKeys: String, CodingKey {
-        case calories, fat, saturatedFat, protein, carbohydrates, sugar, fiber, cholesterol, sodium, calcium, iron, potassium
+        case date, calories, fat, saturatedFat, protein, carbohydrates, sugar, fiber, cholesterol, sodium, calcium, iron, potassium
     }
 
     init(
+        date: Date? = nil,
         calories: Double? = nil,
         fat: Double? = nil,
         saturatedFat: Double? = nil,
@@ -39,6 +41,7 @@ struct NutritionFacts: Codable {
         iron: Double? = nil,
         potassium: Double? = nil
     ) {
+        self.date = date
         self.calories = calories
         self.fat = fat
         self.saturatedFat = saturatedFat
@@ -55,6 +58,7 @@ struct NutritionFacts: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        date = try? decoder.singleValueContainer().decode(Date?.self)
         calories = try? decodeNumber(forKey: .calories, in: container)
         fat = try? decodeNumber(forKey: .fat, in: container)
         saturatedFat = try? decodeNumber(forKey: .saturatedFat, in: container)

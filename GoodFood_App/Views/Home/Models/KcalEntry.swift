@@ -7,7 +7,7 @@
 import Charts
 import SwiftUI
 
-struct KcalEntry: Identifiable {
+struct KcalEntry: Identifiable , Equatable {
     var id = UUID()
     var date: Date
     var kcal: Int

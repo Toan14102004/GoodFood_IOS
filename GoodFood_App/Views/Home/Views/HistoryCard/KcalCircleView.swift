@@ -3,34 +3,31 @@
 //  GoodFood_App
 //
 //  Created by Guest User on 30/6/25.
-//
 
 import SwiftUI
 
 struct KcalCircleView: View {
+    var percentage: Double
     var netKcal: Double // kcal còn lại
-    var kcalIn: Double // tổng kcal in
+    var kcalOut: Double // tổng kcal cần nạp
 
-    var percentage: Double {
-        netKcal / kcalIn
-    }
+    @State private var animatedPercentage: Double = 0
 
     var body: some View {
         ZStack {
-            // Vòng tròn nền
+            // vòng tròn của KcaIn
             Circle()
-                .stroke(Color.gray.opacity(0.2), lineWidth: 10)
+                .stroke(Color.orange.opacity(0.2), lineWidth: 18)
 
-            // Vòng tròn phần trăm
             Circle()
                 .trim(from: 0, to: percentage)
                 .stroke(
                     Color.primaryGreen,
-                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                    style: StrokeStyle(lineWidth: 16, lineCap: .round)
                 )
-                .rotationEffect(.degrees(-90)) // bắt đầu từ đỉnh
+                .rotationEffect(.degrees(-90))
+                .animation(.easeOut(duration: 2.5), value: percentage)
 
-            // Text hiển thị bên trong
             VStack {
                 Text("Còn lại")
                     .font(.caption)
@@ -41,5 +38,13 @@ struct KcalCircleView: View {
             }
         }
         .frame(width: 80, height: 80)
+        .onAppear {
+            animatedPercentage = percentage
+            print("percentage trong trang home : \(percentage)")
+            print("animatedPercentage: \(animatedPercentage)")
+        }
+        .onDisappear {
+            animatedPercentage = 0
+        }
     }
 }

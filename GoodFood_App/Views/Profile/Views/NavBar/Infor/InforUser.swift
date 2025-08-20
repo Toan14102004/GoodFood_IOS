@@ -25,8 +25,8 @@ struct InforUser: View {
                     .font(.system(size: 24, weight: .bold))
                     .padding(.top)
 
-                LottieView(name:"updateProfile" ,loopMode:.loop)
-                    .padding(.bottom,16)
+                LottieView(name: "updateProfile", loopMode: .loop)
+                    .padding(.bottom, 16)
                     .frame(width: 150, height: 150)
                 CardInfor(title: .constant("Tên"), value: $name, placeholder: "Nhập tên")
                 CardInfor(title: .constant("Tuổi"), value: $age, placeholder: "Nhập tuổi", keyboardType: .numberPad)
@@ -53,11 +53,8 @@ struct InforUser: View {
     }
 }
 
-
-
-
-extension InforUser {
-    var buttonUpdate : some View {
+private extension InforUser {
+    var buttonUpdate: some View {
         Button("Cập nhật") {
             updateUserInfo()
         }
@@ -68,8 +65,8 @@ extension InforUser {
         .cornerRadius(12)
         .padding(.horizontal)
     }
-    
-    var toggleSex : some View {
+
+    var toggleSex: some View {
         Toggle(isOn: $sex) {
             Text("Giới tính: \(sex ? "Nam" : "Nữ")")
                 .font(.headline)
@@ -79,19 +76,18 @@ extension InforUser {
         .cornerRadius(16)
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 4)
         .padding(.horizontal)
-
     }
 
-    private func loadUser() {
+    func loadUser() {
         guard let user = CoreDataService.shared.fetchUserModel() else { return }
-        name = user.displayName ?? ""
-        age = "\(user.age ?? 20)"
-        sex = user.sex ?? true
-        height = String(format: "%.2f", user.height ?? 1.6)
-        weight = String(format: "%.1f", user.weight ?? 50.0)
+        self.name = user.displayName ?? ""
+        self.age = "\(user.age ?? 20)"
+        self.sex = user.sex ?? true
+        self.height = String(format: "%.2f", user.height ?? 1.6)
+        self.weight = String(format: "%.1f", user.weight ?? 50.0)
     }
 
-    private func updateUserInfo() {
+    func updateUserInfo() {
         guard var user = CoreDataService.shared.fetchUserModel() else { return }
 
         user.displayName = name
@@ -100,7 +96,7 @@ extension InforUser {
         user.height = Double(height) ?? 1.6
         user.weight = Double(weight) ?? 50.0
         weightHistory = WeightRecord(weight: user.weight ?? 50.0)
-        
+
         if user.weighHistory != nil {
             user.weighHistory?.append(weightHistory ?? WeightRecord())
         } else {
@@ -108,7 +104,7 @@ extension InforUser {
         }
 
         user.weighHistory?.forEach { record in
-            print("can nag : ",record.weight)
+            print("can nag : ", record.weight)
         }
 
         authViewModel.user = user
@@ -120,10 +116,9 @@ extension InforUser {
             sex,
             Double(height) ?? 1.6,
             Double(weight) ?? 50.0
-            
         )
         showAlertSuccess = true
-        
+
         firebaseService.updateUserInforToFirebase(user) { result in
             switch result {
             case .success():

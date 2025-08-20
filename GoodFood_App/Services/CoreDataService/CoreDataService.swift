@@ -10,10 +10,10 @@
 import CoreData
 import Foundation
 
+
 class CoreDataService {
     static let shared = CoreDataService()
     let container: NSPersistentContainer
-
     var context: NSManagedObjectContext {
         return container.viewContext
     }
@@ -224,7 +224,6 @@ class CoreDataService {
     func saveDailyRecord(date: Date, kcalIn: Double, kcalOut: Double, carbs: Double, protein: Double, fat: Double) {
         let context = container.viewContext
         let record = DailyRecordEntity(context: context)
-//        record.id = UUID()
 
         record.date = date
         record.kcalIn = kcalIn
@@ -232,6 +231,8 @@ class CoreDataService {
         record.carbs = carbs
         record.protein = protein
         record.fat = fat
+        
+        print("Đã lưu kcalIn vào coredata nghe: \(record.kcalIn) - \(record.carbs)")
         saveContext()
     }
 

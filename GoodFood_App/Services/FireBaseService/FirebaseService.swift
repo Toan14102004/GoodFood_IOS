@@ -14,17 +14,17 @@ class FirebaseService: ObservableObject {
     @Published var dailyRecord: DailyRecord?
     @Published var dishHistory: [Dish] = []
     @EnvironmentObject var authViewModel: AuthViewModel
-    
+
     private var listener: ListenerRegistration?
     let db = Firestore.firestore()
 
     var userID: String {
         Auth.auth().currentUser?.uid ?? "default_user"
     }
-    
+
     func cleanFirebaseData(_ data: [String: Any]) -> [String: Any] {
         var cleanData: [String: Any] = [:]
-        
+
         for (key, value) in data {
             if let timestamp = value as? Timestamp {
                 cleanData[key] = timestamp.dateValue().timeIntervalSince1970
@@ -41,10 +41,9 @@ class FirebaseService: ObservableObject {
                 cleanData[key] = value
             }
         }
-        
+
         return cleanData
     }
-
 
     func dailyRecordRef(for date: Date) -> DocumentReference {
         let formatter = DateFormatter()
@@ -58,8 +57,8 @@ class FirebaseService: ObservableObject {
 
         var dishData: [String: Any] = [
             "id": dish.id.uuidString,
-            "name": dish.name,
-            "description": dish.description,
+            "name": dish.name ?? "",
+            "description": dish.description ?? "",
             "image": dish.image ?? "",
             "recipe": dish.recipe ?? "",
             "ingredients": (dish.ingredients ?? []).map { ingredient in
@@ -67,7 +66,7 @@ class FirebaseService: ObservableObject {
                     "name": ingredient.name,
                     "unit": ingredient.unit ?? "",
                     "state": ingredient.state ?? "",
-                    "quantity": ingredient.quantity
+                    "quantity": ingredient.quantity ?? ""
                 ]
             }
         ]
@@ -116,7 +115,6 @@ class FirebaseService: ObservableObject {
         }
     }
 
-    
     func saveUserInfoToFirebase(user: UserModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
@@ -143,14 +141,13 @@ class FirebaseService: ObservableObject {
         }
     }
 
-    
     func updateUserInforToFirebase(_ user: UserModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
         var updatedHistory = user.weighHistory ?? []
-        
+
         let historyDicts = updatedHistory.map { $0.toDict() } ?? []
-        historyDicts.forEach { print(" cân nặng in trc kgi lưu lên firebase : ",$0) }
+        historyDicts.forEach { print(" cân nặng in trc kgi lưu lên firebase : ", $0) }
         let data: [String: Any] = [
             "email": user.email,
             "displayName": user.displayName ?? "",
@@ -173,7 +170,6 @@ class FirebaseService: ObservableObject {
         print("Lưu lên firebase rồi ne")
     }
 
-    
     func fetchInforUser(authViewModel: AuthViewModel, completion: @escaping (Result<UserModel, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
@@ -204,7 +200,6 @@ class FirebaseService: ObservableObject {
         }
     }
 
-
     func calculateKcalOut(from user: UserModel, activityLevel: Double = 1.375) -> Double {
         guard let age = user.age,
               let height = user.height,
@@ -224,8 +219,7 @@ class FirebaseService: ObservableObject {
         let tdee = bmr * activityLevel
         return tdee
     }
-    
-    
+
     func fetchDataOfDay(date: Date, completion: @escaping (Result<[Dish], Error>) -> Void) {
         let dayRef = dailyRecordRef(for: date)
 
@@ -288,7 +282,6 @@ class FirebaseService: ObservableObject {
         }
     }
 
-    
     func fetchNutritionSummary(for date: Date, completion: @escaping (Result<NutritionFacts, Error>) -> Void) {
         let dayRef = dailyRecordRef(for: date)
 
@@ -320,9 +313,36 @@ class FirebaseService: ObservableObject {
         }
     }
 
-    
+    func fetchAllNutritionSummaries(userId: String, completion: @escaping (Result<[NutritionFacts], Error>) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("User").document(userId).collection("dailyRecord").getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+
+            let summaries: [NutritionFacts] = documents.compactMap { doc in
+                let data = doc.data()
+                return NutritionFacts(
+                    date: (data["date"] as? Timestamp)?.dateValue(),
+                    calories: data["kcalIn"] as? Double,
+                    fat: data["fat"] as? Double,
+                    protein: data["protein"] as? Double,
+                    carbohydrates: data["carbs"] as? Double
+                )
+            }
+
+            completion(.success(summaries))
+        }
+    }
+
     func fetchTargetWeight() async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in //cách Swift "bọc" callback-based API (như Firebase) thành async
+        try await withCheckedThrowingContinuation { continuation in // cách Swift "bọc" callback-based API (như Firebase) thành async
             db.collection("User").document(userID).getDocument { snapshot, error in
                 if let error = error {
                     continuation.resume(throwing: error)
@@ -341,7 +361,6 @@ class FirebaseService: ObservableObject {
         }
     }
 
-    
     func fetchCurrentWeight() async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             db.collection("User").document(userID).getDocument { snapshot, error in
@@ -361,7 +380,6 @@ class FirebaseService: ObservableObject {
             }
         }
     }
-
 
     func fetchDailyKcalSummary(completion: @escaping (Result<[KcalEntry], Error>) -> Void) {
         db.collection("User").document(userID).collection("dailyRecord").getDocuments { snapshot, error in
@@ -407,7 +425,6 @@ class FirebaseService: ObservableObject {
         }
     }
 
-    
     func fetchWeightHistory(completion: @escaping (Result<[Double], Error>) -> Void) {
         db.collection("User").document(userID).getDocument { document, error in
             if let error = error {
@@ -426,7 +443,6 @@ class FirebaseService: ObservableObject {
             completion(.success(weights))
         }
     }
-    
 
     func fetchDishHistory(completion: @escaping (Result<[Dish], Error>) -> Void) {
         db.collection("User").document(userID).collection("dishHistory").getDocuments { snapshot, error in
@@ -500,7 +516,6 @@ class FirebaseService: ObservableObject {
         }
     }
 
-    
     func uploadDishImage(_ image: UIImage, imageName: String, completion: @escaping (Result<URL, Error>) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             completion(.failure(NSError(domain: "ImageError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Không thể nén ảnh"])))
@@ -530,5 +545,4 @@ class FirebaseService: ObservableObject {
             }
         }
     }
-    
 }

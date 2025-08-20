@@ -11,8 +11,8 @@ struct DishDetailView: View {
     @State var dish: Dish
     @StateObject var firebaseService = FirebaseService()
     @State private var isPresentingCookView = false
-    let geminiService = GeminiService.shared
     @State private var selectedImageName = imageNames.randomElement() ?? "dishSuggest1"
+    @State var isCook: Bool = true
     
     var body: some View {
         ScrollView {
@@ -43,25 +43,27 @@ struct DishDetailView: View {
                     IngredientsListView(ingredients: dish.ingredients ?? [])
                 }
                 .padding(.horizontal)
-                
-                Button("Nấu theo") {
-                    isPresentingCookView = true
+                if isCook {
+                    Button("Nấu theo") {
+                        isPresentingCookView = true
+                        isCook = false
+                    }
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color(red: 144/255, green: 185/255, blue: 78/255))
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
                 }
-                .font(.headline)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.orange)
-                .foregroundColor(.white)
-                .cornerRadius(12)
-                
                 Spacer()
             }
             .padding()
         }
         .navigationTitle("Chi tiết món ăn")
         .sheet(isPresented: $isPresentingCookView) {
-            CookDishView(dish: $dish)
+            CookDishView(dish: $dish, isCook: $isCook)
         }
     }
 }
+
 

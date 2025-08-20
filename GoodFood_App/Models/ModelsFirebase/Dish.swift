@@ -21,6 +21,17 @@ struct Dish: Codable, Identifiable {
         case id, name, description, image, recipe, ingredients, nutritionFacts, dateTime
     }
 
+    init() {
+            self.id = UUID()
+            self.name = nil
+            self.description = nil
+            self.image = nil
+            self.recipe = nil
+            self.ingredients = nil
+            self.nutritionFacts = nil
+            self.dateTime = nil
+        }
+    
     init(
         id: UUID,
         name: String? = nil,

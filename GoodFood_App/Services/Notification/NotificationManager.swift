@@ -12,9 +12,9 @@ class NotificationManager {
     func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
             if success {
-                print("✅ Notification permission granted")
+                print(" Notification permission granted")
             } else if let error = error {
-                print("❌ Error: \(error.localizedDescription)")
+                print(" Error: \(error.localizedDescription)")
             }
         }
     }
@@ -25,16 +25,16 @@ class NotificationManager {
         content.body = "GoodFood có vài gợi ý hấp dẫn đang chờ bạn!"
         content.sound = .default
 
-        // Gửi sau 5 giây
+        // send sau 5 giây
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print("❌ Lỗi khi lên lịch thông báo: \(error)")
+                print(" Lỗi khi lên lịch thông báo: \(error)")
             } else {
-                print("✅ Đã lên lịch thông báo")
+                print(" Đã lên lịch thông báo")
             }
         }
     }

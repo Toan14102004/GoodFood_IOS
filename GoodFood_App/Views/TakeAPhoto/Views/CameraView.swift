@@ -4,76 +4,107 @@
 ////
 ////  Created by Guest User on 30/6/25.
 ////
+///
+/// Color(red: 144/255, green: 185/255, blue: 78/255)
+// .ignoresSafeArea(edges: .top)
 
+import CoreML
 import PhotosUI
 import SwiftUI
+import UIKit
+import Vision
 
 struct CameraView: View {
     @State private var showImagePicker = false
     @State private var image: UIImage?
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var isGenerating = false
-    @State private var detectedDish: Dish? // Món ăn sau khi nhận diện
+    @State private var detectedDish: Dish?
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @StateObject var firebaseService = FirebaseService()
+    @State private var detectingMethod: String? = nil // "gemini" hoẵc "coreml"
 
     var body: some View {
         VStack(spacing: 20) {
             Text("Chụp ảnh món ăn hoặc tải lên")
                 .font(.title3)
                 .bold()
-                .padding(.top)
+                .padding(.top, 25)
 
-            if let image = image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 600)
-                    .cornerRadius(12)
-            } else {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.2))
-                    .frame(height: 600)
-                    .overlay(Text("Chưa có ảnh").foregroundColor(.gray))
-                    .cornerRadius(12)
-            }
-
-            HStack {
-                Button(action: {
-                    sourceType = .camera
-                    showImagePicker = true
-                }) {
-                    Label("Chụp ảnh", systemImage: "camera")
+            ScrollView {
+                if let image = image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 600)
+                        .cornerRadius(12)
+                } else {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(height: 600)
+                        .overlay(Text("Chưa có ảnh").foregroundColor(.gray))
+                        .cornerRadius(12)
                 }
-                .buttonStyle(.borderedProminent)
 
-                Button(action: {
-                    sourceType = .photoLibrary
-                    showImagePicker = true
-                }) {
-                    Label("Tải ảnh", systemImage: "photo.on.rectangle")
+                HStack {
+                    Button(action: {
+                        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                            sourceType = .camera
+                            showImagePicker = true
+                        } else {
+                            print("Camera không khả dụng")
+                        }
+                    }) {
+                        Label("Chụp ảnh", systemImage: "camera")
+                    }
+
+                    .buttonStyle(.borderedProminent)
+
+                    Button(action: {
+                        sourceType = .photoLibrary
+                        showImagePicker = true
+                    }) {
+                        Label("Tải ảnh", systemImage: "photo.on.rectangle")
+                    }
+                    .buttonStyle(.bordered)
                 }
-                .buttonStyle(.bordered)
-            }
 
-            if image != nil {
-                Button(action: {
-                    detectDish()
-                }) {
-                    if isGenerating {
-                        LottieView(name:"loading",loopMode: .loop)
-                            .frame(width: 150, height: 150)
-                            .tint(.gray)
-//                        ProgressView()
-//                            .progressViewStyle(CircularProgressViewStyle())
+                if image != nil {
+                    if detectingMethod != nil {
+                        // Đang nhận diện -> hiển thị Lottie ở giữa
+                        HStack {
+                            Spacer()
+                            LottieView(name: "loading", loopMode: .loop)
+                                .frame(width: 150, height: 150)
+                                .tint(.gray)
+                            Spacer()
+                        }
+                        .padding(.top)
                     } else {
-                        Text("Nhận diện món ăn")
+                        Spacer()
+                        HStack {
+                            Button(action: {
+                                detectingMethod = "gemini"
+                                detectDish()
+                            }) {
+                                Text("Germini")
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .padding(.top)
+
+                            Button(action: {
+                                detectingMethod = "coreml"
+                                detectDishWithCoreML()
+                            }) {
+                                Text("Core ML")
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .padding(.top)
+                        }
                     }
                 }
-//                .buttonStyle(.borderedProminent)
-                .padding(.top)
-            }
 
-            Spacer()
+                Spacer()
+            }
         }
         .padding()
         .sheet(isPresented: $showImagePicker) {
@@ -92,7 +123,8 @@ extension CameraView {
 
         GeminiService.shared.detectDishAndIngredients(from: image) { result in
             DispatchQueue.main.async {
-                isGenerating = false
+                self.isGenerating = false
+                self.detectingMethod = nil
                 switch result {
                 case .success(let responseText):
                     print("Gemini Response: \(responseText)")
@@ -136,6 +168,56 @@ extension CameraView {
                     }
                 case .failure(let error):
                     print("Lỗi Gemini: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+    func detectDishWithCoreML() {
+        guard let image = image else { return }
+        isGenerating = true
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let model = try DishsClassifier4(configuration: MLModelConfiguration())
+
+                guard let resizedImage = image.resize(to: CGSize(width: 299, height: 299)),
+                      let buffer = resizedImage.toCVPixelBuffer()
+                else {
+                    DispatchQueue.main.async { self.isGenerating = false }
+                    return
+                }
+
+                let prediction = try model.prediction(image: buffer)
+                let label = prediction.target
+
+                // Mapping -> thông tin món ăn
+                let displayName = labelMapping[label] ?? label
+                let foodInfo = foodDatabase[label]
+
+                print("CORE ML ")
+                print("Label: \(label) (\(displayName))")
+                if let food = foodInfo {
+                    print("Calories: \(food.nutritionFacts.calories)")
+                    print("Nguyên liệu: \(food.ingredients.map { $0.name }.joined(separator: ", "))")
+                }
+
+                DispatchQueue.main.async {
+                    self.isGenerating = false
+                    self.detectingMethod = nil
+
+                    var dish = Dish()
+                    dish.name = displayName
+                    dish.nutritionFacts = foodInfo?.nutritionFacts ?? NutritionFacts()
+                    dish.ingredients = foodInfo?.ingredients ?? []
+                    self.detectedDish = dish
+                }
+
+            } catch {
+                DispatchQueue.main.async {
+                    self.isGenerating = false
+                    self.detectingMethod = nil
+                    print("Lỗi Core ML: \(error)")
                 }
             }
         }

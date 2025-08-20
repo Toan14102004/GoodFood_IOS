@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct GoodFood_AppApp: App {
     let persistenceController = PersistenceController.shared
-    @StateObject var healthTracker = HealthTracker()
+//    @StateObject var healthTracker = HealthTracker()
 
     // Tạo delegate
     let notificationDelegate = NotificationDelegate()
@@ -28,8 +28,9 @@ struct GoodFood_AppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
-                .environmentObject(healthTracker)
+//            WelcomeView()
+//                .environmentObject(healthTracker)
+            SplashView()
         }
     }
 }

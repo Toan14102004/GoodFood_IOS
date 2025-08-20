@@ -20,3 +20,4 @@ struct DishSuggestion: Codable {
     let nutritionFacts: NutritionFacts
 }
 
+

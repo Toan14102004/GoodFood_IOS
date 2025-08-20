@@ -14,6 +14,7 @@ class HealthTracker: ObservableObject {
     @Published var totalCarbs: Double = 0.0
     @Published var totalProtein: Double = 0.0
     @Published var totalFat: Double = 0.0
+    @Published var date: Date = Date()
 
     private var dailyListener: ListenerRegistration?
 
@@ -51,6 +52,7 @@ class HealthTracker: ObservableObject {
                     self.totalCarbs = 0
                     self.totalProtein = 0
                     self.totalFat = 0
+                    self.date = Date()
                     return
                 }
 
@@ -58,6 +60,11 @@ class HealthTracker: ObservableObject {
                 self.totalCarbs = data["carbs"] as? Double ?? 0.0
                 self.totalProtein = data["protein"] as? Double ?? 0.0
                 self.totalFat = data["fat"] as? Double ?? 0.0
+                if let dateString = data["date"] as? String {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd"
+                    self.dailyRecordRef(for: Date()).updateData(["date": dateString])
+                }
             }
     }
 
