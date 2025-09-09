@@ -12,4 +12,3 @@ extension Color {
 }
 
 let imageNames = ["dishSuggest1", "dishSuggest2", "dishSuggest3", "dishSuggest4", "dishSuggest5"]
-

@@ -4,8 +4,8 @@
 //
 //  Created by Guest User on 30/6/25.
 //
-import SwiftUI
 import Lottie
+import SwiftUI
 
 struct LottieView: UIViewRepresentable {
     let name: String
@@ -36,4 +36,3 @@ struct LottieView: UIViewRepresentable {
 
     func updateUIView(_ uiView: UIViewType, context: Context) {}
 }
-
