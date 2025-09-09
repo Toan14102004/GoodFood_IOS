@@ -16,17 +16,10 @@ struct WelcomeView: View {
     @State var weight: Double = 43.8
     @State var target: Double = 42.0
     @State private var isLoading = true
+    @EnvironmentObject var languageManager: LanguageManager
     
     var body: some View {
         Group {
-            if isLoading {
-                ZStack {
-                    Color.white.ignoresSafeArea()
-                    LottieView(name: "loadingWelcome", loopMode: .loop)
-                        .frame(width: 300, height: 300)
-                }
-            }
-            else {
                 if authViewModel.isLoggedIn {
                     if authViewModel.showUserInfoForm {
                         UserInfoFormView()
@@ -48,7 +41,7 @@ struct WelcomeView: View {
                                 VStack(spacing: 30) {
                                     VStack(spacing: 8) {
                                         HStack {
-                                            Text("Good-Food")
+                                            Text(languageManager.localizedString("Good-Food"))
                                                 .font(.largeTitle)
                                                 .fontWeight(.bold)
                                                 .padding(.top, 50)
@@ -60,7 +53,7 @@ struct WelcomeView: View {
                                                     )
                                                 )
                                                 .mask(
-                                                    Text("Good-Food")
+                                                    Text(languageManager.localizedString("Good-Food"))
                                                         .font(.largeTitle)
                                                         .fontWeight(.bold)
                                                         .padding(.top, 50)
@@ -74,13 +67,13 @@ struct WelcomeView: View {
                                                 .padding(.top, 40)
                                         }
                                         
-                                        Text("Ăn uống thông minh – sống khoẻ mỗi ngày 🌿")
+                                        Text(languageManager.localizedString("Ăn uống thông minh – sống khoẻ mỗi ngày 🌿"))
                                             .font(.subheadline)
                                             .foregroundColor(.green.opacity(0.8))
                                             .multilineTextAlignment(.center)
                                             .padding(.horizontal)
                                             .mask(
-                                                Text("Ăn uống thông minh – sống khoẻ mỗi ngày 🌿")
+                                                Text(languageManager.localizedString("Ăn uống thông minh – sống khoẻ mỗi ngày 🌿"))
                                                     .font(.subheadline)
                                                     .multilineTextAlignment(.center)
                                             )
@@ -96,7 +89,7 @@ struct WelcomeView: View {
                                     }) {
                                         HStack {
                                             Image(systemName: "globe")
-                                            Text("Đăng nhập bằng Google")
+                                            Text(languageManager.localizedString("Đăng nhập bằng Google"))
                                         }
                                         .font(.headline)
                                         .padding()
@@ -117,15 +110,14 @@ struct WelcomeView: View {
                         }
                     }
                 }
-            }
+//            }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 7.5) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 authViewModel.checkIfLoggedIn()
-                isLoading = false
-            }
+                let savedCode = UserDefaults.standard.string(forKey: "selectedLanguage")
+                print("Ngôn ngữ được chọn là : \((savedCode) ?? "")")
+//            }
         }
     }
 }
-
-// LottieView(name: "loadingWelcome", loopMode: .loop")

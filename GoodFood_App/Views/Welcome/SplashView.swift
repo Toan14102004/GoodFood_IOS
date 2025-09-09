@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct SplashView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @State private var isActive = false
     
     var body: some View {
@@ -18,11 +19,11 @@ struct SplashView: View {
                 VStack {
                     LottieView(name: "loadingWelcome", loopMode: .loop)
                         .frame(width: 300, height: 300)
-                    Text("GoodFood")
+                    Text(languageManager.localizedString("GoodFood"))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.green)
-                    Text("Eat Smart, Live Healthy 🌿")
+                    Text(languageManager.localizedString("Eat Smart, Live Healthy 🌿"))
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding(.top, 4)
@@ -38,5 +39,6 @@ struct SplashView: View {
             }
         }
     }
+    
 }
 
