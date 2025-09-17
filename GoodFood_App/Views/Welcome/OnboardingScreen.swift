@@ -5,61 +5,65 @@
 //  Created by Guest User on 20/8/25.
 //
 
-import SwiftUI
 import GoogleMobileAds
+import SwiftUI
 
 struct OnboardingScreen: View {
     @EnvironmentObject private var languageManager: LanguageManager
+    @StateObject var authViewModel = AuthViewModel()
     @State private var animate1 = false
     @State private var animate2 = false
     @State private var animate3 = false
     @StateObject var healthTracker = HealthTracker()
     @State private var showWelcome = false
+    @State private var showOnboarding = false
     
-   
+    @AppStorage(AppStorageKeys.hasSeenOnboarding) private var hasSeenOnboarding: Bool = false
+        
     @State private var currentTab = 0
     
     var body: some View {
-        if showWelcome {
-            WelcomeView()
-                .environmentObject(healthTracker)
-        } else {
-            VStack {
-                TabView(selection: $currentTab) {
-                    tab1.tag(0)
-                    tab2.tag(1)
-                    tab3.tag(2)
-                }
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color(red: 0.56, green: 0.73, blue: 0.31), .white]),
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                    .ignoresSafeArea()
+//        if showWelcome || authViewModel.isLoggedIn == false {
+//            WelcomeView()
+//                .environmentObject(healthTracker)
+//        } else {
+        VStack {
+            TabView(selection: $currentTab) {
+                tab1.tag(0)
+                tab2.tag(1)
+                tab3.tag(2)
+            }
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [Color(red: 0.56, green: 0.73, blue: 0.31), .white]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
                 )
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                .ignoresSafeArea()
+            )
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 
-                Spacer()
+            Spacer()
                 
-                Button(action: {
-                    if currentTab < 2 {
-                        currentTab += 1
-                    } else {
-                        showWelcome = true
-                    }
-                }) {
-                    Text(languageManager.localizedString(currentTab < 2 ? "Chuyển tiếp" : "Bắt đầu"))
-                        .font(.headline)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                        .padding(.horizontal)
+            Button(action: {
+                if currentTab < 2 {
+                    currentTab += 1
+                } else {
+//                    showWelcome = true
+                    hasSeenOnboarding = true
                 }
+            }) {
+                Text(languageManager.localizedString(currentTab < 2 ? "Chuyển tiếp" : "Bắt đầu"))
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.green)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                    .padding(.horizontal)
             }
         }
+//        }
     }
     
     var tab1: some View {
@@ -80,7 +84,9 @@ struct OnboardingScreen: View {
             Text(languageManager.localizedString("GoodFood"))
                 .font(.title)
                 .fontWeight(.bold)
-            Text(languageManager.localizedString("Ứng dụng giúp bạn theo dõi calo, quản lý dinh dưỡng và ăn uống thông minh hơn mỗi ngày."))
+//            Text(languageManager.localizedString("Ứng dụng giúp bạn theo dõi calo, quản lý dinh dưỡng và ăn uống thông minh hơn mỗi ngày."))
+            
+            TypewriterTextView(fullText: languageManager.localizedString("Ứng dụng giúp bạn theo dõi calo, quản lý dinh dưỡng và ăn uống thông minh hơn mỗi ngày."))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }
@@ -103,7 +109,9 @@ struct OnboardingScreen: View {
             Text(languageManager.localizedString("Nhận diện món ăn bằng AI"))
                 .font(.title)
                 .fontWeight(.bold)
-            Text(languageManager.localizedString("Chỉ cần chụp ảnh, GoodFood sẽ phân tích nguyên liệu và tính toán dinh dưỡng cho bạn."))
+//            Text(languageManager.localizedString("Chỉ cần chụp ảnh, GoodFood sẽ phân tích nguyên liệu và tính toán dinh dưỡng cho bạn."))
+            
+            TypewriterTextView(fullText: languageManager.localizedString("Chỉ cần chụp ảnh, GoodFood sẽ phân tích nguyên liệu và tính toán dinh dưỡng cho bạn."))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }
@@ -128,7 +136,9 @@ struct OnboardingScreen: View {
             Text(languageManager.localizedString("Theo dõi sức khỏe của bạn ❤️"))
                 .font(.title)
                 .fontWeight(.bold)
-            Text(languageManager.localizedString("GoodFood đồng hành cùng bạn đạt mục tiêu cân nặng và chế độ ăn lành mạnh."))
+//            Text(languageManager.localizedString("GoodFood đồng hành cùng bạn đạt mục tiêu cân nặng và chế độ ăn lành mạnh."))
+                
+            TypewriterTextView(fullText: languageManager.localizedString("GoodFood đồng hành cùng bạn đạt mục tiêu cân nặng và chế độ ăn lành mạnh."))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }

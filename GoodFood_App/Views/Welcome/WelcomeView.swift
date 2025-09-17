@@ -17,6 +17,7 @@ struct WelcomeView: View {
     @State var target: Double = 42.0
     @State private var isLoading = true
     @EnvironmentObject var languageManager: LanguageManager
+    @State var showBoarding = false
     
     var body: some View {
         Group {
