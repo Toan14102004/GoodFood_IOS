@@ -21,8 +21,8 @@ class NotificationManager {
 
     func scheduleNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "Hôm nay ăn gì ta? 🤔"
-        content.body = "GoodFood có vài gợi ý hấp dẫn đang chờ bạn!"
+        content.title = "What to eat today? 🤔"
+        content.body = "Goodfood has a few attractive suggestions waiting for you!"
         content.sound = .default
 
         // send sau 5 giây
@@ -39,4 +39,3 @@ class NotificationManager {
         }
     }
 }
-

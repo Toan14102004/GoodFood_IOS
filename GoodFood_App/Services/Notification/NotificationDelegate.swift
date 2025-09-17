@@ -4,7 +4,7 @@
 //
 //  Created by Guest User on 23/7/25.
 //
-//Delegate xử lý hiển thị notification khi app đang mở
+// Delegate xử lý hiển thị notification khi app đang mở
 import SwiftUI
 
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {

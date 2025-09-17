@@ -8,6 +8,7 @@ import Foundation
 import SwiftUI
 
 struct CardNotifi: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     var item: NotifiModel
     @Binding var selectedItem: NotifiModel?
 
@@ -16,14 +17,14 @@ struct CardNotifi: View {
             selectedItem = item
         }) {
             VStack(alignment: .leading, spacing: 8) {
-                Text(item.title ?? "Thông báo")
+                Text(languageManager.localizedString(item.title ?? "Thông báo"))
                     .font(.headline)
                     .foregroundColor(.primary)
                     .lineLimit(1)
                     .truncationMode(.tail)
                     .padding(.horizontal, 16)
 
-                Text(item.content ?? "Hôm nay bạn đã ...")
+                Text(languageManager.localizedString(item.content ?? "Hôm nay bạn đã ..."))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .lineLimit(1)
@@ -34,12 +35,11 @@ struct CardNotifi: View {
                     HStack {
                         Spacer()
                         HStack {
-                            Text(date, style: .time)
+                            Text(localizedTime(date: date, languageManager: languageManager))
                                 .font(.caption)
                                 .foregroundColor(.gray)
-                                .lineLimit(1)
 
-                            Text(dateFormatted(date: date))
+                            Text(localizedDate(date: date, languageManager: languageManager))
                                 .font(.caption2)
                                 .foregroundColor(.gray)
                         }
@@ -58,9 +58,24 @@ struct CardNotifi: View {
             .cornerRadius(12)
         }
     }
+
+    func localizedTime(date: Date, languageManager: LanguageManager) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.locale = Locale(identifier: languageManager.selectedLanguage)
+        return formatter.string(from: date)
+    }
+
+    func localizedDate(date: Date, languageManager: LanguageManager) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.locale = Locale(identifier: languageManager.selectedLanguage)
+        return formatter.string(from: date)
+    }
 }
 
 struct DetailCardInfor: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     var notification: NotifiModel
 
     var body: some View {
@@ -69,13 +84,13 @@ struct DetailCardInfor: View {
                 .frame(height: 150)
                 .padding()
 
-            Text(notification.title ?? "Thông báo")
+            Text(languageManager.localizedString(notification.title ?? "Thông báo"))
                 .font(.headline)
                 .font(.system(size: 24))
                 .bold()
                 .padding(.vertical, 16)
 
-            Text(notification.content ?? "Không có nội dung")
+            Text(languageManager.localizedString(notification.content ?? "Không có nội dung"))
                 .font(.body)
 
             Spacer()
@@ -86,6 +101,7 @@ struct DetailCardInfor: View {
 
 struct NotificationsView: View {
     @EnvironmentObject var healthTracker: HealthTracker
+    @EnvironmentObject private var languageManager: LanguageManager
     @StateObject private var notifiVM: NotifiViewModel
 
     @State private var selectedNotification: NotifiModel? = nil
@@ -98,7 +114,7 @@ struct NotificationsView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("THÔNG BÁO")
+                    Text(languageManager.localizedString("THÔNG BÁO"))
                         .font(.title2)
                         .bold()
                         .padding(.top)
