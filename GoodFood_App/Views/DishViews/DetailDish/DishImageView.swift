@@ -10,10 +10,9 @@ import SwiftUI
 struct DishImageView: View {
     let imageName: String?
     @State private var selectedImageName = imageNames.randomElement() ?? "dishSuggest1"
-    
+
     var body: some View {
         if let imageName = imageName {
-//            if let localImage = GeminiService.shared.loadImageFromDocuments(named: imageName) {
             if let localImage = loadImageFromDocuments(named: imageName) {
                 Image(uiImage: localImage)
                     .resizable()
@@ -27,12 +26,6 @@ struct DishImageView: View {
                     .scaledToFit()
                     .cornerRadius(16)
             } else {
-//                Image(systemName: "photo.on.rectangle.angled")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(height: 100)
-//                    .foregroundColor(.gray)
-//                    .cornerRadius(16)
                 Image(selectedImageName)
                     .resizable()
                     .scaledToFit()
@@ -42,12 +35,6 @@ struct DishImageView: View {
                     .cornerRadius(12)
             }
         } else {
-//            Image(systemName: "photo.on.rectangle.angled")
-//                .resizable()
-//                .scaledToFit()
-//                .frame(height: 100)
-//                .foregroundColor(.gray)
-//                .cornerRadius(16)
             Image(selectedImageName)
                 .resizable()
                 .scaledToFit()
@@ -58,4 +45,3 @@ struct DishImageView: View {
         }
     }
 }
-
