@@ -5,14 +5,13 @@
 //  Created by Guest User on 9/7/25.
 //
 import SwiftUI
- 
+
 enum DishCookingHelper {
     static func cookDish(dish: Binding<Dish>, firebaseService: FirebaseService, geminiService: GeminiService, presentationMode: Binding<PresentationMode>) {
-        
         var newDish = dish.wrappedValue
         newDish.id = UUID()
         newDish.dateTime = Date()
-        
+
         // Gửi AI để phân tích dinh dưỡng
         geminiService.analyzeNutrition(for: newDish) { result in
             switch result {
@@ -64,5 +63,4 @@ enum DishCookingHelper {
             }
         }
     }
-
 }

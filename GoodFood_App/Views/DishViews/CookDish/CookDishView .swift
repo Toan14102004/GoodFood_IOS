@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CookDishView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var languageManager: LanguageManager
     @StateObject var firebaseService = FirebaseService()
     @State private var geminiService = GeminiService.shared
 
@@ -36,7 +37,7 @@ struct CookDishView: View {
                     self.addNewIngradients
 
                     if !newIngredients.isEmpty {
-                        Text("Nguyên liệu vừa thêm:")
+                        Text(languageManager.localizedString("Nguyên liệu vừa thêm:"))
                             .font(.headline)
                     }
 
@@ -47,7 +48,7 @@ struct CookDishView: View {
             .navigationTitle(dish.name ?? "Tên món ăn")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Đóng") {
+                    Button(languageManager.localizedString("Đóng")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
@@ -70,7 +71,7 @@ private extension CookDishView {
                         dish.ingredients?.remove(at: index)
                     }) {
                         Image(systemName: "trash")
-                            .foregroundColor(.red)
+                            .foregroundColor(Color.primary)
                     }
                     .buttonStyle(BorderlessButtonStyle())
                 }
@@ -78,27 +79,9 @@ private extension CookDishView {
                 Divider()
             }
         } else {
-            Text("Chưa có nguyên liệu")
+            Text(languageManager.localizedString("Chưa có nguyên liệu"))
         }
     }
-
-//    var buttonSave: some View {
-//        Button("Lưu vào nhật ký") {
-//            DishCookingHelper.cookDish(
-//                dish: $dish,
-//                firebaseService: firebaseService,
-//                geminiService: geminiService,
-//                presentationMode: presentationMode
-//            )
-//        }
-//        .font(.headline)
-//        .padding()
-//        .frame(maxWidth: .infinity)
-//        .background(Color(red: 144/255, green: 185/255, blue: 78/255))
-//        .foregroundColor(.white)
-//        .cornerRadius(12)
-//        .disabled(isCook)
-//    }
 
     var buttonSave: some View {
         Button(action: {
@@ -120,11 +103,11 @@ private extension CookDishView {
                 HStack {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    Text("Đang lưu...")
+                    Text(languageManager.localizedString("Đang lưu..."))
                 }
                 .frame(maxWidth: .infinity)
             } else {
-                Text("Lưu vào nhật ký")
+                Text(languageManager.localizedString("Lưu vào nhật ký"))
                     .frame(maxWidth: .infinity)
             }
         }
@@ -146,12 +129,12 @@ private extension CookDishView {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             HStack {
-                Text("Đơn vị")
+                Text(languageManager.localizedString("Đơn vị"))
                     .padding(.trailing, 24)
 
                 Picker("Đơn vị", selection: $newIngredientUnit) {
                     ForEach(availableUnits, id: \.self) { unit in
-                        Text(unit).tag(unit)
+                        Text(languageManager.localizedString(unit)).tag(unit)
                     }
                 }
                 .pickerStyle(.menu)
@@ -162,7 +145,7 @@ private extension CookDishView {
             }
             .padding(.vertical, 4)
 
-            Button("+ Thêm vào danh sách") {
+            Button(languageManager.localizedString("+ Thêm vào danh sách")) {
                 addNewIngredient()
             }
             .padding(.vertical, 6)
@@ -174,7 +157,7 @@ private extension CookDishView {
     }
 
     func CookTitle(_ title: String) -> some View {
-        Text(title)
+        Text(languageManager.localizedString(title))
             .font(.title2)
             .bold()
     }
@@ -204,33 +187,3 @@ private extension CookDishView {
         newIngredientUnit = availableUnits.first ?? "g"
     }
 }
-
-// var buttonSave: some View {
-//        Button(action: {
-//            loading = true
-//            DishCookingHelper.cookDish(
-//                dish: $dish,
-//                firebaseService: firebaseService,
-//                geminiService: geminiService,
-//                presentationMode: presentationMode
-//            )
-//        }) {
-//            if loading {
-//                HStack {
-//                    ProgressView()
-//                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-//                    Text("Đang lưu...")
-//                }
-//                .frame(maxWidth: .infinity)
-//            } else {
-//                Text("Lưu vào nhật ký")
-//                    .frame(maxWidth: .infinity)
-//            }
-//        }
-//        .font(.headline)
-//        .padding()
-//        .background(Color(red: 144/255, green: 185/255, blue: 78/255))
-//        .foregroundColor(.white)
-//        .cornerRadius(12)
-//        .disabled(loading) // disable khi đang lưu
-//    }
