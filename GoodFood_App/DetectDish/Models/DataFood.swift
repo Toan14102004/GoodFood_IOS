@@ -18,7 +18,6 @@ let foodKeyByLabel: [String: String] = [
     "XoiGa": "XoiGa"
 ]
 
-
 let labelMapping: [String: String] = [
     "BanhMi": "Bánh mì thịt",
     "BunCha": "Bún chả nướng",
@@ -31,7 +30,6 @@ let labelMapping: [String: String] = [
     "BunBoHue": "Bún bò huế",
     "XoiGa": "Xôi gà"
 ]
-
 
 let foodDatabase: [String: FoodInfo] = [
     "BanhMi": FoodInfo(

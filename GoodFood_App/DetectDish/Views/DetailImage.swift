@@ -7,11 +7,12 @@
 import SwiftUI
 
 struct DetailImage: View {
+    @EnvironmentObject var languageManager: LanguageManager
     let image: UIImage
 
     var body: some View {
         VStack {
-            Text("Ảnh đã xử lý")
+            Text(languageManager.localizedString("Ảnh đã xử lý"))
                 .font(.title)
                 .padding()
 
@@ -25,4 +26,3 @@ struct DetailImage: View {
         .padding()
     }
 }
-

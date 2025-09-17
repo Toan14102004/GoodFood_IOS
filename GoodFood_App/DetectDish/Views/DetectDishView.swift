@@ -4,12 +4,12 @@
 //
 //  Created by Guest User on 7/8/25.
 //
-//import SwiftUI
-//import CoreML
-//import Vision
-//import UIKit
+// import SwiftUI
+// import CoreML
+// import Vision
+// import UIKit
 //
-//struct DetectDishView: View {
+// struct DetectDishView: View {
 //    @State private var inputImage: UIImage?
 //    @State private var showImagePicker = false
 //    @State private var resizeImage: UIImage?
@@ -17,7 +17,7 @@
 //    @State private var navigateToDetail = false
 //    @State private var resizedImageForDetail: UIImage?
 //    @State private var confidence: Double = 0.0
-//    
+//
 //    let classifier = DishsClassifier4()
 //
 //    var body: some View {
@@ -60,13 +60,13 @@
 //            }
 //        }
 //    }
-//    
+//
 //    func classifyImage(_ uiImage: UIImage) {
 //        print("Ảnh trước khi xử lí có size: \(uiImage.size)")
-//    
+//
 //        // 1. Sửa orientation
 //        let fixedImage = uiImage.fixedOrientation()
-//        
+//
 //        logPixelColors(of: uiImage)
 ////        guard let resizedImage = uiImage.centerCropAndResize(to: CGSize(width: 299, height: 299)),
 //        guard let resizedImage = fixedImage.centerCropAndResize(to: CGSize(width: 299, height: 299)),
@@ -80,7 +80,7 @@
 //        resizedImageForDetail = resizedImage
 //        navigateToDetail = true
 //
-//       
+//
 //        do {
 //            let config = MLModelConfiguration()
 //            let model = try DishsClassifier4(configuration: config)
@@ -100,7 +100,7 @@
 //                Dự đoán: \(displayName) - \(Int(confidence * 100))%
 //                \(foodInfo != nil ? "Có thông tin chi tiết món ăn" : "Không tìm thấy thông tin món ăn")
 //                """
-//                
+//
 //                print("Dự đoán: \(displayName) - \(Int(confidence * 100))%")
 //                if let foodInfo = foodInfo {
 //                    print("Calories: \((foodInfo.nutritionFacts.calories) ?? 1000)")
@@ -115,7 +115,7 @@
 //                    print("calcium: \(foodInfo.nutritionFacts.calcium)")
 //                    print("iron: \(foodInfo.nutritionFacts.iron)")
 //                    print("potassium: \(foodInfo.nutritionFacts.potassium)")
-//                    
+//
 //                }
 //            }
 //
@@ -126,7 +126,7 @@
 //            print("Chi tiết lỗi: \(error)")
 //        }
 //    }
-//    
+//
 //    func logPixelColors(of image: UIImage) {
 //        guard let cgImage = image.cgImage else {
 //            print("Image has no CGImage")
@@ -169,7 +169,7 @@
 //            }
 //        }
 //    }
-//    
+//
 //    func getFoodInfoAndDisplayName(from identifier: String) -> (FoodInfo?, String) {
 //        let key = foodKeyByLabel[identifier] ?? identifier
 //        let displayName = labelMapping[identifier] ?? "Không rõ"
@@ -177,6 +177,6 @@
 //    }
 //
 //
-//}
+// }
 //
 //
