@@ -19,5 +19,3 @@ struct DishSuggestion: Codable {
     let recipe: String
     let nutritionFacts: NutritionFacts
 }
-
-

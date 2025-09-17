@@ -6,6 +6,7 @@
 //
 
 // guard let url = URL(string: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=\(apiKey)"),
+//apikey = "AIzaSyCzM7Y2O8ITNa0_FSnx8E3rbDByLkLZ1tI"
 //
 
 import Foundation
@@ -14,12 +15,13 @@ import UIKit
 class GeminiService {
     static let shared = GeminiService()
     private init() {}
-    private let apiKey = "AIzaSyD4lET4epcDKH9t0CqVn36qBki-tXIYi7g"
+//    private let apiKey = "AIzaSyBDoz2u6D7uHBqsI0vcJifP0s9lNqB_llw"
+    private let apiKey = "AIzaSyCzM7Y2O8ITNa0_FSnx8E3rbDByLkLZ1tI"
     private var geminiEndpointURL: URL? {
         return URL(string: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=\(apiKey)")
     }
 
-    // MARK: - Public Suggestion API
+    // Public Suggestion API
 
     func suggestion(text1: String, text2: String, retryCount: Int = 3, completion: @escaping (Result<[DishSuggestion], Error>) -> Void) {
         let requestData = makeSuggestionBodyParam(text1: text1, text2: text2)
