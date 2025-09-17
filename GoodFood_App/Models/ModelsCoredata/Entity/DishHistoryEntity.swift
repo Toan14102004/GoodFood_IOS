@@ -5,11 +5,11 @@
 //  Created by Guest User on 2/7/25.
 //
 
-//import CoreData
-//import Foundation
+// import CoreData
+// import Foundation
 //
-//@objc(DishHistoryEntity)
-//class DishHistoryEntity: NSManagedObject {
+// @objc(DishHistoryEntity)
+// class DishHistoryEntity: NSManagedObject {
 //    @nonobjc public class func fetchRequest() -> NSFetchRequest<DishHistoryEntity> {
 //        NSFetchRequest<DishHistoryEntity>(entityName: "DishHistoryEntity")
 //    }
@@ -22,4 +22,4 @@
 //
 //    // Quan hệ: to-one đến entity Dish
 //    @NSManaged public var dish: DishEntity?
-//}
+// }
