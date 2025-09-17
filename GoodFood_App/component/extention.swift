@@ -17,7 +17,11 @@
 //)
 
 import SwiftUI
+import Foundation
 
+enum AppStorageKeys {
+    static let hasSeenOnboarding = "hasSeenOnboarding"
+}
 extension View {
     func dateFormatted(date: Date) -> String {
         let formatter = DateFormatter()
