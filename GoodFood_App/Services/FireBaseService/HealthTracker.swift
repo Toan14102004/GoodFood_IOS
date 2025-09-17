@@ -14,7 +14,7 @@ class HealthTracker: ObservableObject {
     @Published var totalCarbs: Double = 0.0
     @Published var totalProtein: Double = 0.0
     @Published var totalFat: Double = 0.0
-    @Published var date: Date = Date()
+    @Published var date: Date = .init()
 
     private var dailyListener: ListenerRegistration?
 

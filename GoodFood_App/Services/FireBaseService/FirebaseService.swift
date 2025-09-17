@@ -140,7 +140,7 @@ class FirebaseService: ObservableObject {
             }
         }
     }
-
+    
     func updateUserInforToFirebase(_ user: UserModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
