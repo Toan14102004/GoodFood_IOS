@@ -22,16 +22,16 @@ struct Dish: Codable, Identifiable {
     }
 
     init() {
-            self.id = UUID()
-            self.name = nil
-            self.description = nil
-            self.image = nil
-            self.recipe = nil
-            self.ingredients = nil
-            self.nutritionFacts = nil
-            self.dateTime = nil
-        }
-    
+        id = UUID()
+        name = nil
+        description = nil
+        image = nil
+        recipe = nil
+        ingredients = nil
+        nutritionFacts = nil
+        dateTime = nil
+    }
+
     init(
         id: UUID,
         name: String? = nil,
@@ -75,7 +75,3 @@ struct Dish: Codable, Identifiable {
         }
     }
 }
-
-
-
-

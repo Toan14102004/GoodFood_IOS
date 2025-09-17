@@ -4,7 +4,7 @@
 //
 //  Created by Guest User on 1/7/25.
 //
-//,Identifiable
+// ,Identifiable
 import FirebaseFirestore
 import Foundation
 
@@ -29,8 +29,8 @@ struct WeightRecord: Codable {
 
     func toDict() -> [String: Any] {
         return [
-            "date": self.date,
-            "weight": self.weight
+            "date": date,
+            "weight": weight
         ]
     }
 
@@ -43,7 +43,6 @@ struct WeightRecord: Codable {
         }
         return WeightRecord(date: timestamp.dateValue(), weight: weight)
     }
-
 }
 
 struct UserModel: Identifiable, Codable {

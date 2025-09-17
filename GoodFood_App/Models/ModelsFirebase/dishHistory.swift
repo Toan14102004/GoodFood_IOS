@@ -7,7 +7,7 @@
 import Foundation
 
 struct DishHistory: Identifiable, Codable {
-    var id: UUID = UUID()
+    var id: UUID = .init()
     var dateTime: Date
     var dish: Dish
     var ingredients: [IngredientLite]
