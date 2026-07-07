@@ -8,6 +8,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject private var languageManager: LanguageManager
 
     var body: some View {
         VStack {
@@ -32,11 +33,8 @@ struct ProfileView: View {
                         }
                     }
                 }
-
-//                Text(user.email)
-//                    .foregroundColor(Color.gray.opacity(0.9))
                 if let name = user.displayName {
-                    Text(name)
+                    Text(languageManager.localizedString(name))
                         .foregroundColor(Color(red: 144/255, green: 185/255, blue: 78/255))
                         .bold()
                 }
@@ -50,7 +48,7 @@ struct ProfileView: View {
 
                 Spacer()
             } else {
-                Text("Chưa đăng nhập")
+                Text(languageManager.localizedString("Chưa đăng nhập"))
             }
         }
     }

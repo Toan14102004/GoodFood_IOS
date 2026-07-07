@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardInfor: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @Binding var title: String
     @Binding var value: String
     var placeholder: String = ""
@@ -16,7 +17,7 @@ struct CardInfor: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(title)
+            Text(languageManager.localizedString(title))
                 .font(.headline)
 
             TextField(placeholder, text: $value)
@@ -33,7 +34,7 @@ struct CardInfor: View {
         .padding()
         .background(Color.white)
         .cornerRadius(16)
-        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 4)
+        .shadow(color: Color(red: 144/255, green: 185/255, blue: 78/255).opacity(0.5), radius: 5, x: 0, y: 4)
         .padding(.horizontal)
     }
 }

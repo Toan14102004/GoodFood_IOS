@@ -7,11 +7,12 @@
 import SwiftUI
 
 struct ArticleHealthy: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @StateObject private var viewModel = ArticleViewModel()
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(" Bài báo về sức khỏe")
+            Text(languageManager.localizedString("Bài báo về sức khỏe"))
                 .font(.title2)
                 .bold()
                 .padding([.top, .horizontal])
@@ -30,12 +31,11 @@ struct ArticleHealthy: View {
                                             image
                                                 .resizable()
                                                 .scaledToFill()
-                                                .padding(.horizontal,10)
+                                                .padding(.horizontal, 10)
                                                 .frame(maxWidth: .infinity, minHeight: 180, maxHeight: 180)
                                                 .clipped()
                                                 .cornerRadius(10)
-                                                
-                                                
+
                                         default:
                                             Color.gray.opacity(0.2)
                                                 .frame(height: 180)
@@ -44,10 +44,10 @@ struct ArticleHealthy: View {
                                     }
                                 }
 
-                                Text(article.title)
+                                Text(languageManager.localizedString(article.title))
                                     .font(.headline)
 
-                                Text(article.description ?? "")
+                                Text(languageManager.localizedString(article.description ?? ""))
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                                     .lineLimit(3)
@@ -57,9 +57,19 @@ struct ArticleHealthy: View {
                             .cornerRadius(12)
                             .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
                             .padding(.horizontal, 16)
-                            
                         }
                         .buttonStyle(PlainButtonStyle()) // Xoá hiệu ứng màu xanh của NavigationLink
+                        
+                        VStack {
+                            NativeAdSwiftUIView()
+                                .frame(height: 100)
+                                .frame(maxWidth: .infinity)
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(12)
+                        .shadow(color: .gray.opacity(0.2), radius: 4, x: 0, y: 2)
+                        .padding(.horizontal, 16)
                     }
                 }
                 .padding(.bottom, 16)
@@ -71,12 +81,9 @@ struct ArticleHealthy: View {
     }
 }
 
-
 struct CardArticle: View {
     var article: Article
     var body: some View {
-        VStack {
-            
-        }
+        VStack {}
     }
 }

@@ -1,0 +1,6 @@
+framework module Pods_GoodFood_App {
+  umbrella header "Pods-GoodFood_App-umbrella.h"
+
+  export *
+  module * { export * }
+}

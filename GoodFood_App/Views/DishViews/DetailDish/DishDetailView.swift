@@ -47,8 +47,8 @@ struct DishDetailView: View {
                 .padding(.horizontal)
                 if isCook {
                     Button(languageManager.localizedString("Nấu theo")) {
-                        isPresentingCookView = true
-                        isCook = false
+//                        isPresentingCookView = true
+//                        isCook = false
 
                         if let rootVC = UIApplication.shared
                             .connectedScenes

@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct SuggestView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @StateObject private var viewModel = SuggestViewModel()
     let columns = Array(repeating: GridItem(.flexible()), count: 1)
     @State private var selectedImageName = imageNames.randomElement() ?? "dishSuggest1"
@@ -18,7 +19,7 @@ struct SuggestView: View {
                     Color(red: 144/255, green: 185/255, blue: 78/255)
                         .ignoresSafeArea(edges: .top)
 
-                    Text("Gợi ý món ăn")
+                    Text(languageManager.localizedString("Gợi ý món ăn"))
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(.white)
@@ -36,7 +37,7 @@ struct SuggestView: View {
                     } else if let errorMessage = viewModel.errorMessage {
                         VStack {
                             Spacer()
-                            Text("Lỗi: \(errorMessage)")
+                            Text(languageManager.localizedString("Lỗi: \(errorMessage)"))
                                 .foregroundColor(.red)
                             Spacer()
                         }

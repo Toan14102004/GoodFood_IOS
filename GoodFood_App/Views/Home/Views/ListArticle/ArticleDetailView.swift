@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ArticleDetailView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     let article: Article
 
     var body: some View {
@@ -31,18 +32,18 @@ struct ArticleDetailView: View {
                     }
                 }
 
-                Text(article.title)
+                Text(languageManager.localizedString(article.title))
                     .font(.title)
                     .bold()
 
                 if let description = article.description {
-                    Text(description)
+                    Text(languageManager.localizedString(description))
                         .font(.body)
                         .foregroundColor(.secondary)
                 }
 
                 if let content = article.content {
-                    Text(content)
+                    Text(languageManager.localizedString(content))
                         .font(.body)
                         .padding(.top)
                 }

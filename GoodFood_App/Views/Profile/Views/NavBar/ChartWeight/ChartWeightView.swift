@@ -14,6 +14,7 @@ struct ChartWeightRecord: Identifiable {
 }
 
 struct ChartWeightView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @State var data: [ChartWeightRecord] = []
    
 
@@ -53,7 +54,7 @@ struct ChartWeightView: View {
                         AxisGridLine()
                         AxisValueLabel {
                             if let date = value.as(Date.self) {
-                                Text(date.formatted(.dateTime.hour().minute()))
+                                Text(languageManager.localizedString(date.formatted(.dateTime.hour().minute())))
                             }
                         }
                     }
@@ -63,7 +64,7 @@ struct ChartWeightView: View {
                 .padding(.bottom, 16)
             }
 
-            Text("Biểu đồ cân nặng")
+            Text(languageManager.localizedString("Biểu đồ cân nặng"))
                 .font(.headline)
                 .bold()
                 .font(.system(size: 20))

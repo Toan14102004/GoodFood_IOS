@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		311043712E6A7729005B42B1 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311043702E6A7727005B42B1 /* HelpView.swift */; };
+		311043732E6AA257005B42B1 /* mockQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311043722E6AA24C005B42B1 /* mockQuestions.swift */; };
 		311237382E307A8000E3B62D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 311237372E307A8000E3B62D /* FirebaseMessaging */; };
 		3112373D2E30810500E3B62D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3112373C2E30810300E3B62D /* NotificationManager.swift */; };
 		3112373F2E30838A00E3B62D /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3112373E2E30838700E3B62D /* NotificationDelegate.swift */; };
 		311237432E30BF8C00E3B62D /* HealthTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311237422E30BF8A00E3B62D /* HealthTracker.swift */; };
+		313680402E5E9ED700C01BBA /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3136803A2E5DB2EA00C01BBA /* SubscriptionManager.swift */; };
+		313680412E5EA3DB00C01BBA /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3136803F2E5DB74B00C01BBA /* SubscriptionView.swift */; };
+		313680452E5EEF8100C01BBA /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313680442E5EEF7500C01BBA /* BannerAd.swift */; };
+		3136804C2E5FFBFE00C01BBA /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3136804B2E5FFBFE00C01BBA /* SDWebImage */; };
+		3136804E2E5FFBFE00C01BBA /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3136804D2E5FFBFE00C01BBA /* SDWebImageMapKit */; };
+		313680512E5FFC2600C01BBA /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 313680502E5FFC2600C01BBA /* SQLite */; };
+		318505052E581DE200B883F2 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318505042E581DE100B883F2 /* LanguageManager.swift */; };
+		3185050F2E5822FF00B883F2 /* BundleEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3185050E2E5822FE00B883F2 /* BundleEx.swift */; };
 		3187B7E12E1245340079BBC2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3187B7E02E1245340079BBC2 /* FirebaseAuth */; };
 		3187B7E32E1245340079BBC2 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3187B7E22E1245340079BBC2 /* FirebaseCore */; };
 		3187B7E52E1245340079BBC2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3187B7E42E1245340079BBC2 /* FirebaseDatabase */; };
@@ -22,6 +32,20 @@
 		31886F202E25EF490057776A /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31886F1F2E25EF410057776A /* NotificationsView.swift */; };
 		31886F242E2630810057776A /* NotifiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31886F232E2630710057776A /* NotifiViewModel.swift */; };
 		31886F292E2650DD0057776A /* NotifiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31886F282E2650DD0057776A /* NotifiModel.swift */; };
+		318A5D9B2E600DAA003C3B68 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 318A5D9A2E600DAA003C3B68 /* Lottie */; };
+		318A5D9F2E6011E2003C3B68 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 318A5D9E2E6011E2003C3B68 /* GoogleMobileAds */; };
+		318A5DA12E6016CC003C3B68 /* InterstitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318A5DA02E6016C2003C3B68 /* InterstitialAd.swift */; };
+		318A5DA32E6016DB003C3B68 /* RewardedAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318A5DA22E6016D5003C3B68 /* RewardedAd.swift */; };
+		318A5DA72E604136003C3B68 /* AppOpenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318A5DA42E6016E9003C3B68 /* AppOpenAd.swift */; };
+		318A5DAE2E616975003C3B68 /* DishsClassifier5.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 318A5DAD2E616975003C3B68 /* DishsClassifier5.mlmodel */; };
+		318A5DAF2E618B41003C3B68 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 313680372E5DAB6200C01BBA /* Configuration.storekit */; };
+		318A5DB12E619DBC003C3B68 /* CustomNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318A5DB02E619DBA003C3B68 /* CustomNativeAdView.swift */; };
+		318A5DB52E67DF58003C3B68 /* NativeAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318A5DB42E67DF56003C3B68 /* NativeAd.swift */; };
+		318A5DCA2E68317F003C3B68 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 318A5DC92E68317F003C3B68 /* Localizable.xcstrings */; };
+		318BE4452E701FEA00F32FEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 318BE4442E701FEA00F32FEB /* GoogleService-Info.plist */; };
+		319551C02E7280B600540AF8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 319551BF2E7280B600540AF8 /* FirebaseCrashlytics */; };
+		319551C22E728BE700540AF8 /* TypewriterTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319551C12E728BE500540AF8 /* TypewriterTextView.swift */; };
+		31B8E5012E570BD800F8B38A /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B8E5002E570BA800F8B38A /* LanguageSelectionView.swift */; };
 		31C0A97E2E1518160004F62D /* DishHistoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C0A97D2E1518140004F62D /* DishHistoryEntity.swift */; };
 		31C0A9802E1518F70004F62D /* DishEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C0A97F2E1518F60004F62D /* DishEntity.swift */; };
 		31C0A9822E1519BA0004F62D /* DailyRecordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C0A9812E1519AA0004F62D /* DailyRecordEntity.swift */; };
@@ -33,12 +57,9 @@
 		31C6F9162E449FA900A24FA8 /* UIImageAndResizeAndBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F9152E449FA100A24FA8 /* UIImageAndResizeAndBuffer.swift */; };
 		31C6F91B2E44A09C00A24FA8 /* DetectDishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F91A2E44A08300A24FA8 /* DetectDishView.swift */; };
 		31C6F91D2E44A0CE00A24FA8 /* DetailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F91C2E44A0C700A24FA8 /* DetailImage.swift */; };
-		31C6F9222E44AAC600A24FA8 /* ImagePickerOfCreatML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F9212E44AABA00A24FA8 /* ImagePickerOfCreatML.swift */; };
-		31C6F9272E4D8EC500A24FA8 /* DishsClassifier4.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F9262E4D8EC500A24FA8 /* DishsClassifier4.mlmodel */; };
 		31C6F96E2E55636400A24FA8 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F96D2E55635300A24FA8 /* OnboardingScreen.swift */; };
 		31C6F9702E55765300A24FA8 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C6F96F2E55764800A24FA8 /* SplashView.swift */; };
-		31E419DA2E1285BE00A4E9CA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 31E419D92E1285BE00A4E9CA /* Lottie */; };
-		31E419EB2E12F19D00A4E9CA /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 31E419EA2E12F19D00A4E9CA /* DGCharts */; };
+		31DB77E02E6E902F006B8DF4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 31DB77DF2E6E902F006B8DF4 /* FirebaseAnalytics */; };
 		31E41A6E2E13F3AB00A4E9CA /* GoodFood_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 31E41A2B2E13F3AB00A4E9CA /* GoodFood_App.xcdatamodeld */; };
 		31E41A6F2E13F3AB00A4E9CA /* DailyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41A2D2E13F3AB00A4E9CA /* DailyRecord.swift */; };
 		31E41A702E13F3AB00A4E9CA /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41A2E2E13F3AB00A4E9CA /* Dish.swift */; };
@@ -83,7 +104,6 @@
 		31E41A982E13F3AB00A4E9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E41A642E13F3AB00A4E9CA /* Assets.xcassets */; };
 		31E41AA02E14D0B100A4E9CA /* IngredientLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41A9F2E14D0B000A4E9CA /* IngredientLite.swift */; };
 		31E41AA52E14D0FF00A4E9CA /* NutritionFacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41AA42E14D0FD00A4E9CA /* NutritionFacts.swift */; };
-		31E41AA72E14D65900A4E9CA /* TestDishUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E41AA62E14D65800A4E9CA /* TestDishUploadView.swift */; };
 		31F671452E178346002FD6F0 /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671442E17833F002FD6F0 /* Extention.swift */; };
 		31F671472E1B5DF9002FD6F0 /* CardDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671462E1B5DED002FD6F0 /* CardDish.swift */; };
 		31F6714A2E1B5EFC002FD6F0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 31F671492E1B5EFC002FD6F0 /* SDWebImageSwiftUI */; };
@@ -91,7 +111,6 @@
 		31F6714E2E1B7617002FD6F0 /* CookDishView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F6714D2E1B7614002FD6F0 /* CookDishView .swift */; };
 		31F671522E1BBF03002FD6F0 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 31F671512E1BBF03002FD6F0 /* GoogleGenerativeAI */; };
 		31F671952E1CBED5002FD6F0 /* IngredientNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671942E1CBED3002FD6F0 /* IngredientNutrition.swift */; };
-		31F671D82E1E2B33002FD6F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31F671D72E1E2B33002FD6F0 /* GoogleService-Info.plist */; };
 		31F671DC2E1E4C7A002FD6F0 /* DishImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671DB2E1E4C78002FD6F0 /* DishImageView.swift */; };
 		31F671DE2E1E4C8F002FD6F0 /* NutritionFactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671DD2E1E4C8D002FD6F0 /* NutritionFactsView.swift */; };
 		31F671E02E1E4CBC002FD6F0 /* IngredientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671DF2E1E4CBB002FD6F0 /* IngredientsListView.swift */; };
@@ -99,15 +118,70 @@
 		31F671E72E1E507D002FD6F0 /* DishCookingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F671E62E1E507B002FD6F0 /* DishCookingHelper.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		318AF9242E8A2D14006D3FC1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		318AF9252E8A2D15006D3FC1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		318AF9262E8A2D16006D3FC1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
+		311043702E6A7727005B42B1 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		311043722E6AA24C005B42B1 /* mockQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mockQuestions.swift; sourceTree = "<group>"; };
 		3112373C2E30810300E3B62D /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3112373E2E30838700E3B62D /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		311237422E30BF8A00E3B62D /* HealthTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTracker.swift; sourceTree = "<group>"; };
-		3187B7C92E1244E90079BBC2 /* GoodFood_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodFood_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		313680372E5DAB6200C01BBA /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		313680392E5DB05700C01BBA /* GoodFood_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoodFood_App.entitlements; sourceTree = "<group>"; };
+		3136803A2E5DB2EA00C01BBA /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		3136803F2E5DB74B00C01BBA /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		313680442E5EEF7500C01BBA /* BannerAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
+		318505042E581DE100B883F2 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		3185050E2E5822FE00B883F2 /* BundleEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleEx.swift; sourceTree = "<group>"; };
 		31886ED42E2471FF0057776A /* SuggestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestViewModel.swift; sourceTree = "<group>"; };
 		31886F1F2E25EF410057776A /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		31886F232E2630710057776A /* NotifiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifiViewModel.swift; sourceTree = "<group>"; };
 		31886F282E2650DD0057776A /* NotifiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifiModel.swift; sourceTree = "<group>"; };
+		318A5D9C2E600F53003C3B68 /* GoodFood_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodFood_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		318A5DA02E6016C2003C3B68 /* InterstitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAd.swift; sourceTree = "<group>"; };
+		318A5DA22E6016D5003C3B68 /* RewardedAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAd.swift; sourceTree = "<group>"; };
+		318A5DA42E6016E9003C3B68 /* AppOpenAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOpenAd.swift; sourceTree = "<group>"; };
+		318A5DAD2E616975003C3B68 /* DishsClassifier5.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DishsClassifier5.mlmodel; sourceTree = "<group>"; };
+		318A5DB02E619DBA003C3B68 /* CustomNativeAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNativeAdView.swift; sourceTree = "<group>"; };
+		318A5DB42E67DF56003C3B68 /* NativeAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAd.swift; sourceTree = "<group>"; };
+		318A5DC92E68317F003C3B68 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		318BE4442E701FEA00F32FEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		319551C12E728BE500540AF8 /* TypewriterTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypewriterTextView.swift; sourceTree = "<group>"; };
+		31B8E5002E570BA800F8B38A /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		31C0A97D2E1518140004F62D /* DishHistoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishHistoryEntity.swift; sourceTree = "<group>"; };
 		31C0A97F2E1518F60004F62D /* DishEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishEntity.swift; sourceTree = "<group>"; };
 		31C0A9812E1519AA0004F62D /* DailyRecordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecordEntity.swift; sourceTree = "<group>"; };
@@ -119,8 +193,6 @@
 		31C6F9152E449FA100A24FA8 /* UIImageAndResizeAndBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageAndResizeAndBuffer.swift; sourceTree = "<group>"; };
 		31C6F91A2E44A08300A24FA8 /* DetectDishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectDishView.swift; sourceTree = "<group>"; };
 		31C6F91C2E44A0C700A24FA8 /* DetailImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImage.swift; sourceTree = "<group>"; };
-		31C6F9212E44AABA00A24FA8 /* ImagePickerOfCreatML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerOfCreatML.swift; sourceTree = "<group>"; };
-		31C6F9262E4D8EC500A24FA8 /* DishsClassifier4.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DishsClassifier4.mlmodel; sourceTree = "<group>"; };
 		31C6F96D2E55635300A24FA8 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		31C6F96F2E55764800A24FA8 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		31E41A2D2E13F3AB00A4E9CA /* DailyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecord.swift; sourceTree = "<group>"; };
@@ -168,13 +240,11 @@
 		31E41A6D2E13F3AB00A4E9CA /* GoodFood_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoodFood_App.xcdatamodel; sourceTree = "<group>"; };
 		31E41A9F2E14D0B000A4E9CA /* IngredientLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientLite.swift; sourceTree = "<group>"; };
 		31E41AA42E14D0FD00A4E9CA /* NutritionFacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionFacts.swift; sourceTree = "<group>"; };
-		31E41AA62E14D65800A4E9CA /* TestDishUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDishUploadView.swift; sourceTree = "<group>"; };
 		31F671442E17833F002FD6F0 /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		31F671462E1B5DED002FD6F0 /* CardDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDish.swift; sourceTree = "<group>"; };
 		31F6714B2E1B6593002FD6F0 /* DishDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailView.swift; sourceTree = "<group>"; };
 		31F6714D2E1B7614002FD6F0 /* CookDishView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CookDishView .swift"; sourceTree = "<group>"; };
 		31F671942E1CBED3002FD6F0 /* IngredientNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientNutrition.swift; sourceTree = "<group>"; };
-		31F671D72E1E2B33002FD6F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		31F671DB2E1E4C78002FD6F0 /* DishImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishImageView.swift; sourceTree = "<group>"; };
 		31F671DD2E1E4C8D002FD6F0 /* NutritionFactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionFactsView.swift; sourceTree = "<group>"; };
 		31F671DF2E1E4CBB002FD6F0 /* IngredientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListView.swift; sourceTree = "<group>"; };
@@ -189,16 +259,21 @@
 			files = (
 				311237382E307A8000E3B62D /* FirebaseMessaging in Frameworks */,
 				31F6714A2E1B5EFC002FD6F0 /* SDWebImageSwiftUI in Frameworks */,
+				3136804C2E5FFBFE00C01BBA /* SDWebImage in Frameworks */,
 				3187B7E52E1245340079BBC2 /* FirebaseDatabase in Frameworks */,
 				31F671522E1BBF03002FD6F0 /* GoogleGenerativeAI in Frameworks */,
+				318A5D9B2E600DAA003C3B68 /* Lottie in Frameworks */,
 				3187B7E72E1245340079BBC2 /* FirebaseFirestore in Frameworks */,
+				313680512E5FFC2600C01BBA /* SQLite in Frameworks */,
 				3187B7EE2E12454A0079BBC2 /* GoogleSignInSwift in Frameworks */,
 				3187B7E32E1245340079BBC2 /* FirebaseCore in Frameworks */,
+				31DB77E02E6E902F006B8DF4 /* FirebaseAnalytics in Frameworks */,
+				3136804E2E5FFBFE00C01BBA /* SDWebImageMapKit in Frameworks */,
 				3187B7E92E1245340079BBC2 /* FirebaseStorage in Frameworks */,
+				319551C02E7280B600540AF8 /* FirebaseCrashlytics in Frameworks */,
+				318A5D9F2E6011E2003C3B68 /* GoogleMobileAds in Frameworks */,
 				3187B7E12E1245340079BBC2 /* FirebaseAuth in Frameworks */,
 				3187B7EC2E12454A0079BBC2 /* GoogleSignIn in Frameworks */,
-				31E419EB2E12F19D00A4E9CA /* DGCharts in Frameworks */,
-				31E419DA2E1285BE00A4E9CA /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,20 +289,45 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		313680382E5DAC1200C01BBA /* AppStore */ = {
+			isa = PBXGroup;
+			children = (
+				3136803F2E5DB74B00C01BBA /* SubscriptionView.swift */,
+				3136803A2E5DB2EA00C01BBA /* SubscriptionManager.swift */,
+			);
+			path = AppStore;
+			sourceTree = "<group>";
+		};
+		313680432E5EED6600C01BBA /* AdView */ = {
+			isa = PBXGroup;
+			children = (
+				318A5DB42E67DF56003C3B68 /* NativeAd.swift */,
+				318A5DB02E619DBA003C3B68 /* CustomNativeAdView.swift */,
+				318A5DA42E6016E9003C3B68 /* AppOpenAd.swift */,
+				318A5DA22E6016D5003C3B68 /* RewardedAd.swift */,
+				318A5DA02E6016C2003C3B68 /* InterstitialAd.swift */,
+				313680442E5EEF7500C01BBA /* BannerAd.swift */,
+			);
+			path = AdView;
+			sourceTree = "<group>";
+		};
+		318505032E581DDB00B883F2 /* LanguageManager */ = {
+			isa = PBXGroup;
+			children = (
+				3185050E2E5822FE00B883F2 /* BundleEx.swift */,
+				318505042E581DE100B883F2 /* LanguageManager.swift */,
+			);
+			path = LanguageManager;
+			sourceTree = "<group>";
+		};
 		3187B7C02E1244E90079BBC2 = {
 			isa = PBXGroup;
 			children = (
+				313680372E5DAB6200C01BBA /* Configuration.storekit */,
 				31E41A6C2E13F3AB00A4E9CA /* GoodFood_App */,
-				3187B7CA2E1244E90079BBC2 /* Products */,
+				318A5D9C2E600F53003C3B68 /* GoodFood_App.app */,
+				318A5DC92E68317F003C3B68 /* Localizable.xcstrings */,
 			);
-			sourceTree = "<group>";
-		};
-		3187B7CA2E1244E90079BBC2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3187B7C92E1244E90079BBC2 /* GoodFood_App.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		31886ED02E2422FC0057776A /* Infor */ = {
@@ -320,13 +420,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		31886F312E2659250057776A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		31886F322E26592F0057776A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,7 +472,6 @@
 		31C6F9072E41AE8400A24FA8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				31C6F9212E44AABA00A24FA8 /* ImagePickerOfCreatML.swift */,
 				31C6F90A2E41B72000A24FA8 /* DataFood.swift */,
 				31C6F9082E41B55500A24FA8 /* FoodInfo.swift */,
 			);
@@ -452,7 +544,6 @@
 				311237422E30BF8A00E3B62D /* HealthTracker.swift */,
 				31E41A382E13F3AB00A4E9CA /* AuthViewModel.swift */,
 				31E41A392E13F3AB00A4E9CA /* FirebaseService.swift */,
-				31E41AA62E14D65800A4E9CA /* TestDishUploadView.swift */,
 			);
 			path = FireBaseService;
 			sourceTree = "<group>";
@@ -479,6 +570,7 @@
 			children = (
 				31E41A432E13F3AB00A4E9CA /* HeaderDateView.swift */,
 				31E41A442E13F3AB00A4E9CA /* ToolbarButtons.swift */,
+				311043702E6A7727005B42B1 /* HelpView.swift */,
 			);
 			path = HeaderDate;
 			sourceTree = "<group>";
@@ -537,7 +629,6 @@
 			children = (
 				31886F332E26593B0057776A /* Views */,
 				31886F322E26592F0057776A /* ViewModels */,
-				31886F312E2659250057776A /* Models */,
 			);
 			path = Suggest;
 			sourceTree = "<group>";
@@ -547,6 +638,7 @@
 			children = (
 				31886F372E265AEF0057776A /* ViewModels */,
 				31886F362E265AE90057776A /* Views */,
+				318A5DAD2E616975003C3B68 /* DishsClassifier5.mlmodel */,
 			);
 			path = TakeAPhoto;
 			sourceTree = "<group>";
@@ -554,6 +646,7 @@
 		31E41A632E13F3AB00A4E9CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				313680432E5EED6600C01BBA /* AdView */,
 				31F671D92E1E4B55002FD6F0 /* DishViews */,
 				31E41A3F2E13F3AB00A4E9CA /* History */,
 				31E41A522E13F3AB00A4E9CA /* Home */,
@@ -570,6 +663,7 @@
 		31E41A6C2E13F3AB00A4E9CA /* GoodFood_App */ = {
 			isa = PBXGroup;
 			children = (
+				313680392E5DB05700C01BBA /* GoodFood_App.entitlements */,
 				31C6F9132E44949B00A24FA8 /* DetectDish */,
 				31F6714F2E1BBD88002FD6F0 /* component */,
 				31E41A9C2E1436D000A4E9CA /* Services */,
@@ -582,8 +676,7 @@
 				31E41A662E13F3AB00A4E9CA /* GoodFood_AppApp.swift */,
 				31E41A682E13F3AB00A4E9CA /* Info.plist */,
 				31E41A6A2E13F3AB00A4E9CA /* Persistence.swift */,
-				31F671D72E1E2B33002FD6F0 /* GoogleService-Info.plist */,
-				31C6F9262E4D8EC500A24FA8 /* DishsClassifier4.mlmodel */,
+				318BE4442E701FEA00F32FEB /* GoogleService-Info.plist */,
 			);
 			path = GoodFood_App;
 			sourceTree = "<group>";
@@ -591,11 +684,13 @@
 		31E41A9C2E1436D000A4E9CA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				318505032E581DDB00B883F2 /* LanguageManager */,
 				31C6F9002E40568000A24FA8 /* Network */,
 				3112373B2E3080F200E3B62D /* Notification */,
 				31E41A372E13F3AB00A4E9CA /* CoreDataService */,
 				31E41A3A2E13F3AB00A4E9CA /* FireBaseService */,
 				31E41A3C2E13F3AB00A4E9CA /* GerminiAI */,
+				313680382E5DAC1200C01BBA /* AppStore */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -614,6 +709,8 @@
 		31F6714F2E1BBD88002FD6F0 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				319551C12E728BE500540AF8 /* TypewriterTextView.swift */,
+				311043722E6AA24C005B42B1 /* mockQuestions.swift */,
 				31F671442E17833F002FD6F0 /* Extention.swift */,
 				31E41A6B2E13F3AB00A4E9CA /* PrimaryGreen.swift */,
 				31E41A692E13F3AB00A4E9CA /* LottieView.swift */,
@@ -646,6 +743,7 @@
 		31F671932E1BD46B002FD6F0 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				31B8E5002E570BA800F8B38A /* LanguageSelectionView.swift */,
 				31C6F96F2E55764800A24FA8 /* SplashView.swift */,
 				31C6F96D2E55635300A24FA8 /* OnboardingScreen.swift */,
 				31E41A622E13F3AB00A4E9CA /* WelcomeView.swift */,
@@ -693,8 +791,12 @@
 				3187B7C52E1244E90079BBC2 /* Sources */,
 				3187B7C62E1244E90079BBC2 /* Frameworks */,
 				3187B7C72E1244E90079BBC2 /* Resources */,
+				318AF9272E8A2D41006D3FC1 /* ShellScript */,
 			);
 			buildRules = (
+				318AF9262E8A2D16006D3FC1 /* PBXBuildRule */,
+				318AF9252E8A2D15006D3FC1 /* PBXBuildRule */,
+				318AF9242E8A2D14006D3FC1 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -707,14 +809,19 @@
 				3187B7E82E1245340079BBC2 /* FirebaseStorage */,
 				3187B7EB2E12454A0079BBC2 /* GoogleSignIn */,
 				3187B7ED2E12454A0079BBC2 /* GoogleSignInSwift */,
-				31E419D92E1285BE00A4E9CA /* Lottie */,
-				31E419EA2E12F19D00A4E9CA /* DGCharts */,
 				31F671492E1B5EFC002FD6F0 /* SDWebImageSwiftUI */,
 				31F671512E1BBF03002FD6F0 /* GoogleGenerativeAI */,
 				311237372E307A8000E3B62D /* FirebaseMessaging */,
+				3136804B2E5FFBFE00C01BBA /* SDWebImage */,
+				3136804D2E5FFBFE00C01BBA /* SDWebImageMapKit */,
+				313680502E5FFC2600C01BBA /* SQLite */,
+				318A5D9A2E600DAA003C3B68 /* Lottie */,
+				318A5D9E2E6011E2003C3B68 /* GoogleMobileAds */,
+				31DB77DF2E6E902F006B8DF4 /* FirebaseAnalytics */,
+				319551BF2E7280B600540AF8 /* FirebaseCrashlytics */,
 			);
 			productName = GoodFood_App;
-			productReference = 3187B7C92E1244E90079BBC2 /* GoodFood_App.app */;
+			productReference = 318A5D9C2E600F53003C3B68 /* GoodFood_App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -733,24 +840,38 @@
 				};
 			};
 			buildConfigurationList = 3187B7C42E1244E90079BBC2 /* Build configuration list for PBXProject "GoodFood_App" */;
-			developmentRegion = en;
+			developmentRegion = vi;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				vi,
+				fr,
+				id,
+				de,
+				ko,
+				ja,
+				th,
+				hi,
+				ms,
+				pt,
+				"pt-BR",
+				ar,
+				"ru-RU",
 			);
 			mainGroup = 3187B7C02E1244E90079BBC2;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3187B7DF2E1245340079BBC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3187B7EA2E12454A0079BBC2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				31E419D82E1285BE00A4E9CA /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				31E419E92E12F19D00A4E9CA /* XCRemoteSwiftPackageReference "Charts" */,
 				31F671482E1B5EFC002FD6F0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				31F671502E1BBF03002FD6F0 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+				3136804A2E5FFBFE00C01BBA /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				3136804F2E5FFC2600C01BBA /* XCRemoteSwiftPackageReference "SQLite" */,
+				318A5D992E600DAA003C3B68 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				318A5D9D2E6011E2003C3B68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 3187B7CA2E1244E90079BBC2 /* Products */;
+			productRefGroup = 3187B7C02E1244E90079BBC2;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -765,12 +886,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				31E41A972E13F3AB00A4E9CA /* Preview Assets.xcassets in Resources */,
+				318A5DCA2E68317F003C3B68 /* Localizable.xcstrings in Resources */,
+				318BE4452E701FEA00F32FEB /* GoogleService-Info.plist in Resources */,
+				318A5DAF2E618B41003C3B68 /* Configuration.storekit in Resources */,
 				31E41A982E13F3AB00A4E9CA /* Assets.xcassets in Resources */,
-				31F671D82E1E2B33002FD6F0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		318AF9272E8A2D41006D3FC1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ -f /opt/homebrew/bin/swiftlint ]; then\n  /opt/homebrew/bin/swiftlint lint --quiet || true\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3187B7C52E1244E90079BBC2 /* Sources */ = {
@@ -781,11 +925,14 @@
 				31E41A6F2E13F3AB00A4E9CA /* DailyRecord.swift in Sources */,
 				31C6F9702E55765300A24FA8 /* SplashView.swift in Sources */,
 				31886F202E25EF490057776A /* NotificationsView.swift in Sources */,
-				31C6F9222E44AAC600A24FA8 /* ImagePickerOfCreatML.swift in Sources */,
 				31E41A702E13F3AB00A4E9CA /* Dish.swift in Sources */,
+				318A5DA72E604136003C3B68 /* AppOpenAd.swift in Sources */,
 				31E41A712E13F3AB00A4E9CA /* DishHistory.swift in Sources */,
+				311043712E6A7729005B42B1 /* HelpView.swift in Sources */,
 				31F671E72E1E507D002FD6F0 /* DishCookingHelper.swift in Sources */,
 				31C6F9022E4056A200A24FA8 /* NetworkMonito.swift in Sources */,
+				311043732E6AA257005B42B1 /* mockQuestions.swift in Sources */,
+				318A5DA12E6016CC003C3B68 /* InterstitialAd.swift in Sources */,
 				31E41A732E13F3AB00A4E9CA /* UserEntity.swift in Sources */,
 				31E41A742E13F3AB00A4E9CA /* UserModel.swift in Sources */,
 				31E41A752E13F3AB00A4E9CA /* CoreDataService.swift in Sources */,
@@ -793,9 +940,10 @@
 				31E41A772E13F3AB00A4E9CA /* FirebaseService.swift in Sources */,
 				3112373F2E30838A00E3B62D /* NotificationDelegate.swift in Sources */,
 				31F671E02E1E4CBC002FD6F0 /* IngredientsListView.swift in Sources */,
+				319551C22E728BE700540AF8 /* TypewriterTextView.swift in Sources */,
 				31E41A782E13F3AB00A4E9CA /* GerminiService.swift in Sources */,
+				318A5DB52E67DF58003C3B68 /* NativeAd.swift in Sources */,
 				31E41A792E13F3AB00A4E9CA /* HistoryView.swift in Sources */,
-				31E41AA72E14D65900A4E9CA /* TestDishUploadView.swift in Sources */,
 				311237432E30BF8C00E3B62D /* HealthTracker.swift in Sources */,
 				31E41A7A2E13F3AB00A4E9CA /* Article.swift in Sources */,
 				31E41A7B2E13F3AB00A4E9CA /* KcalEntry.swift in Sources */,
@@ -806,11 +954,17 @@
 				31F671952E1CBED5002FD6F0 /* IngredientNutrition.swift in Sources */,
 				31C6F96E2E55636400A24FA8 /* OnboardingScreen.swift in Sources */,
 				31E41A7D2E13F3AB00A4E9CA /* ToolbarButtons.swift in Sources */,
+				318505052E581DE200B883F2 /* LanguageManager.swift in Sources */,
 				31E41A7E2E13F3AB00A4E9CA /* CardHistoryView.swift in Sources */,
 				31F671DE2E1E4C8F002FD6F0 /* NutritionFactsView.swift in Sources */,
 				31E41A7F2E13F3AB00A4E9CA /* KcalCircleView.swift in Sources */,
+				318A5DAE2E616975003C3B68 /* DishsClassifier5.mlmodel in Sources */,
 				31F671E32E1E4F21002FD6F0 /* ingredientEditor.swift in Sources */,
+				318A5DB12E619DBC003C3B68 /* CustomNativeAdView.swift in Sources */,
+				3185050F2E5822FF00B883F2 /* BundleEx.swift in Sources */,
+				313680402E5E9ED700C01BBA /* SubscriptionManager.swift in Sources */,
 				31E41A802E13F3AB00A4E9CA /* ArticleDetailView.swift in Sources */,
+				313680412E5EA3DB00C01BBA /* SubscriptionView.swift in Sources */,
 				31E41A812E13F3AB00A4E9CA /* ArticleHealthy.swift in Sources */,
 				31E41A822E13F3AB00A4E9CA /* CardUpdateView.swift in Sources */,
 				31E41A832E13F3AB00A4E9CA /* HomeView.swift in Sources */,
@@ -824,17 +978,19 @@
 				31C6F9162E449FA900A24FA8 /* UIImageAndResizeAndBuffer.swift in Sources */,
 				31F671472E1B5DF9002FD6F0 /* CardDish.swift in Sources */,
 				31E41A882E13F3AB00A4E9CA /* NavBarView.swift in Sources */,
+				31B8E5012E570BD800F8B38A /* LanguageSelectionView.swift in Sources */,
 				31E41A892E13F3AB00A4E9CA /* cardInfor.swift in Sources */,
 				31E41A8A2E13F3AB00A4E9CA /* LogoutButton.swift in Sources */,
 				31E41A8B2E13F3AB00A4E9CA /* ProfileView.swift in Sources */,
 				31C6F91B2E44A09C00A24FA8 /* DetectDishView.swift in Sources */,
 				31E41A8C2E13F3AB00A4E9CA /* SuggestView.swift in Sources */,
 				31886ED52E2472000057776A /* SuggestViewModel.swift in Sources */,
-				31C6F9272E4D8EC500A24FA8 /* DishsClassifier4.mlmodel in Sources */,
 				31E41A8D2E13F3AB00A4E9CA /* CameraView.swift in Sources */,
+				318A5DA32E6016DB003C3B68 /* RewardedAd.swift in Sources */,
 				31E41A8E2E13F3AB00A4E9CA /* ImagePicker.swift in Sources */,
 				31F671452E178346002FD6F0 /* Extention.swift in Sources */,
 				31886F242E2630810057776A /* NotifiViewModel.swift in Sources */,
+				313680452E5EEF8100C01BBA /* BannerAd.swift in Sources */,
 				31C0A97E2E1518160004F62D /* DishHistoryEntity.swift in Sources */,
 				31C0A9822E1519BA0004F62D /* DailyRecordEntity.swift in Sources */,
 				31E41A8F2E13F3AB00A4E9CA /* MainTabView.swift in Sources */,
@@ -917,6 +1073,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -973,6 +1130,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -982,8 +1140,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoodFood_App/GoodFood_App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GoodFood_App/Preview Content\"";
 				DEVELOPMENT_TEAM = VQ8W82PQ94;
 				ENABLE_PREVIEWS = YES;
@@ -1000,7 +1159,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.NguyenThiToan.GoodFood-App.2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NguyenThiToan.GoodFood-App.3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1017,8 +1176,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoodFood_App/GoodFood_App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GoodFood_App/Preview Content\"";
 				DEVELOPMENT_TEAM = VQ8W82PQ94;
 				ENABLE_PREVIEWS = YES;
@@ -1035,7 +1195,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.NguyenThiToan.GoodFood-App.2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NguyenThiToan.GoodFood-App.3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1071,6 +1231,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3136804A2E5FFBFE00C01BBA /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.21.1;
+			};
+		};
+		3136804F2E5FFC2600C01BBA /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.4;
+			};
+		};
 		3187B7DF2E1245340079BBC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1087,20 +1263,20 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		31E419D82E1285BE00A4E9CA /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		318A5D992E600DAA003C3B68 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.5.2;
 			};
 		};
-		31E419E92E12F19D00A4E9CA /* XCRemoteSwiftPackageReference "Charts" */ = {
+		318A5D9D2E6011E2003C3B68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts";
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.0;
+				minimumVersion = 12.9.0;
 			};
 		};
 		31F671482E1B5EFC002FD6F0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
@@ -1126,6 +1302,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3187B7DF2E1245340079BBC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		3136804B2E5FFBFE00C01BBA /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3136804A2E5FFBFE00C01BBA /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		3136804D2E5FFBFE00C01BBA /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3136804A2E5FFBFE00C01BBA /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		313680502E5FFC2600C01BBA /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3136804F2E5FFC2600C01BBA /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
 		};
 		3187B7E02E1245340079BBC2 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1162,15 +1353,24 @@
 			package = 3187B7EA2E12454A0079BBC2 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
 		};
-		31E419D92E1285BE00A4E9CA /* Lottie */ = {
+		318A5D9A2E600DAA003C3B68 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 31E419D82E1285BE00A4E9CA /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 318A5D992E600DAA003C3B68 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		31E419EA2E12F19D00A4E9CA /* DGCharts */ = {
+		318A5D9E2E6011E2003C3B68 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 31E419E92E12F19D00A4E9CA /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = DGCharts;
+			package = 318A5D9D2E6011E2003C3B68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		319551BF2E7280B600540AF8 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseCrashlytics;
+		};
+		31DB77DF2E6E902F006B8DF4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3187B7DF2E1245340079BBC2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 		31F671492E1B5EFC002FD6F0 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

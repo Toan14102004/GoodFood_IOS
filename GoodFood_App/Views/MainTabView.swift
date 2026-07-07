@@ -8,16 +8,17 @@ import SwiftUI
 
 struct MainTabView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject private var languageManager: LanguageManager
     @StateObject var firebaseService = FirebaseService()
     @State private var KcalOut: Double = 2000
 
     init() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white // nền sáng
+        appearance.backgroundColor = .white
 
         // Màu cho icon và text khi selected
-        UITabBar.appearance().tintColor = UIColor(red: 144/255, green: 185/255, blue: 78/255, alpha: 1) // #90B94E
+        UITabBar.appearance().tintColor = UIColor(red: 144/255, green: 185/255, blue: 78/255, alpha: 1)
 
         // Màu cho icon và text khi unselected
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
@@ -30,12 +31,12 @@ struct MainTabView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("Trang chủ", systemImage: "house")
+                    Label(languageManager.localizedString("Trang chủ"), systemImage: "house")
                 }
 
             HistoryView()
                 .tabItem {
-                    Label("Nhật ký", systemImage: "book.closed")
+                    Label(languageManager.localizedString("Nhật ký"), systemImage: "book.closed")
                 }
 
             CameraView()
@@ -47,15 +48,14 @@ struct MainTabView: View {
 
             SuggestView()
                 .tabItem {
-                    Label("Gợi ý món", systemImage: "fork.knife")
+                    Label(languageManager.localizedString("Gợi ý món"), systemImage: "fork.knife")
                 }
 
             ProfileView()
                 .tabItem {
-                    Label("Cá nhân", systemImage: "person.crop.circle")
+                    Label(languageManager.localizedString("Cá nhân"), systemImage: "person.crop.circle")
                 }
         }
-        .tint(Color(red: 144/255, green: 185/255, blue: 78/255)) // #90B94E
         .onAppear {
             if let user = authViewModel.user {
                 firebaseService.fetchInforUser(authViewModel: authViewModel) { result in

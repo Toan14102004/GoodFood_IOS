@@ -7,14 +7,12 @@
 
 import FirebaseAuth
 import FirebaseFirestore
-import SwiftUI
 import Foundation
-
+import SwiftUI
 
 class ProcessData: ObservableObject {
-    
     @StateObject var firebaseService = FirebaseService()
-    @State private var date: Date = Date()
+    @State private var date: Date = .init()
 
     @Published var kcalIn: Double = 0
     @Published var kcalOut: Double = 2000
@@ -48,13 +46,13 @@ class ProcessData: ObservableObject {
             }
         }
     }
-    
+
     func printAllDailyRecords() {
         let records = CoreDataService.shared.fetchAllDailyRecords()
         for record in records {
             print("Ngày: \(record.date ?? Date())")
-            print("kcalIn: \(record.kcalIn)")
-            print("kcalOut: \(record.kcalOut)")
+            print("KcalIn: \(record.kcalIn)")
+            print("KcalOut: \(record.kcalOut)")
             print("carbs: \(record.carbs)")
             print("protein: \(record.protein)")
             print("fat: \(record.fat)")

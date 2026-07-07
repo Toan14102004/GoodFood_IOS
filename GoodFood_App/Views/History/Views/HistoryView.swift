@@ -17,9 +17,12 @@
 //        }
 //        .frame(maxWidth: .infinity, minHeight: 400)
 
+import GoogleMobileAds
 import SwiftUI
 
 struct HistoryView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
+    @StateObject private var rewardedAd = RewardedAdManager()
     @State private var dishes: [Dish] = []
     @StateObject var firebaseService = FirebaseService()
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
@@ -27,18 +30,19 @@ struct HistoryView: View {
 
     var body: some View {
         NavigationStack(path: $path) {
-            VStack(spacing: 0) {
-                VStack {
-                    Text("Lịch sử món ăn")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding(.top, 80)
-                        .padding(.bottom, 10)
-                }
-                .frame(maxWidth: .infinity)
-                .background(Color(red: 144/255, green: 185/255, blue: 78/255))
-                .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+            ZStack(alignment: .bottomTrailing) {
+                VStack(spacing: 0) {
+                    VStack {
+                        Text(languageManager.localizedString("Lịch sử món ăn"))
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(.top, 80)
+                            .padding(.bottom, 10)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color(red: 144/255, green: 185/255, blue: 78/255))
+                    .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
 
                     ScrollView {
                         if dishes.isEmpty {
@@ -47,19 +51,16 @@ struct HistoryView: View {
                                     .frame(width: 300, height: 300)
                                     .padding(.top, 50)
 
-                                Text("Chưa có món ăn nào")
+                                Text(languageManager.localizedString("Chưa có món ăn nào"))
                                     .font(.title3)
                                     .foregroundColor(.gray)
                             }
                             .frame(maxWidth: .infinity, minHeight: 400)
                         }
                         else {
-                            
-                            
-                            
                             VStack(alignment: .leading, spacing: 24) {
                                 if !todayDishes.isEmpty {
-                                    Section(header: Text("Hôm nay")
+                                    Section(header: Text(languageManager.localizedString("Hôm nay"))
                                         .font(.title3)
                                         .bold()
                                         .padding(.horizontal))
@@ -74,9 +75,9 @@ struct HistoryView: View {
                                         .padding(.horizontal)
                                     }
                                 }
-                                
+
                                 if !yesterdayDishes.isEmpty {
-                                    Section(header: Text("Hôm qua")
+                                    Section(header: Text(languageManager.localizedString("Hôm qua"))
                                         .font(.title3)
                                         .bold()
                                         .padding(.horizontal))
@@ -91,9 +92,9 @@ struct HistoryView: View {
                                         .padding(.horizontal)
                                     }
                                 }
-                                
+
                                 if !earlierDishes.isEmpty {
-                                    Section(header: Text("Trước đó")
+                                    Section(header: Text(languageManager.localizedString("Trước đó"))
                                         .font(.title3)
                                         .bold()
                                         .padding(.horizontal))
@@ -112,12 +113,25 @@ struct HistoryView: View {
                             .padding(.top, 16)
                         }
                     }
-                //}
-            }
-            .ignoresSafeArea(edges: .top) // cho header ăn lên phần notch
-            .onAppear {
-                path = NavigationPath()
-                fetchHistory()
+                }
+                .ignoresSafeArea(edges: .top) // cho header ăn lên phần notch
+                .onAppear {
+                    path = NavigationPath()
+                    fetchHistory()
+                }
+                Button(action: {
+                    if let root = UIApplication.shared.windows.first?.rootViewController {
+                        rewardedAd.showRewardedAd(from: root) { reward in
+                            print("Người dùng nhận thưởng: \(reward.amount) \(reward.type)")
+                        }
+                    }
+                }) {
+                    LottieView(name: "ReferralGift", loopMode: .loop)
+                        .frame(width: 65, height: 80)
+                        .padding(.trailing, 16)
+                        .padding(.bottom, 16)
+                }
+                .disabled(!rewardedAd.isReady)
             }
         }
     }

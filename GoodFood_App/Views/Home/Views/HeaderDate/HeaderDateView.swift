@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HeaderDateView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @Binding var selectedDate: Date
     @Binding var showDatePicker: Bool
+    @Binding var showChangeLanguage: Bool
 
     var body: some View {
         HStack {
@@ -22,9 +24,6 @@ struct HeaderDateView: View {
             ToolbarButtons(
                 onCalendarTap: {
                     showDatePicker.toggle()
-                },
-                onAddTap: {
-                    // Xử lý thêm mục mới
                 }
             )
         }
@@ -33,10 +32,10 @@ struct HeaderDateView: View {
 
     private var formattedDate: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "vi_VN")
+        formatter.locale = Locale(identifier: languageManager.selectedLanguage)
         formatter.dateStyle = .long
-        if selectedDate > Calendar.current.startOfDay(for: Date()){
-            return formatter.string(from:  Date())
+        if selectedDate > Calendar.current.startOfDay(for: Date()) {
+            return formatter.string(from: Date())
         }
         return formatter.string(from: selectedDate)
     }

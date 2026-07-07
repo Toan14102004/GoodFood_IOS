@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @State private var selectedDate = Date()
     @State private var showDatePicker = false
+    @State private var showChangeLanguage = false
     @State private var showButtons = true
     @State private var kcalIn: Double = 0
     @State private var kcalOut: Double = 2000
@@ -28,15 +30,29 @@ struct HomeView: View {
             ZStack(alignment: .top) {
                 Color(.systemGroupedBackground)
                     .ignoresSafeArea()
-
+//                Color.red
                 VStack {
-                    HeaderDateView(selectedDate: $selectedDate, showDatePicker: $showDatePicker)
+                    HeaderDateView(selectedDate: $selectedDate, showDatePicker: $showDatePicker, showChangeLanguage: $showChangeLanguage)
                         .frame(maxWidth: .infinity)
                         .frame(height: 80)
-                        .background(Color.white) // header không bị trong suốt khi cuộn
+                        .background(
+                            RadialGradient(
+                                gradient: Gradient(colors: [Color(red: 144/255, green: 185/255, blue: 78/255).opacity(1.0),
+                                                            .white]),
+                                center: .center,
+                                startRadius: 10,
+                                endRadius: 500
+                            )
+                            .ignoresSafeArea()
+                        )
                         .zIndex(1) // giúp nổi lên trên
 
+                    BannerAd(unitID: "ca-app-pub-3940256099942544/2934735716")
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.pink.opacity(0.1))
                     ScrollView {
+
                         VStack(alignment: .leading, spacing: 16) {
                             CardUpdateView(showButtons: $showButtons)
 
@@ -58,9 +74,15 @@ struct HomeView: View {
 
                     show_DatePicker
                 }
+                if showChangeLanguage {
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+
+                    LanguageSelectionView()
+                }
             }
             .alert(self.alertMessage, isPresented: $showConfirmation) {
-                Button("OK", role: .cancel) {}
+                Button(languageManager.localizedString("OK"), role: .cancel) {}
             }
         }
         .onAppear {
@@ -102,16 +124,16 @@ private extension HomeView {
                     .cornerRadius(12)
                     .padding()
 
-                Button("Xác nhận") {
+                Button(languageManager.localizedString("Xác nhận")) {
                     let tomorrow = Calendar.current.date(byAdding: .day, value: +1, to: Date())!
                     print("tomorrow : \(tomorrow)")
                     if self.selectedDate > Calendar.current.startOfDay(for: tomorrow) {
-                        self.alertMessage = "Chưa có thông tin cho ngày này!"
+                        self.alertMessage = "No information for this day !"
                     } else {
                         let formatter = DateFormatter()
                         formatter.dateStyle = .long
-                        formatter.locale = Locale(identifier: "vi_VN")
-                        self.alertMessage = "Ngày đã được chọn : \(formatter.string(from: self.selectedDate))"
+                        formatter.locale = Locale(identifier: "en_GB")
+                        self.alertMessage = languageManager.localizedString("The selected date :") + "\(formatter.string(from: self.selectedDate))"
                     }
                     showConfirmation = true
                     showDatePicker = false

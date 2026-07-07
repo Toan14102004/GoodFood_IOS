@@ -4,24 +4,30 @@
 //
 //  Created by Guest User on 30/6/25.
 //
+import GoogleMobileAds
 import SwiftUI
 
 struct CardUpdateView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @Binding var showButtons: Bool
+    @StateObject private var interstitial = InterstitialAdManager()
+    @State private var localizedText = "Muốn ăn ngon mà không ăn năn thì vận động đi bạn nhé!"
 
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Muốn ăn ngon mà không ăn năn thì vận động đi bạn nhé!")
+                Text(languageManager.localizedString("Muốn ăn ngon mà không ăn năn thì vận động đi bạn nhé!"))
                     .font(.subheadline)
                     .padding(.bottom, 8)
+//                TypewriterTextView(fullText: languageManager.localizedString(localizedText))
+
 
                 if showButtons {
                     HStack(spacing: 12) {
                         NavigationLink {
                             ProfileView()
                         } label: {
-                            Text("Cập nhật")
+                            Text(languageManager.localizedString("Cập nhật"))
                                 .font(.subheadline)
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 16)
@@ -30,7 +36,7 @@ struct CardUpdateView: View {
                                 .cornerRadius(16)
                         }
 
-                        Button("Để sau") {
+                        Button(languageManager.localizedString("Để sau")) {
                             showButtons = false
                         }
                         .font(.subheadline)
@@ -41,6 +47,9 @@ struct CardUpdateView: View {
                         .cornerRadius(16)
                     }
                 }
+            }
+            .onAppear {
+                localizedText = languageManager.localizedString(localizedText)
             }
 
             Spacer()
@@ -56,3 +65,4 @@ struct CardUpdateView: View {
         .padding(.top)
     }
 }
+

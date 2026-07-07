@@ -77,7 +77,7 @@ struct SplashView: View {
     var body: some View {
         Group {
             if isActive {
-                if !hasSeenOnboarding {
+                if hasSeenOnboarding {
                     OnboardingScreen()
                         .environmentObject(languageManager)
                         .environmentObject(authViewModel)
@@ -86,6 +86,7 @@ struct SplashView: View {
                         .environmentObject(languageManager)
                         .environmentObject(authViewModel)
                         .environmentObject(healthTracker)
+                  
                 }
             } else {
                 splashContent

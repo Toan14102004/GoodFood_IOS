@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct KcalCircleView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     var percentage: Double
     var netKcal: Double // kcal còn lại
     var kcalOut: Double // tổng kcal cần nạp
@@ -29,7 +30,7 @@ struct KcalCircleView: View {
                 .animation(.easeOut(duration: 2.5), value: percentage)
 
             VStack {
-                Text("Còn lại")
+                Text(languageManager.localizedString("Còn lại"))
                     .font(.caption)
                     .foregroundColor(.secondary)
 

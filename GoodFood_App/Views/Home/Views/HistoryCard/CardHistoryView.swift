@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct CardHistoryView: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     @Binding var kcalIn: Double
     @Binding var kcalOut: Double
     @Binding var fat: Double
@@ -24,7 +25,7 @@ struct CardHistoryView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Nhật kí")
+            Text(languageManager.localizedString("Nhật kí"))
                 .font(.system(size: 20, weight: .bold))
                 .padding(.top, 16)
                 .padding(.horizontal)
@@ -32,8 +33,8 @@ struct CardHistoryView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
-                        kcalBox(title: "Nạp vào", value: self.kcalIn)
-                        kcalBox(title: "Tiêu hao", value: self.kcalOut)
+                        kcalBox(title: "Tiêu hao", value: self.kcalIn)
+                        kcalBox(title: languageManager.localizedString("Cần nạp"), value: self.kcalOut)
                     }
 
                     LottieView(name: "iconHome2", loopMode: .loop)
@@ -42,7 +43,6 @@ struct CardHistoryView: View {
                     Spacer()
 
                     KcalCircleView(percentage: self.percentage, netKcal: self.netKcal, kcalOut: self.kcalOut)
-                    
                 }
 
                 Divider()
@@ -68,7 +68,7 @@ struct CardHistoryView: View {
 extension CardHistoryView {
     private func kcalBox(title: String, value: Double) -> some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(title)
+            Text(languageManager.localizedString(title))
                 .font(.subheadline)
             Text("\(value, specifier: "%.1f") Kcal")
                 .font(.system(size: 18, weight: .bold))
@@ -78,7 +78,7 @@ extension CardHistoryView {
 
     private func nutriBox(title: String, value: Double) -> some View {
         VStack {
-            Text(title)
+            Text(languageManager.localizedString(title))
                 .font(.system(size: 18, weight: .bold))
                 .padding(.bottom, 8)
 

@@ -9,6 +9,7 @@ import SDWebImageSwiftUI
 import SwiftUI
 
 struct CardDish: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     let dish: Dish
     @State private var selectedImageName = imageNames.randomElement() ?? "dishSuggest1"
 
@@ -30,21 +31,21 @@ struct CardDish: View {
 private extension CardDish {
     var inforCard: some View {
         VStack(spacing: 4) {
-            Text(dish.name ?? "Tên món")
+            Text(languageManager.localizedString(dish.name ?? "Tên món"))
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .frame(maxHeight: 40)
 
             if let dateTime = dish.dateTime {
-                Text("Thời gian: \(formattedDate(dateTime))")
+                Text(languageManager.localizedString("Thời gian: \(formattedDate(dateTime))"))
                     .font(.caption2)
                     .foregroundColor(.gray)
                     .lineLimit(1)
             }
 
             if let kcal = dish.nutritionFacts?.calories {
-                Text("\(Int(kcal)) kcal")
+                Text(languageManager.localizedString("\(Int(kcal)) Kcal"))
                     .font(.caption2)
                     .foregroundColor(.orange)
             }
@@ -108,6 +109,7 @@ private extension CardDish {
 }
 
 struct CardDishOfSuggest: View {
+    @EnvironmentObject private var languageManager: LanguageManager
     let dish: Dish
     @State private var selectedImageName = imageNames.randomElement() ?? "dishSuggest1"
 
@@ -151,25 +153,25 @@ private extension CardDishOfSuggest {
 
     var inforCard: some View {
         VStack(spacing: 4) {
-            Text(dish.name ?? "Tên món")
+            Text(languageManager.localizedString(dish.name ?? "Tên món"))
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
 
             if let dateTime = dish.dateTime {
-                Text("Thời gian: \(formattedDate(dateTime))")
+                Text(languageManager.localizedString("Thời gian: \(formattedDate(dateTime))"))
                     .font(.caption2)
                     .foregroundColor(.gray)
                     .lineLimit(1)
             } else {
-                Text("Thời gian: \(formattedDate(Date()))")
+                Text(languageManager.localizedString("Thời gian: \(formattedDate(Date()))"))
                     .font(.caption2)
                     .foregroundColor(.gray)
                     .lineLimit(1)
             }
 
             if let kcal = dish.nutritionFacts?.calories {
-                Text("\(Int(kcal)) kcal")
+                Text(languageManager.localizedString("\(Int(kcal)) Kcal"))
                     .font(.caption2)
                     .foregroundColor(.orange)
                     .frame(width: 50, height: 20)

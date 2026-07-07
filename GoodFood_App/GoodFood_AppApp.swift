@@ -6,10 +6,17 @@
 //
 
 import Firebase
+import GoogleMobileAds
 import SwiftUI
 
 @main
 struct GoodFood_AppApp: App {
+    @StateObject var languageViewModel = LanguageViewModel()
+    @StateObject var subscriptionManager = SubscriptionManager()
+    @StateObject var authViewModel = AuthViewModel()
+    @StateObject var languageManager = LanguageManager()
+    
+
     let persistenceController = PersistenceController.shared
 //    @StateObject var healthTracker = HealthTracker()
 
@@ -18,6 +25,8 @@ struct GoodFood_AppApp: App {
 
     init() {
         FirebaseApp.configure()
+
+        MobileAds.shared.start(completionHandler: nil)
 
         // Gán delegate trước khi request/schedule
         UNUserNotificationCenter.current().delegate = notificationDelegate
@@ -28,10 +37,9 @@ struct GoodFood_AppApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            WelcomeView()
-//                .environmentObject(healthTracker)
             SplashView()
+                .environmentObject(subscriptionManager)
+                .environmentObject(languageManager)
         }
     }
 }
-
