@@ -7,18 +7,20 @@
 import SwiftUI
 
 struct IngredientEditorView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @Binding var dish: Dish
     let index: Int
 
     var body: some View {
         if dish.ingredients?.indices.contains(index) == true {
+            
             let bindingQuantity = Binding<Double>(
                 get: { dish.ingredients?[index].quantity ?? 0 },
                 set: { dish.ingredients?[index].quantity = $0 }
             )
 
             HStack {
-                Text(dish.ingredients?[index].name ?? "Nguyên liệu")
+                Text(languageManager.localizedString(dish.ingredients?[index].name ?? "Nguyên liệu"))
                     .font(.headline)
 
                 Spacer()
@@ -30,7 +32,7 @@ struct IngredientEditorView: View {
                     .background(Color.white)
                     .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
 
-                Text(dish.ingredients?[index].unit ?? "")
+                Text(languageManager.localizedString(dish.ingredients?[index].unit ?? ""))
                     .foregroundColor(.gray)
             }
         }

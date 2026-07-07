@@ -1,0 +1,327 @@
+{
+  "sourceLanguage" : "vi",
+  "strings" : {
+    " calcium: %.1fg" : {
+
+    },
+    " Carbs: %.1fg" : {
+
+    },
+    " cholesterol: %.1fg" : {
+
+    },
+    " Fat: %.1fg" : {
+
+    },
+    " fiber: %.1fg" : {
+
+    },
+    " iron: %.1fg" : {
+
+    },
+    " Kcal: %lld" : {
+
+    },
+    " potassium: %.1fg" : {
+
+    },
+    " Protein: %.1fg" : {
+
+    },
+    " saturatedFat: %.1fg" : {
+
+    },
+    " sodium: %.1fg" : {
+
+    },
+    " sugar: %.1fg" : {
+
+    },
+    " Thông Tin Cá Nhân" : {
+
+    },
+    "\"Gói Premium sẽ được gia hạn tự động vào cuối mỗi kỳ đăng kí. Bạn có thể huỷ đăng kí bất cứ lúc nào trong phần Cài đặt tài khoản của ứng dụng.\"" : {
+
+    },
+    "\"Sau khi đăng kí gói Premium, bạn có thể đăng nhập vào tài khoản của mình trên các thiết bị khác để sử dụng gói Premium.\"" : {
+
+    },
+    "%.1f Kcal" : {
+
+    },
+    "%.1fg" : {
+
+    },
+    "%lld Kcal" : {
+
+    },
+    "• %@" : {
+
+    },
+    "+ Thêm vào danh sách" : {
+
+    },
+    "Add Item" : {
+
+    },
+    "Ăn uống thông minh – sống khoẻ mỗi ngày 🌿" : {
+
+    },
+    "Ảnh đã xử lý" : {
+
+    },
+    "Bài báo về sức khỏe" : {
+      "comment" : "toanngu"
+    },
+    "Bắt đầu" : {
+
+    },
+    "Biểu đồ cân nặng" : {
+
+    },
+    "Biểu đồ Kcal In cho 7 ngày gần nhất" : {
+
+    },
+    "Cá nhân" : {
+
+    },
+    "Cân nặng" : {
+
+    },
+    "Cập nhật" : {
+
+    },
+    "Cập nhật thông tin" : {
+
+    },
+    "Cập nhật thông tin thành công!" : {
+
+    },
+    "Chỉ cần chụp ảnh, GoodFood sẽ phân tích nguyên liệu và tính toán dinh dưỡng cho bạn." : {
+
+    },
+    "Chi tiết" : {
+
+    },
+    "Chi tiết món ăn" : {
+
+    },
+    "Chọn gói Premium ✨ " : {
+
+    },
+    "Chọn ngày" : {
+
+    },
+    "Chưa có ảnh" : {
+
+    },
+    "Chưa có món ăn nào" : {
+
+    },
+    "Chưa có nguyên liệu" : {
+
+    },
+    "Chưa đăng nhập" : {
+
+    },
+    "Chụp ảnh" : {
+
+    },
+    "Chụp ảnh món ăn hoặc tải lên" : {
+
+    },
+    "Còn lại" : {
+
+    },
+    "Core ML" : {
+
+    },
+    "Đăng ký ngay" : {
+
+    },
+    "Đang lưu..." : {
+
+    },
+    "Đăng nhập bằng Google" : {
+
+    },
+    "Đang tải gói…" : {
+
+    },
+    "Danh sách nguyên liệu:" : {
+
+    },
+    "Date" : {
+
+    },
+    "Để sau" : {
+
+    },
+    "Đổi sang English" : {
+
+    },
+    "Đổi sang Korean" : {
+
+    },
+    "Đơn vị" : {
+
+    },
+    "Đơn vị: %@" : {
+
+    },
+    "Đóng" : {
+
+    },
+    "Eat Smart, Live Healthy 🌿" : {
+
+    },
+    "Gemini" : {
+
+    },
+    "Giới tính: %@" : {
+
+    },
+    "Giới tính: Nam" : {
+
+    },
+    "Giới tính: Nữ" : {
+
+    },
+    "Gợi ý món" : {
+
+    },
+    "Gợi ý món ăn" : {
+
+    },
+    "Good-Food" : {
+
+    },
+    "GoodFood" : {
+
+    },
+    "GoodFood đồng hành cùng bạn đạt mục tiêu cân nặng và chế độ ăn lành mạnh." : {
+
+    },
+    "Hôm nay" : {
+
+    },
+    "Hôm qua" : {
+
+    },
+    "Item at %@" : {
+
+    },
+    "Kcal" : {
+
+    },
+    "Kcal trong 7 ngày" : {
+
+    },
+    "Languages" : {
+
+    },
+    "Lịch sử món ăn" : {
+
+    },
+    "Lỗi: %@" : {
+
+    },
+    "Lưu & Tiếp tục" : {
+
+    },
+    "Lưu vào nhật ký" : {
+
+    },
+    "Muốn ăn ngon mà không ăn năn thì vận động đi bạn nhé!" : {
+
+    },
+    "Nấu theo" : {
+
+    },
+    "Next" : {
+
+    },
+    "Ngày" : {
+
+    },
+    "Nguyên liệu vừa thêm:" : {
+
+    },
+    "Nhận diện món ăn bằng AI" : {
+
+    },
+    "Nhật kí" : {
+
+    },
+    "Nhật ký" : {
+
+    },
+    "OK" : {
+
+    },
+    "Select an item" : {
+
+    },
+    "selected language" : {
+
+    },
+    "Số lượng" : {
+
+    },
+    "Số lượng: %.1f" : {
+
+    },
+    "Tab" : {
+
+    },
+    "Tải ảnh" : {
+
+    },
+    "Tên nguyên liệu" : {
+
+    },
+    "Thành công" : {
+
+    },
+    "Theo dõi sức khỏe của bạn ❤️" : {
+
+    },
+    "Thời gian: %@" : {
+
+    },
+    "Thông báo" : {
+
+    },
+    "THÔNG BÁO" : {
+
+    },
+    "Thông tin" : {
+
+    },
+    "Thông tin dinh dưỡng:" : {
+
+    },
+    "Trang chủ" : {
+
+    },
+    "Trạng thái: %@" : {
+
+    },
+    "Trước đó" : {
+
+    },
+    "Ứng dụng giúp bạn theo dõi calo, quản lý dinh dưỡng và ăn uống thông minh hơn mỗi ngày." : {
+
+    },
+    "Weight" : {
+
+    },
+    "Xác nhận" : {
+
+    },
+    "Xem bài gốc" : {
+
+    }
+  },
+  "version" : "1.0"
+}

@@ -14,10 +14,35 @@ class FirebaseService: ObservableObject {
     @Published var dailyRecord: DailyRecord?
     @Published var dishHistory: [Dish] = []
     @EnvironmentObject var authViewModel: AuthViewModel
+
+    private var listener: ListenerRegistration?
     let db = Firestore.firestore()
 
     var userID: String {
         Auth.auth().currentUser?.uid ?? "default_user"
+    }
+
+    func cleanFirebaseData(_ data: [String: Any]) -> [String: Any] {
+        var cleanData: [String: Any] = [:]
+
+        for (key, value) in data {
+            if let timestamp = value as? Timestamp {
+                cleanData[key] = timestamp.dateValue().timeIntervalSince1970
+            } else if let array = value as? [[String: Any]] {
+                let cleanedArray = array.map { item in
+                    var cleanedItem = item
+                    if let ts = item["date"] as? Timestamp {
+                        cleanedItem["date"] = ts.dateValue().timeIntervalSince1970
+                    }
+                    return cleanedItem
+                }
+                cleanData[key] = cleanedArray
+            } else {
+                cleanData[key] = value
+            }
+        }
+
+        return cleanData
     }
 
     func dailyRecordRef(for date: Date) -> DocumentReference {
@@ -32,8 +57,8 @@ class FirebaseService: ObservableObject {
 
         var dishData: [String: Any] = [
             "id": dish.id.uuidString,
-            "name": dish.name,
-            "description": dish.description,
+            "name": dish.name ?? "",
+            "description": dish.description ?? "",
             "image": dish.image ?? "",
             "recipe": dish.recipe ?? "",
             "ingredients": (dish.ingredients ?? []).map { ingredient in
@@ -41,12 +66,12 @@ class FirebaseService: ObservableObject {
                     "name": ingredient.name,
                     "unit": ingredient.unit ?? "",
                     "state": ingredient.state ?? "",
-                    "quantity": ingredient.quantity
+                    "quantity": ingredient.quantity ?? ""
                 ]
             }
         ]
 
-        // Thêm nutritionFacts nếu có
+        // Thêm nutritionFacts
         if let facts = nutritionFacts {
             for (key, value) in facts {
                 dishData[key] = value
@@ -93,6 +118,7 @@ class FirebaseService: ObservableObject {
     func saveUserInfoToFirebase(user: UserModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
+        let historyDicts = user.weighHistory?.map { $0.toDict() } ?? []
         var data: [String: Any] = [
             "id": user.id,
             "email": user.email,
@@ -103,7 +129,7 @@ class FirebaseService: ObservableObject {
             "height": user.height ?? 0.0,
             "weight": user.weight ?? 0.0,
             "targetWeight": user.targetWeight ?? 0.0,
-            "weighHistory": user.weighHistory ?? []
+            "weighHistory": historyDicts
         ]
 
         userRef.setData(data, merge: true) { error in
@@ -114,10 +140,14 @@ class FirebaseService: ObservableObject {
             }
         }
     }
-
+    
     func updateUserInforToFirebase(_ user: UserModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = db.collection("User").document(userID)
 
+        var updatedHistory = user.weighHistory ?? []
+
+        let historyDicts = updatedHistory.map { $0.toDict() } ?? []
+        historyDicts.forEach { print(" cân nặng in trc kgi lưu lên firebase : ", $0) }
         let data: [String: Any] = [
             "email": user.email,
             "displayName": user.displayName ?? "",
@@ -127,9 +157,9 @@ class FirebaseService: ObservableObject {
             "height": user.height ?? 0.0,
             "weight": user.weight ?? 0.0,
             "targetWeight": user.targetWeight ?? 0.0,
-            "weighHistory": user.weighHistory ?? []
+            "weighHistory": historyDicts
         ]
-
+        print("Vào hàm update lên firebase ne")
         userRef.updateData(data) { err in
             if let err = err {
                 completion(.failure(err))
@@ -137,6 +167,7 @@ class FirebaseService: ObservableObject {
                 completion(.success(()))
             }
         }
+        print("Lưu lên firebase rồi ne")
     }
 
     func fetchInforUser(authViewModel: AuthViewModel, completion: @escaping (Result<UserModel, Error>) -> Void) {
@@ -154,7 +185,8 @@ class FirebaseService: ObservableObject {
             }
 
             do {
-                let jsonData = try JSONSerialization.data(withJSONObject: data)
+                let cleanedData = self.cleanFirebaseData(data)
+                let jsonData = try JSONSerialization.data(withJSONObject: cleanedData)
                 let decodedUser = try JSONDecoder().decode(UserModel.self, from: jsonData)
 
                 DispatchQueue.main.async {
@@ -166,6 +198,26 @@ class FirebaseService: ObservableObject {
                 completion(.failure(error))
             }
         }
+    }
+
+    func calculateKcalOut(from user: UserModel, activityLevel: Double = 1.375) -> Double {
+        guard let age = user.age,
+              let height = user.height,
+              let weight = user.weight,
+              let isMale = user.sex
+        else {
+            return 2000
+        }
+
+        let bmr: Double
+        if isMale {
+            bmr = 10 * weight + 625 * height - 5 * Double(age) + 5
+        } else {
+            bmr = 10 * weight + 625 * height - 5 * Double(age) - 161
+        }
+
+        let tdee = bmr * activityLevel
+        return tdee
     }
 
     func fetchDataOfDay(date: Date, completion: @escaping (Result<[Dish], Error>) -> Void) {
@@ -206,7 +258,7 @@ class FirebaseService: ObservableObject {
                     )
                 }
 
-                // Parse nutritionFacts nếu có
+                // Parse nutritionFacts
                 var nutritionFacts: NutritionFacts?
                 if let kcal = data["calories"] as? Double,
                    let protein = data["protein"] as? Double,
@@ -258,6 +310,137 @@ class FirebaseService: ObservableObject {
                 carbohydrates: carbs
             )
             completion(.success(summary))
+        }
+    }
+
+    func fetchAllNutritionSummaries(userId: String, completion: @escaping (Result<[NutritionFacts], Error>) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("User").document(userId).collection("dailyRecord").getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+
+            let summaries: [NutritionFacts] = documents.compactMap { doc in
+                let data = doc.data()
+                return NutritionFacts(
+                    date: (data["date"] as? Timestamp)?.dateValue(),
+                    calories: data["kcalIn"] as? Double,
+                    fat: data["fat"] as? Double,
+                    protein: data["protein"] as? Double,
+                    carbohydrates: data["carbs"] as? Double
+                )
+            }
+
+            completion(.success(summaries))
+        }
+    }
+
+    func fetchTargetWeight() async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in // cách Swift "bọc" callback-based API (như Firebase) thành async
+            db.collection("User").document(userID).getDocument { snapshot, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let data = snapshot?.data() else {
+                    continuation.resume(returning: "0")
+                    return
+                }
+
+                let targetWeight = data["targetWeight"] as? Double ?? 0
+                let stringValue = String(format: "%.1f", targetWeight)
+                continuation.resume(returning: stringValue)
+            }
+        }
+    }
+
+    func fetchCurrentWeight() async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in
+            db.collection("User").document(userID).getDocument { snapshot, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+
+                guard let data = snapshot?.data() else {
+                    continuation.resume(returning: "0")
+                    return
+                }
+
+                let currentWeight = data["weight"] as? Double ?? 0
+                let stringValue = String(format: "%.1f", currentWeight)
+                continuation.resume(returning: stringValue)
+            }
+        }
+    }
+
+    func fetchDailyKcalSummary(completion: @escaping (Result<[KcalEntry], Error>) -> Void) {
+        db.collection("User").document(userID).collection("dailyRecord").getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+
+            // Ngày hôm nay và 6 ngày trước
+            let calendar = Calendar.current
+            let today = calendar.startOfDay(for: Date())
+            guard let startDate = calendar.date(byAdding: .day, value: -6, to: today) else {
+                completion(.success([]))
+                return
+            }
+
+            var entries: [KcalEntry] = []
+
+            for document in documents {
+                let docID = document.documentID
+                guard let date = formatter.date(from: docID) else { continue }
+
+                // Chỉ lấy các ngày trong khoảng [startDate, today]
+                if date >= startDate && date <= today {
+                    let data = document.data()
+                    let kcal = Int(data["kcalIn"] as? Double ?? 0)
+                    entries.append(KcalEntry(date: date, kcal: kcal))
+                }
+            }
+
+            // Sắp xếp theo ngày tăng dần
+            let sortedEntries = entries.sorted { $0.date < $1.date }
+
+            completion(.success(sortedEntries))
+        }
+    }
+
+    func fetchWeightHistory(completion: @escaping (Result<[Double], Error>) -> Void) {
+        db.collection("User").document(userID).getDocument { document, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let document = document, document.exists,
+                  let data = document.data(),
+                  let weights = data["weighHistory"] as? [Double]
+            else {
+                completion(.success([])) // Trả về mảng rỗng nếu không có dữ liệu
+                return
+            }
+
+            completion(.success(weights))
         }
     }
 

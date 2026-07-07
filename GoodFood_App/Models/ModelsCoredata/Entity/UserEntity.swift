@@ -14,7 +14,6 @@ class UserEntity: NSManagedObject {
     }
 
     @NSManaged public var id: String?
-//    @NSManaged public var id: UUID?
     @NSManaged public var email: String?
     @NSManaged public var displayName: String?
     @NSManaged public var photoURL: String?
@@ -26,3 +25,14 @@ class UserEntity: NSManagedObject {
     @NSManaged public var weighHistory: Data?
 }
 
+extension UserEntity {
+    var weighHistoryArray: [WeightRecord] {
+        get {
+            guard let data = weighHistory else { return [] }
+            return (try? JSONDecoder().decode([WeightRecord].self, from: data)) ?? []
+        }
+        set {
+            weighHistory = try? JSONEncoder().encode(newValue)
+        }
+    }
+}

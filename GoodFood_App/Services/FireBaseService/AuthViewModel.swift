@@ -24,7 +24,7 @@ class AuthViewModel: ObservableObject {
             return
         }
 
-        GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { result, error in // mở gdien -> tc ->lấy idToken và accessToken.
             if let error = error {
                 print("Lỗi đăng nhập Google: \(error.localizedDescription)")
                 return
@@ -63,19 +63,22 @@ class AuthViewModel: ObservableObject {
         }
     }
 
-    private func checkIfUserHasInfo() {
+     func checkIfUserHasInfo() {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
         db.collection("User").document(userID).getDocument { document, _ in
             if let document = document, document.exists {
                 let data = document.data()
+                print("Đã có dữ liệu rồi")
                 if let age = data?["age"] as? Int, age > 0 {
                     self.showUserInfoForm = false // Đã có info rồi
+                    print("Đã có inf rồi")
                 } else {
                     self.showUserInfoForm = true // Chưa có info
                 }
             } else {
                 self.showUserInfoForm = true // Không có document -→ lần đầu
+                print("Có tài khoản rồi nhưng chưa có dữ liệu")
             }
         }
     }

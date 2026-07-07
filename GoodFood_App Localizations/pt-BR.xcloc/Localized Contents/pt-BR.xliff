@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="GoodFood_App/InfoPlist.xcstrings" source-language="vi" target-language="pt-BR" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.4" build-num="16F6"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>Good Food</source>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>Ứng dụng cần sử dụng camera để chụp ảnh món ăn</source>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve">
+        <source>Ứng dụng cần truy cập thư viện ảnh</source>
+        <note>Privacy - Photo Library Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="GoodFood_App/Localizable.xcstrings" source-language="vi" target-language="pt-BR" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.4" build-num="16F6"></tool>
+    </header>
+    <body>
+      <trans-unit id=" Carbs: %.1fg" xml:space="preserve">
+        <source> Carbs: %.1fg</source>
+        <target state="">Carbos: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" Fat: %.1fg" xml:space="preserve">
+        <source> Fat: %.1fg</source>
+        <target state=""> Gordura: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" Kcal: %lld" xml:space="preserve">
+        <source> Kcal: %lld</source>
+        <target state=""> KCAL: %LLD</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" Nhập từ khoá hoặc câu hỏi cần tìm kiếm" xml:space="preserve">
+        <source> Nhập từ khoá hoặc câu hỏi cần tìm kiếm</source>
+        <target state=""> Digite palavras -chave ou perguntas para pesquisar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" Protein: %.1fg" xml:space="preserve">
+        <source> Protein: %.1fg</source>
+        <target state=""> Proteína: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" Thông Tin Cá Nhân" xml:space="preserve">
+        <source> Thông Tin Cá Nhân</source>
+        <target state=""> Informações pessoais</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" calcium: %.1fg" xml:space="preserve">
+        <source> calcium: %.1fg</source>
+        <target state=""> Cálcio: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" cholesterol: %.1fg" xml:space="preserve">
+        <source> cholesterol: %.1fg</source>
+        <target state=""> Colesterol: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" fiber: %.1fg" xml:space="preserve">
+        <source> fiber: %.1fg</source>
+        <target state=""> Fibra: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" iron: %.1fg" xml:space="preserve">
+        <source> iron: %.1fg</source>
+        <target state=""> Ferro: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" potassium: %.1fg" xml:space="preserve">
+        <source> potassium: %.1fg</source>
+        <target state=""> Potássio: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" saturatedFat: %.1fg" xml:space="preserve">
+        <source> saturatedFat: %.1fg</source>
+        <target state=""> SatatedFate: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" sodium: %.1fg" xml:space="preserve">
+        <source> sodium: %.1fg</source>
+        <target state=""> Sódio: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id=" sugar: %.1fg" xml:space="preserve">
+        <source> sugar: %.1fg</source>
+        <target state=""> Açúcar: %.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Gói Premium sẽ được gia hạn tự động vào cuối mỗi kỳ đăng kí. Bạn có thể huỷ đăng kí bất cứ lúc nào trong phần Cài đặt tài khoản của ứng dụng." xml:space="preserve">
+        <source>"Gói Premium sẽ được gia hạn tự động vào cuối mỗi kỳ đăng kí. Bạn có thể huỷ đăng kí bất cứ lúc nào trong phần Cài đặt tài khoản của ứng dụng."</source>
+        <target state="">"O pacote premium será renovado automaticamente no final de cada período de registro. Você pode cancelar o registro a qualquer momento nas configurações da conta do aplicativo".</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Sau khi đăng kí gói Premium, bạn có thể đăng nhập vào tài khoản của mình trên các thiết bị khác để sử dụng gói Premium." xml:space="preserve">
+        <source>"Sau khi đăng kí gói Premium, bạn có thể đăng nhập vào tài khoản của mình trên các thiết bị khác để sử dụng gói Premium."</source>
+        <target state="">"Depois de registrar o pacote premium, você pode fazer login na sua conta em outros dispositivos para usar o pacote premium".</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="%.1f Kcal" xml:space="preserve">
+        <source>%.1f Kcal</source>
+        <target state="">%.1f kcal</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="%.1fg" xml:space="preserve">
+        <source>%.1fg</source>
+        <target state="">%.1fg</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="%lld Kcal" xml:space="preserve">
+        <source>%lld Kcal</source>
+        <target state="">%lld kcal</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="+ Thêm vào danh sách" xml:space="preserve">
+        <source>+ Thêm vào danh sách</source>
+        <target state="">+ Adicione a lista</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Add Item" xml:space="preserve">
+        <source>Add Item</source>
+        <target state="">Adicionar item</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Ăn uống thông minh – sống khoẻ mỗi ngày 🌿" xml:space="preserve">
+        <source>Ăn uống thông minh – sống khoẻ mỗi ngày 🌿</source>
+        <target state="">Comer inteligente - Vida saudável todos os dias 🌿</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Ảnh đã xử lý" xml:space="preserve">
+        <source>Ảnh đã xử lý</source>
+        <target state="">Foto processada</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Bài báo về sức khỏe" xml:space="preserve">
+        <source>Bài báo về sức khỏe</source>
+        <target state="">Artigo de Saúde</target>
+        <note>toanngu</note>
+      </trans-unit>
+      <trans-unit id="Bắt đầu" xml:space="preserve">
+        <source>Bắt đầu</source>
+        <target state="">Começar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Bạn cần trợ giúp về điều gì nào ?" xml:space="preserve">
+        <source>Bạn cần trợ giúp về điều gì nào ?</source>
+        <target state="">O que você precisa de ajuda?</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Biểu đồ Kcal In cho 7 ngày gần nhất" xml:space="preserve">
+        <source>Biểu đồ Kcal In cho 7 ngày gần nhất</source>
+        <target state="">Gráfico de impressão Kcal nos últimos 7 dias</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Biểu đồ cân nặng" xml:space="preserve">
+        <source>Biểu đồ cân nặng</source>
+        <target state="">Gráfico de peso</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Cá nhân" xml:space="preserve">
+        <source>Cá nhân</source>
+        <target state="">Individual</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Cân nặng" xml:space="preserve">
+        <source>Cân nặng</source>
+        <target state="">Peso</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Cân nặng (kg)" xml:space="preserve">
+        <source>Cân nặng (kg)</source>
+        <target state="">Peso (kg)</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Cần nạp" xml:space="preserve">
+        <source>Cần nạp</source>
+        <target state="">Precisa carregar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Cập nhật" xml:space="preserve">
+        <source>Cập nhật</source>
+        <target state="">Atualizar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Cập nhật thông tin" xml:space="preserve">
+        <source>Cập nhật thông tin</source>
+        <target state="">Atualizar informações</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Cập nhật thông tin thành công!" xml:space="preserve">
+        <source>Cập nhật thông tin thành công!</source>
+        <target state="">Atualize informações bem -sucedidas!</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chi tiết" xml:space="preserve">
+        <source>Chi tiết</source>
+        <target state="">Detalhe</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chi tiết món ăn" xml:space="preserve">
+        <source>Chi tiết món ăn</source>
+        <target state="">Detalhes da comida</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chỉ cần chụp ảnh, GoodFood sẽ phân tích nguyên liệu và tính toán dinh dưỡng cho bạn." xml:space="preserve">
+        <source>Chỉ cần chụp ảnh, GoodFood sẽ phân tích nguyên liệu và tính toán dinh dưỡng cho bạn.</source>
+        <target state="">Basta tirar fotos, o GoodFood analisará as matérias -primas e calculará a nutrição para você.</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chiều cao (m)" xml:space="preserve">
+        <source>Chiều cao (m)</source>
+        <target state="">Altura (m)</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chọn gói Premium ✨ " xml:space="preserve">
+        <source>Chọn gói Premium ✨ </source>
+        <target state="">Escolha o pacote premium ✨ </target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chọn ngày" xml:space="preserve">
+        <source>Chọn ngày</source>
+        <target state="">Selecione a data</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chưa có ảnh" xml:space="preserve">
+        <source>Chưa có ảnh</source>
+        <target state="">Não há foto</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chưa có món ăn nào" xml:space="preserve">
+        <source>Chưa có món ăn nào</source>
+        <target state="">Sem comida</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chưa có nguyên liệu" xml:space="preserve">
+        <source>Chưa có nguyên liệu</source>
+        <target state="">Não há material</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chưa đăng nhập" xml:space="preserve">
+        <source>Chưa đăng nhập</source>
+        <target state="">Solteiro</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chụp ảnh" xml:space="preserve">
+        <source>Chụp ảnh</source>
+        <target state="">Tire uma foto</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Chụp ảnh món ăn hoặc tải lên" xml:space="preserve">
+        <source>Chụp ảnh món ăn hoặc tải lên</source>
+        <target state="">Tire fotos de comida ou carregue</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Core ML" xml:space="preserve">
+        <source>Core ML</source>
+        <target state="">Core Ml</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Còn lại" xml:space="preserve">
+        <source>Còn lại</source>
+        <target state="">Restante</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Danh sách nguyên liệu:" xml:space="preserve">
+        <source>Danh sách nguyên liệu:</source>
+        <target state="">Lista de matérias -primas:</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Date" xml:space="preserve">
+        <source>Date</source>
+        <target state="">Data</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Eat Smart, Live Healthy 🌿" xml:space="preserve">
+        <source>Eat Smart, Live Healthy 🌿</source>
+        <target state="">Coma inteligente, viva saudável 🌿</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Gemini" xml:space="preserve">
+        <source>Gemini</source>
+        <target state="">Gêmeos</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Giới tính: %@" xml:space="preserve">
+        <source>Giới tính: %@</source>
+        <target state="">Gênero: %@</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Giới tính: Nam" xml:space="preserve">
+        <source>Giới tính: Nam</source>
+        <target state="">Gênero: Masculino</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Giới tính: Nữ" xml:space="preserve">
+        <source>Giới tính: Nữ</source>
+        <target state="">Sexo: Feminino</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Good-Food" xml:space="preserve">
+        <source>Good-Food</source>
+        <target state="">Bom alimento</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="GoodFood" xml:space="preserve">
+        <source>GoodFood</source>
+        <target state="">Goodfood</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="GoodFood đồng hành cùng bạn đạt mục tiêu cân nặng và chế độ ăn lành mạnh." xml:space="preserve">
+        <source>GoodFood đồng hành cùng bạn đạt mục tiêu cân nặng và chế độ ăn lành mạnh.</source>
+        <target state="">Goodfood acompanha você para atingir o objetivo de peso e uma dieta saudável.</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Gợi ý món" xml:space="preserve">
+        <source>Gợi ý món</source>
+        <target state="">Sugerir pratos</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Gợi ý món ăn" xml:space="preserve">
+        <source>Gợi ý món ăn</source>
+        <target state="">Sugerir comida</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Hôm nay" xml:space="preserve">
+        <source>Hôm nay</source>
+        <target state="">Hoje</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Hôm qua" xml:space="preserve">
+        <source>Hôm qua</source>
+        <target state="">Ontem</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Item at %@" xml:space="preserve">
+        <source>Item at %@</source>
+        <target state="">Item em %@</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Kcal" xml:space="preserve">
+        <source>Kcal</source>
+        <target state="">KCAL</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Kcal trong 7 ngày" xml:space="preserve">
+        <source>Kcal trong 7 ngày</source>
+        <target state="">Kcal em 7 dias</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Languages" xml:space="preserve">
+        <source>Languages</source>
+        <target state="">Idiomas</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Lịch sử món ăn" xml:space="preserve">
+        <source>Lịch sử món ăn</source>
+        <target state="">História da comida</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Lỗi: %@" xml:space="preserve">
+        <source>Lỗi: %@</source>
+        <target state="">Erro: %@</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Lưu &amp; Tiếp tục" xml:space="preserve">
+        <source>Lưu &amp; Tiếp tục</source>
+        <target state=""></target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Lưu vào nhật ký" xml:space="preserve">
+        <source>Lưu vào nhật ký</source>
+        <target state="">Salvar no diário</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Màn hình %@" xml:space="preserve">
+        <source>Màn hình %@</source>
+        <target state="">Tela %@</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Muốn ăn ngon mà không ăn năn thì vận động đi bạn nhé!" xml:space="preserve">
+        <source>Muốn ăn ngon mà không ăn năn thì vận động đi bạn nhé!</source>
+        <target state="">Se você quiser comer bem sem se arrepender, exercite -se!</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Nấu theo" xml:space="preserve">
+        <source>Nấu theo</source>
+        <target state="">Cozinhar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Nạp vào" xml:space="preserve">
+        <source>Nạp vào</source>
+        <target state="">Carregado</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Next" xml:space="preserve">
+        <source>Next</source>
+        <target state="">Próximo</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Ngày" xml:space="preserve">
+        <source>Ngày</source>
+        <target state="">Dia</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Nguyên liệu vừa thêm:" xml:space="preserve">
+        <source>Nguyên liệu vừa thêm:</source>
+        <target state="">Material adicionado:</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Nhận diện món ăn bằng AI" xml:space="preserve">
+        <source>Nhận diện món ăn bằng AI</source>
+        <target state="">Identifique a comida com ai</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Nhật kí" xml:space="preserve">
+        <source>Nhật kí</source>
+        <target state="">Diário</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Nhật ký" xml:space="preserve">
+        <source>Nhật ký</source>
+        <target state="">Diário</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target state="">OK</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Select an item" xml:space="preserve">
+        <source>Select an item</source>
+        <target state="">Selecione um item</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Số lượng" xml:space="preserve">
+        <source>Số lượng</source>
+        <target state="">Quantidade</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Số lượng: %.1f" xml:space="preserve">
+        <source>Số lượng: %.1f</source>
+        <target state="">Quantidade: %.1f</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="THÔNG BÁO" xml:space="preserve">
+        <source>THÔNG BÁO</source>
+        <target state="">NOTIFICAÇÃO</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Tab" xml:space="preserve">
+        <source>Tab</source>
+        <target state="">Guia</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Tải ảnh" xml:space="preserve">
+        <source>Tải ảnh</source>
+        <target state="">Baixar fotos</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Test Crash" xml:space="preserve">
+        <source>Test Crash</source>
+        <target state="">Acidente de teste</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Tên" xml:space="preserve">
+        <source>Tên</source>
+        <target state="">Nome</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Tên nguyên liệu" xml:space="preserve">
+        <source>Tên nguyên liệu</source>
+        <target state="">Nome da matéria -prima</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Thành công" xml:space="preserve">
+        <source>Thành công</source>
+        <target state="">Sucesso</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Theo dõi sức khỏe của bạn ❤️" xml:space="preserve">
+        <source>Theo dõi sức khỏe của bạn ❤️</source>
+        <target state="">Monitore sua saúde ❤️</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Thông báo" xml:space="preserve">
+        <source>Thông báo</source>
+        <target state="">Notificação</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Thông tin" xml:space="preserve">
+        <source>Thông tin</source>
+        <target state="">Informação</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Thông tin dinh dưỡng:" xml:space="preserve">
+        <source>Thông tin dinh dưỡng:</source>
+        <target state="">Informações nutricionais:</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Thời gian: %@" xml:space="preserve">
+        <source>Thời gian: %@</source>
+        <target state="">Tempo: %@</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Tiêu hao" xml:space="preserve">
+        <source>Tiêu hao</source>
+        <target state="">Consumo</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Trang chủ" xml:space="preserve">
+        <source>Trang chủ</source>
+        <target state="">Lar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Trạng thái: %@" xml:space="preserve">
+        <source>Trạng thái: %@</source>
+        <target state="">Status: %@</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Trước đó" xml:space="preserve">
+        <source>Trước đó</source>
+        <target state="">Mais cedo</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Tuổi" xml:space="preserve">
+        <source>Tuổi</source>
+        <target state="">Anos</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Ứng dụng giúp bạn theo dõi calo, quản lý dinh dưỡng và ăn uống thông minh hơn mỗi ngày." xml:space="preserve">
+        <source>Ứng dụng giúp bạn theo dõi calo, quản lý dinh dưỡng và ăn uống thông minh hơn mỗi ngày.</source>
+        <target state="">O aplicativo ajuda a rastrear calorias, gerenciamento de nutrição e comer mais inteligente todos os dias.</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Weight" xml:space="preserve">
+        <source>Weight</source>
+        <target state="">Peso</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Xác nhận" xml:space="preserve">
+        <source>Xác nhận</source>
+        <target state="">Confirmar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Xem bài gốc" xml:space="preserve">
+        <source>Xem bài gốc</source>
+        <target state="">Veja a postagem original</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Xin chào, %@ !" xml:space="preserve">
+        <source>Xin chào, %@ !</source>
+        <target state="">Olá, %@ !</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Xin chào, User !" xml:space="preserve">
+        <source>Xin chào, User !</source>
+        <target state="">Olá, usuário!</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="selected language" xml:space="preserve">
+        <source>selected language</source>
+        <target state="">Linguagem selecionada</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đang lưu..." xml:space="preserve">
+        <source>Đang lưu...</source>
+        <target state="">Salvar ...</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đang tải gói…" xml:space="preserve">
+        <source>Đang tải gói…</source>
+        <target state="">Carregando o pacote ...</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đăng ký ngay" xml:space="preserve">
+        <source>Đăng ký ngay</source>
+        <target state="">Registre -se agora</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đăng nhập bằng Google" xml:space="preserve">
+        <source>Đăng nhập bằng Google</source>
+        <target state="">Faça login com o Google</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Để sau" xml:space="preserve">
+        <source>Để sau</source>
+        <target state="">Subsequente</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đóng" xml:space="preserve">
+        <source>Đóng</source>
+        <target state="">Fechar</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đổi sang English" xml:space="preserve">
+        <source>Đổi sang English</source>
+        <target state="">Mudança para o inglês</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đổi sang Korean" xml:space="preserve">
+        <source>Đổi sang Korean</source>
+        <target state="">Mudança para coreano</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đơn vị" xml:space="preserve">
+        <source>Đơn vị</source>
+        <target state="">Unidade</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="Đơn vị: %@" xml:space="preserve">
+        <source>Đơn vị: %@</source>
+        <target state="">Unidade: %@</target>
+        <note></note>
+      </trans-unit>
+      <trans-unit id="• %@" xml:space="preserve">
+        <source>• %@</source>
+        <target state="">• %@</target>
+        <note></note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
